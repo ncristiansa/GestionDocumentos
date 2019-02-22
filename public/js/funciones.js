@@ -11,3 +11,16 @@ function comprobarCampos(){
 }; 
 
 
+function moduloError(error) {
+	var contenedor = $('.container-fluid');
+	var divContenido = $('<div>').addClass("alert alert-danger");
+	var pErrores = $('<p>',{text:error});
+	var divErrores = $('<div>').addClass("alert alert-light");
+	divContenido.append(pErrores);
+	divErrores.append(divContenido);
+	contenedor.after(divErrores);
+
+}
+
+$(document).ready();
+
