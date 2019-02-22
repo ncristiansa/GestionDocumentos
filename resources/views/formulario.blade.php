@@ -1,20 +1,11 @@
-<!doctype <!DOCTYPE html>
-<html>
-<head>
-  @include('includes.head')
-   
-    <title>Añadir Clientes</title>
-    
-    <style type="text/css">
-    	#formulario{
-    		width: 50%;
-    		margin-left: 25%;
-    		margin-top: 5%;
-    	}
-    </style>
-    
-</head>
-<body>
+@extends('layouts/plantilla')
+<div class="row">
+    <div class="col-12">
+        <h1 class="display-3" style="text-shadow: 2px 2px 2px #000000; color:white;">Añadir Usuario</h1>
+    </div>
+</div>
+@section('content')
+
 	<?php
 	echo "<div class='form-group'>";
 	echo "<form id='formulario'>";
@@ -78,7 +69,6 @@
 	echo "</div>";
 	?>
     
-</body>
-</html>
+@stop
 
 
