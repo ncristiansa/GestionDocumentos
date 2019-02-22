@@ -13,3 +13,7 @@
 Route::get('/', function () {
     return view('clientes');
 });
+
+Route::get('/formulario', function () {
+    return view('formulario');
+});
