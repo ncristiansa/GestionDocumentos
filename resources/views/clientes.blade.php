@@ -13,7 +13,7 @@
         <h2>Listado de Clientes</h2>
         <br>
         <br>
-        <button type="button" class="btn btn-success">Agregar Cliente</button>
+        <button type="button" class="btn btn-success" onclick="location.href = '{{ url('formulario')}}'">Agregar Cliente</button>
     </div>
 </div>
     <script type="text/javascript">
