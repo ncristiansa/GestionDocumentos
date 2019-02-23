@@ -6,7 +6,7 @@
 </div>
 @section('content')
 <div class="row">
-    <div class="col-12" style="background-color:white;padding:2%; border:1px solid;">
+    <div class="col-12">
         <h2>Listado de Clientes</h2>
         <br>
         <div class="table-responsive">
@@ -16,23 +16,21 @@
                     <th scope="col">Cod. Cliente</th>
                     <th scope="col">Nombre</th>
                     <th scope="col">Email</th>
-                    <th scope="col">Teléfono</th>
-                    <th scope="col">Fecha</th>
-                    <th scope="col">Fecha Modificación</th>
-                    <th scope="col">Dirección</th>
-                    <th scope="col">NIF/CIF</th>
                     <th scope="col">Provincia</th>
-                    <th scope="col">Localidad</th>
-                    <th scope="col">C.P</th>
                 </tr>
                 </thead>
                     <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Cristian</td>
-                            <td>ncristiansalinasandia@gmail.com</td>
-                            <td>665353444</td>
-                        </tr>
+                    <?php
+                    $datos_cliente = DB::table('clientes')->get();
+                    foreach ($datos_cliente as $key => $value) {
+                        echo"<tr>";
+                            echo "<th scope='row'>".$value->id."</th>";
+                            echo "<th scope='row'>".$value->Nombre."</th>";
+                            echo "<th scope='row'>".$value->Email."</th>";
+                            echo "<th scope='row'>".$value->Provincia."</th>";
+                        echo"</tr>";
+                    }
+                    ?>
                     </tbody>
             </table>
         </div>
