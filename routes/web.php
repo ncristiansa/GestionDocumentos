@@ -18,5 +18,5 @@ Route::get('/formulario', function () {
     return view('formulario');
 });
 Route::get('/cliente/{id}', function () {
-    return view('cliente', array('id'=>$id));
+    return view('cliente');
 });
