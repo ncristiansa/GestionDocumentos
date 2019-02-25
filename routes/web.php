@@ -18,5 +18,10 @@ Route::get('/formulario', function () {
     return view('formulario');
 });
 
-Route::get('insert','InsertarUsuario@insertform');
-Route::post('crear','InsertarUsuario@insert');
+
+Route::get('/insert','InsertarUsuario@insertform');
+Route::post('/crear','InsertarUsuario@insert');
+
+Route::get('/cliente/{id}', function () {
+    return view('cliente');
+});

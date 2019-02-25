@@ -5,39 +5,19 @@
     </div>
 </div>
 @section('content')
+<?php
+    $datos_cliente = DB::table('clientes')->select('id','Nombre')->get();
+?>
 <div class="row">
-    <div class="col-12" style="background-color:white;padding:2%; border:1px solid;">
+    <div class="col-12">
         <h2>Listado de Clientes</h2>
         <br>
-        <div class="table-responsive">
-            <table class="table table-hover" style="border:1px solid;">
-                <thead class="thead-dark">
-                <tr>
-                    <th scope="col">Cod. Cliente</th>
-                    <th scope="col">Nombre</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">Teléfono</th>
-                    <th scope="col">Fecha</th>
-                    <th scope="col">Fecha Modificación</th>
-                    <th scope="col">Dirección</th>
-                    <th scope="col">NIF/CIF</th>
-                    <th scope="col">Provincia</th>
-                    <th scope="col">Localidad</th>
-                    <th scope="col">C.P</th>
-                </tr>
-                </thead>
-                    <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Cristian</td>
-                            <td>ncristiansalinasandia@gmail.com</td>
-                            <td>665353444</td>
-                        </tr>
-                    </tbody>
-            </table>
-        </div>
         <br>
-        <button type="button" class="btn btn-success">Agregar Cliente</button>
+        <button type="button" class="btn btn-success" onclick="location.href = '{{ url('formulario')}}'">Agregar Cliente</button>
     </div>
 </div>
+    <script type="text/javascript">
+        var Consulta = <?php echo json_encode($datos_cliente);?>;
+        generaTabla(Consulta);       
+    </script>
 @stop
