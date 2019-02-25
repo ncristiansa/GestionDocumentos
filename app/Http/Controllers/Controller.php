@@ -11,3 +11,17 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 }
+
+
+class InsertarUsuario extends BaseController
+{
+	public function insertform(){
+		return view("formulario")
+	}
+
+	public function insert(Request $request){
+		$name=$request->input("")
+		DB::table("tabla")->insert(['name'=>$name]);
+		echo "Insertado correctamente</br>";
+	}
+}
