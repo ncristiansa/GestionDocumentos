@@ -24,7 +24,21 @@ class Clientes extends Migration
             $table->string('Localidad');
             $table->integer('CP');
             $table->timestamps();
+
+
         });
+        Schema::create('ventas', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('id_cliente')->unsigned();
+            $table->string('Comprador');
+            $table->date('fecha_venta');
+            $table->timestamps();
+            $table->foreign('id_cliente')->references('id')->on('clientes');
+
+
+        });
+
+
     }
 
     /**

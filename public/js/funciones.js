@@ -25,6 +25,7 @@ function moduloError(error) {
 function generaTabla(Consulta){
 	console.log("Entra en la funcion.");
 	if(Consulta instanceof Array){
+		console.log(Consulta);
 		var h2 = $('h2');
 		var divTabla = $('<div>').addClass("table-responsive");
 		var tabla = $('<table>').addClass("table table-hover");
