@@ -55,11 +55,11 @@ function moduloError(error) {
 
 }
 
-function generaTabla(Consulta){
+function generaTabla(Consulta,elementoAnterior){
 	console.log("Entra en la funcion.");
 	if(Consulta instanceof Array){
 		console.log(Consulta);
-		var h2 = $('h2');
+		var elementoPadre = $(elementoAnterior);
 		var divTabla = $('<div>').addClass("table-responsive");
 		var tabla = $('<table>').addClass("table table-hover");
 		var thead = $('<thead>').addClass("thead-dark");
@@ -93,7 +93,7 @@ function generaTabla(Consulta){
 		tabla.append(thead);
 		tabla.append(tbody);
 		divTabla.append(tabla);
-		h2.after(divTabla);
+		elementoPadre.after(divTabla);
 	}else{
 		console.log("El parametro que has introducido no es un Array, por favor comprueba que lo sea.")
 	}

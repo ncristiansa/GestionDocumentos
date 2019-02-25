@@ -18,6 +18,6 @@
 </div>
     <script type="text/javascript">
         var Consulta = <?php echo json_encode($datos_cliente);?>;
-        generaTabla(Consulta);       
+        generaTabla(Consulta,"h2");       
     </script>
 @stop
