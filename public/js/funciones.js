@@ -30,18 +30,7 @@ function comprobarCampos(){
 
 }
     
-
-//function comprobarCampos(){
-//	var listaInputs = $("input[name]");
-	
-//	listaName=[];
-//	for (var i =0 ; i < listaInputs.length; i++) {
-//		var nombre = listaInputs[i].name;
-//		listaName.append(nombre);
-//	}
-	
-     
-//}; 
+ 
 
 
 function moduloError(error) {
