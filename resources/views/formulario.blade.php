@@ -8,7 +8,7 @@
 
 	<?php
 	echo "<div class='form-group'>";
-	echo "<form id='formulario' action='{{ action('InsertarUsuario@store') }}' method='POST'>";
+	echo "<form id='formulario' action='{{ action('InsertarUsuario@create') }}' method='POST'>";
 
 		echo"<div class='input-group'>";
       	echo "<span class='input-group-addon'><i class='glyphicon glyphicon-user'></i></span>";

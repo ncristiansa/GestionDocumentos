@@ -13,13 +13,14 @@
 Route::get('/', function () {
     return view('clientes');
 });
-/*
+
 Route::get('/formulario', function () {
     return view('formulario');
 });
-*/
 
-Route::get('formulario','InsertarUsuario@store');
+
+
+Route::post('/formulario','InsertarUsuario@create');
 
 
 Route::get('/cliente/{id}', function () {
