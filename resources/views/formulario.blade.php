@@ -8,11 +8,12 @@
 
 	<?php
 	echo "<div class='form-group'>";
-	echo "<form id='formulario' action='{{ action('InsertarUsuario@create') }}' method='POST'>";
+	echo "<form id='formulario' action='/' method='POST'>";
+
 
 		echo"<div class='input-group'>";
       	echo "<span class='input-group-addon'><i class='glyphicon glyphicon-user'></i></span>";
-      	echo "<input id='nom' type='text' class='form-control' name='Nom' placeholder='Nom'>";
+      	echo "<input id='nom' type='text' class='form-control' name='Nombre' placeholder='Nom'>";
     	echo "</div>";
 
     	
@@ -23,19 +24,19 @@
 
     	echo "<div class='input-group'>";
       		echo "<span class='input-group-addon'><i class='glyphicon glyphicon-earphone'></i></span>";
-      		echo "<input id='telefon' type='number' class='form-control' name='Telefon' placeholder='Telefon'>";
+      		echo "<input id='telefon' type='number' class='form-control' name='Telefono' placeholder='Telefon'>";
     	echo "</div>";
 
     	echo"<div class='input-group'>";
       	echo "<span class='input-group-addon'><i class='glyphicon glyphicon-calendar'></i></span>";
-      	echo "<input id='data' type='date' class='form-control' name='Data' placeholder='Data'>";
+      	echo "<input id='data' type='date' class='form-control' name='created_at' placeholder='Data'>";
     	echo "</div>";
 
     	
 
     	echo"<div class='input-group'>";
       	echo "<span class='input-group-addon'><i class='glyphicon glyphicon-map-marker'></i></span>";
-      	echo "<input id='direccio' type='text' class='form-control' name='Direccio' placeholder='Direccio'>";
+      	echo "<input id='direccio' type='text' class='form-control' name='Direccion' placeholder='Direccio'>";
     	echo "</div>";
 
     	echo"<div class='input-group'>";
@@ -51,22 +52,22 @@
 
     	echo"<div class='input-group'>";
       	echo "<span class='input-group-addon'><i class='glyphicon glyphicon-map-marker'></i></span>";
-      	echo "<input id='localitat' type='text' class='form-control' name='Localitat' placeholder='Localitat'>";
+      	echo "<input id='localitat' type='text' class='form-control' name='Localidad' placeholder='Localitat'>";
     	echo "</div>";
 
       echo"<div class='input-group'>";
         echo "<span class='input-group-addon'><i class='glyphicon glyphicon-calendar'>(Mod.)</i></span>";
-        echo "<input id='dataModificacio' type='date' class='form-control' name='Data Modificacio' placeholder='Data Modificació'>";
+        echo "<input id='dataModificacio' type='date' class='form-control' name='updated_at' placeholder='Data Modificació'>";
       echo "</div>";
 
     	echo"<div class='input-group'>";
       	echo "<span class='input-group-addon'>C.P.</span>";
-      	echo "<input id='cp' type='number' class='form-control' name='C.P.' placeholder='Codi Postal'>";
+      	echo "<input id='cp' type='number' class='form-control' name='CP' placeholder='Codi Postal'>";
     	echo "</div>";
 
     echo "<br>";
 
-		echo "<input onclick='comprobarCampos()'  class='btn btn-default' type='submit' name='enviar>'";
+		echo "<input onclick='comprobarCampos()'  class='btn btn-default' type='submit' name='enviar'>'";
 	echo "</form>";
 	echo "</div>";
 	?>
