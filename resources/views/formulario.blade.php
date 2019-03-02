@@ -1,3 +1,4 @@
+<title>Añadir Cliente</title>
 @extends('layouts/plantilla')
 <div class="row">
     <div class="col-12">

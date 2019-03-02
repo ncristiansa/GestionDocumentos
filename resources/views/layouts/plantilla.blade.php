@@ -8,7 +8,7 @@
 
 <div class="container-fluid">
   <div class="row">
-    <div class="col-12" style="background-color:white;padding:2%; border:1px solid;">
+    <div class="col-12" style="background-color:white;padding:2%; border:1px solid;border-radius: 8px;">
 @yield('content')
 	 </div>
 </div>
