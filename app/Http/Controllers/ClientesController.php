@@ -13,8 +13,8 @@ class ClientesController extends Controller
      */
     public function index()
     {
-        
-        return view('clientes');
+        $clientes = registro::all();
+        return view('clientes', compact('clientes'));
     }
 
     /**
