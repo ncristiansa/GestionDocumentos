@@ -10,24 +10,14 @@
 <?php
     $url = 'http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
     $idCliente = explode("/",$url);
-    $infoUsuario = DB::table('clientes')->where('id', $idCliente[4])->get();  
+    $infoCliente = DB::table('clientes')->where('id', $idCliente[4])->get();  
 ?>
 <div class="row">
     <div class="col-12">
-    <?php
-        foreach ($infoUsuario as $value) {
-            echo "<h1>".$value->Nombre."</h1>";
-            echo "<span>Email: ".$value->Email."</span><br>";
-            echo "<span>Telefono: ".$value->Telefono."</span><br>";
-            echo "<span>Direccion: ".$value->Direccion."</span><br>";
-            echo "<span>Provincia: ".$value->Provincia."</span><br>";
-            echo "<span>Localidad: ".$value->Localidad."</span><br>";
-            echo "<span>CP: ".$value->CP."</span><br>";
-            echo "<span>Creado: ".$value->created_at."</span><br>";
-            echo "<span>Editado: ".$value->updated_at."</span><br>";
-
-        }
-    ?>
 	</div>
-</div>            
+</div>
+<script type="text/javascript">
+        
+        prueba("Hola mundo");       
+    </script>          
 @stop

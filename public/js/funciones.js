@@ -29,10 +29,6 @@ function comprobarCampos(){
 	}; 
 
 }
-    
- 
-
-
 function moduloError(error) {
 	var contenedor = $('.container-fluid');
 	var divContenido = $('<div>').addClass("alert alert-danger");
@@ -41,11 +37,8 @@ function moduloError(error) {
 	divContenido.append(pErrores);
 	divErrores.append(divContenido);
 	contenedor.after(divErrores);
-
 }
-
 function generaTabla(Consulta,elementoAnterior){
-	console.log("Entra en la funcion.");
 	if(Consulta instanceof Array){
 		console.log(Consulta);
 		var elementoPadre = $(elementoAnterior);
@@ -70,7 +63,6 @@ function generaTabla(Consulta,elementoAnterior){
 			tbody.append(tr_valores);
 			thead.append(tr_titulos);
 		}
-		
 		for(var key in Claves){
 
 			var thTitulo = $('<th>').attr('scope', 'col');
@@ -78,7 +70,6 @@ function generaTabla(Consulta,elementoAnterior){
 			tr_titulos.append(thTitulo);
 
 		}
-
 		tabla.append(thead);
 		tabla.append(tbody);
 		divTabla.append(tabla);
@@ -86,7 +77,7 @@ function generaTabla(Consulta,elementoAnterior){
 	}else{
 		console.log("El parametro que has introducido no es un Array, por favor comprueba que lo sea.")
 	}
-
 }
-
-
+function prueba(params) {
+	console.log(params);
+}
