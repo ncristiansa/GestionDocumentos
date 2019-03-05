@@ -81,24 +81,35 @@ function generaTabla(Consulta,elementoAnterior){
 function pruebaHola(){
 	alert("Hola");
 }
+
+
 function visualizacionClientes(Consulta,elementoAnterior) {
-    listaTitulos = ["ID","Nombre","Direccion","NIF"];
+	listaInputs=["input1","input2","input3","input4","input5","input6","input7","input8","input9","input10","input11","input12"]
     var ele = $(elementoAnterior);
     var divContenido = $('<div>').addClass("container-fluid");
     var formulario = $('<form>');
     var boton = $('<button>',{text:"modificar"});
 
+    var listakey=[];
+    var listaclaves=[];
     for(var datos in Consulta){
     	var Claves = Object.keys(Consulta[datos]);
-		var Valores = Object.values(Consulta[datos]);
-        
-        var label = $('<label>',{text:Claves}).addClass("col-form-label");
-        var NuevoInp = $('<input>',{value:Valores}).addClass("form-control form-control-sm");
-        formulario.append(label,NuevoInp);
+		listakey.push(Claves);		
     }
-    
+    for(var datos in Consulta){
+    	var Valores = Object.values(Consulta[datos]);
+		listaclaves.push(Valores);		
+    }
+
+    for (var i = 0; i < listaclaves.length; i++){	
+    	var label = $('<label>',{text:listakey[i]}).addClass("col-form-label");
+   		var NuevoInp = $('<input>',{value:listaclaves[i]}).addClass("form-control form-control-sm");
+        formulario.append(label,NuevoInp);
+    	
+    }
     divContenido.append(formulario);
     divContenido.append(boton);
     ele.after(divContenido);
 
 }
+
