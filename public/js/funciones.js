@@ -78,9 +78,7 @@ function generaTabla(Consulta,elementoAnterior){
 		console.log("El parametro que has introducido no es un Array, por favor comprueba que lo sea.")
 	}
 }
-function pruebaHola(){
-	alert("Hola");
-}
+
 function visualizacionClientes(Consulta,elementoAnterior) {
     listaTitulos = ["ID","Nombre","Direccion","NIF"];
     var ele = $(elementoAnterior);
@@ -101,4 +99,24 @@ function visualizacionClientes(Consulta,elementoAnterior) {
     divContenido.append(boton);
     ele.after(divContenido);
 
+}
+function prueba(Consulta, elementoAnterior){
+	console.log("entra");
+	var elementoAnterior = $(elementoAnterior);
+	var divContenido = $('<div>').addClass("container-fluid");
+	var formulario = $('<form>');
+	
+	var boton = $('<button>', {text:"Modificar"});
+	for(var datos in Consulta){
+		var Claves = Object.keys(Consulta[datos]);
+		for(var key in Claves){
+			var br = $('<br>');
+			var label = $('<label>').text(Claves[key]);
+			label.after(br);
+			formulario.append(label);
+		}
+		
+	}
+	divContenido.append(formulario);
+	elementoAnterior.after(divContenido);
 }
