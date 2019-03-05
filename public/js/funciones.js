@@ -26,7 +26,7 @@ function comprobarCampos(){
     		} 
     	}
     	 
-	}; 
+	} 
 
 }
 function moduloError(error) {
@@ -78,10 +78,9 @@ function generaTabla(Consulta,elementoAnterior){
 		console.log("El parametro que has introducido no es un Array, por favor comprueba que lo sea.")
 	}
 }
-function prueba(params) {
-	console.log(params);
+function pruebaHola(){
+	alert("Hola");
 }
-
 function visualizacionClientes(Consulta,elementoAnterior) {
     listaTitulos = ["ID","Nombre","Direccion","NIF"];
     var ele = $(elementoAnterior);
@@ -94,7 +93,7 @@ function visualizacionClientes(Consulta,elementoAnterior) {
 		var Valores = Object.values(Consulta[datos]);
         
         var label = $('<label>',{text:Claves}).addClass("col-form-label");
-        var NuevoInp = $('<input>',{value:var Valores}).addClass("form-control form-control-sm");
+        var NuevoInp = $('<input>',{value:Valores}).addClass("form-control form-control-sm");
         formulario.append(label,NuevoInp);
     }
     

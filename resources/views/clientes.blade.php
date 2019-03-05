@@ -1,11 +1,12 @@
-<title>Clientes</title>
+
 @extends('layouts/plantilla')
+@section('pageTitle', 'Clientes')
+@section('content')
 <div class="row">
     <div class="col-12">
         <h1 class="display-3" style="text-shadow: 2px 2px 2px #000000; color:white;">Clientes</h1>
     </div>
 </div>
-@section('content')
 <?php
     $datos_cliente = DB::table('clientes')->select('id','Nombre')->get();
 ?>
