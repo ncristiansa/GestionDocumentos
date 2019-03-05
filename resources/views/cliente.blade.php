@@ -14,10 +14,12 @@
 ?>
 <div class="row">
     <div class="col-12">
+    <?php 
+        print_r($infoCliente);
+    ?>
 	</div>
 </div>
 <script type="text/javascript">
-        
-        prueba("Hola mundo");       
-    </script>          
+    prueba("Hola mundo");       
+</script>          
 @stop
