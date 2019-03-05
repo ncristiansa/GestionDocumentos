@@ -20,6 +20,7 @@
 	</div>
 </div>
 <script type="text/javascript">
-    prueba("Hola mundo");       
+    var Consulta = <?php echo json_encode($infoCliente);?>;
+    visualizacionClientes(Consulta,"h2");      
 </script>          
 @stop

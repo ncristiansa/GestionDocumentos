@@ -82,7 +82,7 @@ function prueba(params) {
 	console.log(params);
 }
 
-function visualizacionClientes(elementoAnterior,Consulta) {
+function visualizacionClientes(Consulta,elementoAnterior) {
     listaTitulos = ["ID","Nombre","Direccion","NIF"];
     var ele = $(elementoAnterior);
     var divContenido = $('<div>').addClass("container-fluid");
