@@ -81,3 +81,25 @@ function generaTabla(Consulta,elementoAnterior){
 function prueba(params) {
 	console.log(params);
 }
+
+function visualizacionClientes(elementoAnterior,Consulta) {
+    listaTitulos = ["ID","Nombre","Direccion","NIF"];
+    var ele = $(elementoAnterior);
+    var divContenido = $('<div>').addClass("container-fluid");
+    var formulario = $('<form>');
+    var boton = $('<button>',{text:"modificar"});
+
+    for(var datos in Consulta){
+    	var Claves = Object.keys(Consulta[datos]);
+		var Valores = Object.values(Consulta[datos]);
+        
+        var label = $('<label>',{text:Claves}).addClass("col-form-label");
+        var NuevoInp = $('<input>',{value:var Valores}).addClass("form-control form-control-sm");
+        formulario.append(label,NuevoInp);
+    }
+    
+    divContenido.append(formulario);
+    divContenido.append(boton);
+    ele.after(divContenido);
+
+}
