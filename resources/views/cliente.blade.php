@@ -15,6 +15,9 @@
     <div class="col-12">
         <h3>Información</h3>
 	</div>
+    <div class="col-12">
+        <h2>Archivos</h2>
+    </div>
     <?php
     echo "<div class='container'>";
         echo "<div  class='p-3 mb-2 bg-light text-dark'>";
