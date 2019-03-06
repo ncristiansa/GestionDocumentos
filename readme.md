@@ -1,7 +1,7 @@
 ## Gestor de Documentos.
 Cuenta de usuario de la Base de Datos:
-####Usuario: admin
-####Clave: admin
+#### Usuario: admin
+#### Clave: admin
 Una vez clonado el proyecto importante realizar las siguientes comandas en la terminal:
 #### composer install
 A continuación generar el archivo .env, para ello vamos a copiar el contenido de .env.example sobre nuestro nuevo .env:
