@@ -3,7 +3,7 @@
 @section('content')
 <div class="row">
     <div class="col-12">
-        <h2 class="display-3" style="text-shadow: 2px 2px 2px #000000; color:white;">Datos Cliente</h2>
+        <h2 class="display-3">Datos Cliente</h2>
     </div>
 </div>
 <?php
