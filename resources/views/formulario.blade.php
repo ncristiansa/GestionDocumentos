@@ -30,10 +30,10 @@
       		echo "<input id='telefon' type='number' class='form-control' name='Telefono' placeholder='Telefon'>";
     	echo "</div>";
 
-    	echo"<div class='input-group'>";
-      	echo "<span class='input-group-addon'><i class='glyphicon glyphicon-calendar'></i></span>";
-      	echo "<input id='data' type='date' class='form-control' name='created_at' placeholder='Data'>";
-    	echo "</div>";
+    	//echo"<div class='input-group'>";
+      //	echo "<span class='input-group-addon'><i class='glyphicon glyphicon-calendar'></i></span>";
+      //	echo "<input id='data' type='date' class='form-control' name='created_at' placeholder='Data'>";
+    	//echo "</div>";
 
     	
 
@@ -58,10 +58,10 @@
       	echo "<input id='localitat' type='text' class='form-control' name='Localidad' placeholder='Localitat'>";
     	echo "</div>";
 
-      echo"<div class='input-group'>";
-        echo "<span class='input-group-addon'><i class='glyphicon glyphicon-calendar'>(Mod.)</i></span>";
-        echo "<input id='dataModificacio' type='date' class='form-control' name='updated_at' placeholder='Data Modificació'>";
-      echo "</div>";
+      //echo"<div class='input-group'>";
+      //  echo "<span class='input-group-addon'><i class='glyphicon glyphicon-calendar'>(Mod.)</i></span>";
+      //  echo "<input id='dataModificacio' type='date' class='form-control' name='updated_at' placeholder='Data Modificació'>";
+      //echo "</div>";
 
     	echo"<div class='input-group'>";
       	echo "<span class='input-group-addon'>C.P.</span>";

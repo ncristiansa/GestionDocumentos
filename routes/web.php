@@ -27,3 +27,7 @@ Route::post('/','ClientesController@store');
 Route::get('/cliente/{id}', function () {
     return view('cliente');
 });
+
+Route::get('/ventas', function () {
+    return view('ventas');
+});

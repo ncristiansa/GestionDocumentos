@@ -32,6 +32,7 @@ class Clientes extends Migration
             $table->integer('id_cliente')->unsigned();
             $table->string('Comprador');
             $table->date('fecha_venta');
+            $table->binary('archivo');
             $table->timestamps();
             $table->foreign('id_cliente')->references('id')->on('clientes');
 
