@@ -107,21 +107,16 @@ function visualizacionClientes(Consulta,elementoAnterior) {
     ele.after(divContenido);
 
 }
-function Modificar(){
-	$("input").prop('disabled', false);
-}
+
 function prueba(Consulta, elementoAnterior){
-	console.log("entra");
+
 	var elementoAnterior = $(elementoAnterior);
 	var divContenido = $('<div>').addClass("container-fluid");
 
 	var formulario = $('<form>');
 	
-	var botonModificar = $('<button>', {text:"Modificar"});
 	var botonGuardar = $('<button>', {text:'Guardar Cambios'});
-	botonModificar.attr('class', 'btn btn-primary');
-	botonModificar.attr('name', 'modificar');
-	botonModificar.on("click", Modificar);
+
 
 	botonGuardar.attr('class', 'btn btn-success');
 	botonGuardar.attr('name', 'guardar');
@@ -142,12 +137,10 @@ function prueba(Consulta, elementoAnterior){
 		
 	}
 	
-	formulario.append(botonModificar);
 	formulario.append(botonGuardar);
 	divContenido.append(formulario);
 	elementoAnterior.after(divContenido);
 	$("label").after($("<br>"));
-	$("input").after($("<br>")).prop('disabled', true);
 	$("button").attr("style","margin-right:20px;");
 }
 
