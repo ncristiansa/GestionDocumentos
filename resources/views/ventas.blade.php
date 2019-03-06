@@ -17,6 +17,18 @@
     echo "<input class='btn btn-default' type='file' id='ventas'>";
     echo "<p class='help-block'>Tiene que ser extensión PDF</p>";
   	echo "</div>";
+
+    echo "<div class='form-group'>";
+    echo "<label for='labelFactura'>Facturas</label>";
+    echo "<input class='btn btn-default' type='file' id='factura'>";
+    echo "<p class='help-block'>Tiene que ser extensión PDF</p>";
+    echo "</div>";
+
+    echo "<div class='form-group'>";
+    echo "<label for='labelAlbaran'>Albaran</label>";
+    echo "<input class='btn btn-default' type='file' id='albaran'>";
+    echo "<p class='help-block'>Tiene que ser extensión PDF</p>";
+    echo "</div>";
     
 ?>
 
