@@ -13,12 +13,12 @@
 ?>
 <div class="row">
     <div class="col-12">
-        <h2>Información</h2>
+        <h3>Información</h3>
 	</div>
 </div>
 <script type="text/javascript">
     var Consulta = <?php echo json_encode($infoCliente);?>;
-    prueba(Consulta, "h2");
+    prueba(Consulta, "h3");
     
 </script>          
 @stop

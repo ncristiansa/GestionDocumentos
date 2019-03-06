@@ -78,14 +78,6 @@ function generaTabla(Consulta,elementoAnterior){
 		console.log("El parametro que has introducido no es un Array, por favor comprueba que lo sea.")
 	}
 }
-<<<<<<< HEAD
-=======
-function pruebaHola(){
-	alert("Hola");
-}
-
->>>>>>> 93be3fcda2b728534c4f3feac6fad8ef4ced2fdf
-
 function visualizacionClientes(Consulta,elementoAnterior) {
 	listaInputs=["input1","input2","input3","input4","input5","input6","input7","input8","input9","input10","input11","input12"]
     var ele = $(elementoAnterior);
@@ -115,24 +107,47 @@ function visualizacionClientes(Consulta,elementoAnterior) {
     ele.after(divContenido);
 
 }
-
+function Modificar(){
+	$("input").prop('disabled', false);
+}
 function prueba(Consulta, elementoAnterior){
 	console.log("entra");
 	var elementoAnterior = $(elementoAnterior);
 	var divContenido = $('<div>').addClass("container-fluid");
+
 	var formulario = $('<form>');
 	
-	var boton = $('<button>', {text:"Modificar"});
+	var botonModificar = $('<button>', {text:"Modificar"});
+	var botonGuardar = $('<button>', {text:'Guardar Cambios'});
+	botonModificar.attr('class', 'btn btn-primary');
+	botonModificar.attr('name', 'modificar');
+	botonModificar.on("click", Modificar);
+
+	botonGuardar.attr('class', 'btn btn-success');
+	botonGuardar.attr('name', 'guardar');
 	for(var datos in Consulta){
 		var Claves = Object.keys(Consulta[datos]);
+		var Valores = Object.values(Consulta[datos]);
 		for(var key in Claves){
-			var br = $('<br>');
+			var divGeneral = $('<div>').attr('class', 'form-group');
+
 			var label = $('<label>').text(Claves[key]);
-			label.after(br);
-			formulario.append(label);
+			var input = $('<input>').attr('value', Valores[key]);
+			input.attr('class', 'form-control form-control-sm');
+			input.attr('style', 'width:60%;');
+			divGeneral.append(label);
+			divGeneral.append(input);
+			formulario.append(divGeneral);
 		}
 		
 	}
+	
+	formulario.append(botonModificar);
+	formulario.append(botonGuardar);
 	divContenido.append(formulario);
 	elementoAnterior.after(divContenido);
+	$("label").after($("<br>"));
+	$("input").after($("<br>")).prop('disabled', true);
+	$("button").attr("style","margin-right:20px;");
 }
+
