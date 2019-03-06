@@ -1,0 +1,12 @@
+Miguel:
+	Ha faltado conocimiento para poder trabajar de manera conjunta con las 	
+	tecnologias de JQuery y Laravel.
+	Me ha retrasado para poder realizar las tareas del backlog.
+Cristian:
+	Falta de conocimiento de Laravel.
+Khalid:
+	Falta de conocimiento de Laravel.
+Grupal:
+	Creemos que las especificaciones tendrían que ser más descriptivas.
+	Falta de conocimiento sobre el framework (Laravel)
+	
