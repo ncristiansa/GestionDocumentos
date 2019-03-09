@@ -13,8 +13,15 @@
 ?>
 <div class="row">
     <div class="col-12">
-        <h3>Información</h3>
-	</div>
+        <h2 class="display-5">Información</h2>
+        @foreach($Clientes as $cliente)
+            
+        <form method="POST" action="/cliente/{{$cliente->id}}">
+            {{ csrf_field() }} 
+        <form>
+        @endforeach
+    </div>
+
     <div class="col-12">
         <h2>Archivos</h2>
     </div>
@@ -47,8 +54,8 @@
  ?>
 </div>
 <script type="text/javascript">
-    var Consulta = <?php echo json_encode($infoCliente);?>;
-    prueba(Consulta, "h3");
-    
-</script>          
+    var infoCliente = '{{$Clientes}}';
+    var Consultas = JSON.parse(infoCliente.replace(/&quot;/g,'"'));
+    visualizarInfo(Consultas,"form");
+</script>   
 @stop

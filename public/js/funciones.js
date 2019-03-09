@@ -78,69 +78,39 @@ function generaTabla(Consulta,elementoAnterior){
 		console.log("El parametro que has introducido no es un Array, por favor comprueba que lo sea.")
 	}
 }
-function visualizacionClientes(Consulta,elementoAnterior) {
-	listaInputs=["input1","input2","input3","input4","input5","input6","input7","input8","input9","input10","input11","input12"]
-    var ele = $(elementoAnterior);
-    var divContenido = $('<div>').addClass("container-fluid");
-    var formulario = $('<form>');
-    var boton = $('<button>',{text:"modificar"});
-
-    var listakey=[];
-    var listaclaves=[];
-    for(var datos in Consulta){
-    	var Claves = Object.keys(Consulta[datos]);
-		listakey.push(Claves);		
-    }
-    for(var datos in Consulta){
-    	var Valores = Object.values(Consulta[datos]);
-		listaclaves.push(Valores);		
-    }
-
-    for (var i = 0; i < listaclaves.length; i++){	
-    	var label = $('<label>',{text:listakey[i]}).addClass("col-form-label");
-   		var NuevoInp = $('<input>',{value:listaclaves[i]}).addClass("form-control form-control-sm");
-        formulario.append(label,NuevoInp);
-    	
-    }
-    divContenido.append(formulario);
-    divContenido.append(boton);
-    ele.after(divContenido);
-
-}
-
-function prueba(Consulta, elementoAnterior){
-
+function visualizarInfo(Consulta, elementoAnterior){
 	var elementoAnterior = $(elementoAnterior);
-	var divContenido = $('<div>').addClass("container-fluid");
+			var divContenido = $('<div>').addClass("container-fluid");
 
-	var formulario = $('<form>');
-	
-	var botonGuardar = $('<button>', {text:'Guardar Cambios'});
-
-
-	botonGuardar.attr('class', 'btn btn-success');
-	botonGuardar.attr('name', 'guardar');
-	for(var datos in Consulta){
-		var Claves = Object.keys(Consulta[datos]);
-		var Valores = Object.values(Consulta[datos]);
-		for(var key in Claves){
-			var divGeneral = $('<div>').attr('class', 'form-group');
-
-			var label = $('<label>').text(Claves[key]);
-			var input = $('<input>').attr('value', Valores[key]);
-			input.attr('class', 'form-control form-control-sm');
-			input.attr('style', 'width:60%;');
-			divGeneral.append(label);
-			divGeneral.append(input);
-			formulario.append(divGeneral);
-		}
-		
+			var botonGuardar = $('<input>');
+			botonGuardar.attr('type', 'submit');
+			botonGuardar.attr('value', 'Guardar Cambios');
+			botonGuardar.attr('class', 'btn btn-success');
+			botonGuardar.attr('name', 'guardar');
+			
+			for(var datos in Consulta){
+					var Claves = Object.keys(Consulta[datos]);
+					//formulario.attr('action', '/cliente/'+Consulta[datos]["id"]);
+					var Valores = Object.values(Consulta[datos]);
+					for(var key in Claves){
+									var divGeneral = $('<div>').attr('class', 'form-group');
+									if(Claves[key] != 'id'){
+											var label = $('<label>').text(Claves[key]);
+											var input = $('<input>').attr('value', Valores[key]);
+											input.attr('class', 'form-control form-control-sm');
+											input.attr('style', 'width:60%;');
+											input.attr('name', Claves[key]);
+											divGeneral.append(label);
+											divGeneral.append(input);
+											divContenido.append(divGeneral); 
+									}
+									
+					}
 	}
 	
-	formulario.append(botonGuardar);
-	divContenido.append(formulario);
-	elementoAnterior.after(divContenido);
+	
+	divContenido.append(botonGuardar);
+	elementoAnterior.append(divContenido);
 	$("label").after($("<br>"));
-	$("button").attr("style","margin-right:20px;");
+	
 }
-
