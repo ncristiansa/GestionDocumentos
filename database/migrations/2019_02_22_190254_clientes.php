@@ -31,7 +31,6 @@ class Clientes extends Migration
             $table->increments('id');
             $table->integer('id_cliente')->unsigned();
             $table->string('Comprador');
-            $table->date('fecha_venta');
             $table->binary('archivo');
             $table->timestamps();
             $table->foreign('id_cliente')->references('id')->on('clientes');
@@ -50,5 +49,6 @@ class Clientes extends Migration
     public function down()
     {
         Schema::dropIfExists('clientes');
+
     }
 }

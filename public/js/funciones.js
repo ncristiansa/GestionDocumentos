@@ -78,35 +78,7 @@ function generaTabla(Consulta,elementoAnterior){
 		console.log("El parametro que has introducido no es un Array, por favor comprueba que lo sea.")
 	}
 }
-function visualizacionClientes(Consulta,elementoAnterior) {
-	listaInputs=["input1","input2","input3","input4","input5","input6","input7","input8","input9","input10","input11","input12"]
-    var ele = $(elementoAnterior);
-    var divContenido = $('<div>').addClass("container-fluid");
-    var formulario = $('<form>');
-    var boton = $('<button>',{text:"modificar"});
 
-    var listakey=[];
-    var listaclaves=[];
-    for(var datos in Consulta){
-    	var Claves = Object.keys(Consulta[datos]);
-		listakey.push(Claves);		
-    }
-    for(var datos in Consulta){
-    	var Valores = Object.values(Consulta[datos]);
-		listaclaves.push(Valores);		
-    }
-
-    for (var i = 0; i < listaclaves.length; i++){	
-    	var label = $('<label>',{text:listakey[i]}).addClass("col-form-label");
-   		var NuevoInp = $('<input>',{value:listaclaves[i]}).addClass("form-control form-control-sm");
-        formulario.append(label,NuevoInp);
-    	
-    }
-    divContenido.append(formulario);
-    divContenido.append(boton);
-    ele.after(divContenido);
-
-}
 
 function prueba(Consulta, elementoAnterior){
 
@@ -144,3 +116,88 @@ function prueba(Consulta, elementoAnterior){
 	$("button").attr("style","margin-right:20px;");
 }
 
+function detalles(Consulta,elementoAnteriorId){
+	var elementoAnterior = $("#"+elementoAnteriorId);
+	console.log(elementoAnterior);
+	var tabla = $("<table>").addClass("table");
+	var th = $('<thead>');
+	var trtitulos =$('<tr>');
+
+	var tdid = $('<th>',{text: "ID"});
+	var tdnombre = $('<th>',{text:"Nombre"});
+	var tdfmodi = $('<th>',{text:"Fecha Modificacion"});
+
+	trtitulos.append(tdid);
+	trtitulos.append(tdnombre);
+	trtitulos.append(tdfmodi);
+	th.append(trtitulos);
+	tabla.append(trtitulos);
+
+	
+
+	for(var datos in Consulta){
+		var trdetalles =$('<tr>');
+		var Claves = Object.keys(Consulta[datos]);
+		var Valores = Object.values(Consulta[datos]);
+		for(var key in Claves){
+			var titulo = Claves[key];
+			if (titulo=="archivo") {
+				var ahred = $('<a>',{text:Valores[key],href:"/detallesVentas/"+Consulta[datos]["id"]}); 
+				var td = $('<td>');
+				td.append(ahred);
+				trdetalles.append(td);
+			}
+			else{
+				var td = $('<td>').text(Valores[key]);
+				trdetalles.append(td);
+			}
+			
+		}
+		var botonmodificar = $('<button>',{text:"Modificar"}).addClass("btn btn-success");
+		var td = $('<td>');
+		td.append(botonmodificar);
+		trdetalles.append(td);
+		tabla.append(trdetalles);	
+	}
+	
+	elementoAnterior.after(tabla);
+}
+
+function visualizar(Consulta,elementoAnterior){
+	var elementoAnterior = $(elementoAnterior);
+	console.log(elementoAnterior);
+	var tabla = $("<table>").addClass("table");
+	var th = $('<thead>');
+	var trtitulos =$('<tr>');
+
+	var tdid = $('<th>',{text: "ID"});
+	var tdidcliente = $('<th>',{text:"ID CLIENTE"});
+	var tdcomprador = $('<th>',{text:"Comprador"});
+	var tdarchivo = $('<th>',{text:"Fichero"});
+	var tdfmodi = $('<th>',{text:"Fecha Modificacion"});
+
+	trtitulos.append(tdid);
+	trtitulos.append(tdidcliente);
+	trtitulos.append(tdcomprador);
+	trtitulos.append(tdarchivo);
+	trtitulos.append(tdfmodi);
+	th.append(trtitulos);
+	tabla.append(trtitulos);
+
+	for(var datos in Consulta){
+		var trdetalles =$('<tr>');
+		var Claves = Object.keys(Consulta[datos]);
+		var Valores = Object.values(Consulta[datos]);
+		for(var key in Claves){
+			var td = $('<td>').text(Valores[key]);
+			trdetalles.append(td);
+		}
+		
+		tabla.append(trdetalles);	
+	}
+
+
+
+	elementoAnterior.after(tabla);
+
+}

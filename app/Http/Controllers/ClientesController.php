@@ -16,7 +16,7 @@ class ClientesController extends Controller
         $clientes = registro::all();
         return view('clientes', compact('clientes'));
     }
-
+    
     /**
      * Show the form for creating a new resource.
      *
@@ -83,4 +83,6 @@ class ClientesController extends Controller
     {
         //
     }
+
+
 }

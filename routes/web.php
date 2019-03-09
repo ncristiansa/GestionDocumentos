@@ -29,3 +29,6 @@ Route::get('/cliente/{id}', function () {
 });
 
 
+Route::get('/detallesVentas/{id}', function () {
+    return view('detallesVentas');
+});
