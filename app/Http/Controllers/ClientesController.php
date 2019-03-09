@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 use App\registro;
+use DB;
+use Exception;
 use Illuminate\Http\Request;
 
 class ClientesController extends Controller
@@ -13,7 +15,7 @@ class ClientesController extends Controller
      */
     public function index()
     {
-        $clientes = registro::all();
+        $clientes = registro::select('id', 'Nombre')->get();
         return view('clientes', compact('clientes'));
     }
     
@@ -35,8 +37,25 @@ class ClientesController extends Controller
      */
     public function store(Request $request)
     {
-        registro::create($request->all());
-        return view('clientes');
+        try
+        {
+            $cliente = new registro;
+            $cliente->id = $request->input('id');
+            $cliente->Nombre = $request->input('Nombre');
+            $cliente->Email = $request->input('Email');
+            $cliente->Telefono = $request->input('Telefono');
+            $cliente->Direccion = $request->input('Direccion');
+            $cliente->NIFCIF = $request->input('NIFCIF');
+            $cliente->Provincia = $request->input('Provincia');
+            $cliente->Localidad = $request->input('Localidad');
+            $cliente->CP = $request->input('CP');
+            $cliente->save();
+            $clientes = registro::select('id', 'Nombre')->get();
+            return view('clientes', ['clientes'=>$clientes]);
+        }catch(Exception $e)
+        {
+            return back()->withErrors(['Error'=>'Error del servidor']);
+        }
     }
 
     /**
@@ -47,7 +66,8 @@ class ClientesController extends Controller
      */
     public function show($id)
     {
-        //
+        $clientes = DB::table('clientes')->where('id', $id)->get();
+        return view('/cliente', ['Clientes' => $clientes]);
     }
 
     /**
@@ -58,7 +78,15 @@ class ClientesController extends Controller
      */
     public function edit($id)
     {
-        //
+        try
+        {
+            $clientes = DB::table('clientes')->where('id', $id)->get();
+            return view('cliente', ['Clientes'=>$clientes]);
+        }catch(Exception $e)
+        {
+            return back()->withErrors(['Error'=>'Error del servidor']);
+        }
+        
     }
 
     /**
@@ -70,7 +98,16 @@ class ClientesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        try
+        {
+            $this->validate($request, ['Nombre'=>'required', 'Email'=>'required', 'Telefono'=>'required', 'Direccion'=>'required', 'NIFCIF'=>'required', 'Provincia'=>'required','Localidad'=>'required', 'CP'=>'required', 'created_at'=>'required', 'updated_at'=>'required']);
+            registro::find($id)->update($request->all());
+            $clientes = DB::table('clientes')->where('id', $id)->get();
+            return view('cliente', ['Clientes'=>$clientes]);
+        }catch(Exception $e)
+        {
+            return back()->withErrors(['Error'=>'Error del servidor']);
+        }
     }
 
     /**

@@ -79,40 +79,41 @@ function generaTabla(Consulta,elementoAnterior){
 	}
 }
 
-
-function prueba(Consulta, elementoAnterior){
-
+function visualizarInfo(Consulta, elementoAnterior){
 	var elementoAnterior = $(elementoAnterior);
-	var divContenido = $('<div>').addClass("container-fluid");
+			var divContenido = $('<div>').addClass("container-fluid");
 
-	var formulario = $('<form>');
-	
-	var botonGuardar = $('<button>', {text:'Guardar Cambios'});
-
-
-	botonGuardar.attr('class', 'btn btn-success');
-	botonGuardar.attr('name', 'guardar');
-	for(var datos in Consulta){
-		var Claves = Object.keys(Consulta[datos]);
-		var Valores = Object.values(Consulta[datos]);
-		for(var key in Claves){
-			var divGeneral = $('<div>').attr('class', 'form-group');
-
-			var label = $('<label>').text(Claves[key]);
-			var input = $('<input>').attr('value', Valores[key]);
-			input.attr('class', 'form-control form-control-sm');
-			input.attr('style', 'width:60%;');
-			divGeneral.append(label);
-			divGeneral.append(input);
-			formulario.append(divGeneral);
-		}
-		
+			var botonGuardar = $('<input>');
+			botonGuardar.attr('type', 'submit');
+			botonGuardar.attr('value', 'Guardar Cambios');
+			botonGuardar.attr('class', 'btn btn-success');
+			botonGuardar.attr('name', 'guardar');
+			
+			for(var datos in Consulta){
+					var Claves = Object.keys(Consulta[datos]);
+					//formulario.attr('action', '/cliente/'+Consulta[datos]["id"]);
+					var Valores = Object.values(Consulta[datos]);
+					for(var key in Claves){
+									var divGeneral = $('<div>').attr('class', 'form-group');
+									if(Claves[key] != 'id'){
+											var label = $('<label>').text(Claves[key]);
+											var input = $('<input>').attr('value', Valores[key]);
+											input.attr('class', 'form-control form-control-sm');
+											input.attr('style', 'width:60%;');
+											input.attr('name', Claves[key]);
+											divGeneral.append(label);
+											divGeneral.append(input);
+											divContenido.append(divGeneral); 
+									}
+									
+					}
 	}
 	
-	formulario.append(botonGuardar);
-	divContenido.append(formulario);
-	elementoAnterior.after(divContenido);
+	
+	divContenido.append(botonGuardar);
+	elementoAnterior.append(divContenido);
 	$("label").after($("<br>"));
+
 	$("button").attr("style","margin-right:20px;");
 }
 
@@ -200,4 +201,7 @@ function visualizar(Consulta,elementoAnterior){
 
 	elementoAnterior.after(tabla);
 
+=======
+	
+>>>>>>> 2d35b3f421838119c56c88e9c396f97426543964
 }

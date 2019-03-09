@@ -19,7 +19,7 @@ class Clientes extends Migration
             $table->string('Email');
             $table->integer('Telefono');
             $table->string('Direccion');
-            $table->string('NIF/CIF');
+            $table->string('NIFCIF');
             $table->string('Provincia');
             $table->string('Localidad');
             $table->integer('CP');
