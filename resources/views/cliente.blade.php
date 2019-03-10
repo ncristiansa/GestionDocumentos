@@ -57,7 +57,9 @@
     var infoCliente = '{{$Clientes}}';
     var Consultas = JSON.parse(infoCliente.replace(/&quot;/g,'"'));
     visualizarInfo(Consultas,"form");
+    var ConsultaVentas = <?php echo json_encode($infoVentas);?>;
     detalles(ConsultaVentas,"ventas");
-
+    
+</script>
 
 @stop

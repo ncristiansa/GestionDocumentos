@@ -118,7 +118,8 @@ function visualizarInfo(Consulta, elementoAnterior){
 }
 
 function detalles(Consulta,elementoAnteriorId){
-	var elementoAnterior = $("#"+elementoAnteriorId);
+	if (Consulta.length>=1) {
+		var elementoAnterior = $("#"+elementoAnteriorId);
 	console.log(elementoAnterior);
 	var tabla = $("<table>").addClass("table");
 	var th = $('<thead>');
@@ -162,6 +163,7 @@ function detalles(Consulta,elementoAnteriorId){
 	}
 	
 	elementoAnterior.after(tabla);
+	}
 }
 
 function visualizar(Consulta,elementoAnterior){
@@ -201,7 +203,4 @@ function visualizar(Consulta,elementoAnterior){
 
 	elementoAnterior.after(tabla);
 
-=======
-	
->>>>>>> 2d35b3f421838119c56c88e9c396f97426543964
 }
