@@ -31,9 +31,49 @@ class Clientes extends Migration
             $table->increments('id');
             $table->integer('id_cliente')->unsigned();
             $table->string('Comprador');
-            $table->binary('archivo');
+            $table->string('nombreVentas');
             $table->timestamps();
             $table->foreign('id_cliente')->references('id')->on('clientes');
+
+
+        });
+
+        Schema::create('factura', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('id_venta')->unsigned();
+            $table->string('archivo');
+            $table->timestamps();
+            $table->foreign('id_venta')->references('id')->on('ventas');
+
+
+        });
+
+        Schema::create('albaran', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('id_venta')->unsigned();
+            $table->string('archivo');
+            $table->timestamps();
+            $table->foreign('id_venta')->references('id')->on('ventas');
+
+
+        });
+
+        Schema::create('presupuesto', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('id_venta')->unsigned();
+            $table->string('archivo');
+            $table->timestamps();
+            $table->foreign('id_venta')->references('id')->on('ventas');
+
+
+        });
+
+        Schema::create('pedidos', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('id_venta')->unsigned();
+            $table->string('archivo');
+            $table->timestamps();
+            $table->foreign('id_venta')->references('id')->on('ventas');
 
 
         });
