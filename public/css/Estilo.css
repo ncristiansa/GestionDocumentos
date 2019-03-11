@@ -2,4 +2,34 @@
     		width: 50%;
     		margin-left: 25%;
     		margin-top: 5%;
-    	}
+		}
+		input[type=text] {
+			width: 100%;
+			padding: 10px 15px;
+			margin: 8px 0;
+			box-sizing: border-box;
+		}
+		input[type=number] {
+			width: 100%;
+			padding: 10px 15px;
+			margin: 8px 0;
+			box-sizing: border-box;
+		}
+		input[type=tel] {
+			width: 100%;
+			padding: 10px 15px;
+			margin: 8px 0;
+			box-sizing: border-box;
+		}
+		input[type=number]:focus {
+			border: 2px solid rgb(101, 156, 238);
+			border-radius:2px;
+		}
+		input[type=text]:focus {
+			border: 2px solid rgb(101, 156, 238);
+			border-radius:2px;
+		}
+		input[type=tel]:focus {
+			border: 2px solid rgb(101, 156, 238);
+			border-radius:2px;
+		}
