@@ -204,3 +204,67 @@ function visualizar(Consulta,elementoAnterior){
 	elementoAnterior.after(tabla);
 
 }
+/**
+* Esta funcion recibe como parametros:
+* _text = Texto que deseamos mostrar.
+* listaErrores = Podemos pasarle un array de errores que deseamos mostrar.
+* estado = El estado que recibe hace refencia si quieres que este duré X segundos, en caso de recibir true.
+*/
+function mensajeError(_text, listaErrores, estado)
+{
+
+    if(_text != undefined){
+        $('#btNuevoCliente').after($('<div>').attr('id','mensajeError').addClass('alert alert-danger').append($('<p>', {text:_text})));
+    }
+    if(listaErrores != undefined){
+        if(listaErrores instanceof Array)
+        {
+            var ul = $('<ul>').attr("style","list-style:none;");
+            for (var index = 0; index < listaErrores.length; index++) {
+                ul.append($('<li>', {text:'Campo '+listaErrores[index]+' no rellenado.'}));
+            }
+            $('#btNuevoCliente').after($('<div>').attr({'id':'mensajeError', 'style':'margin-top:1%;'}).addClass('alert alert-danger').append(ul));
+        }
+        if(estado === true){
+            setTimeout(function(){
+                $('#mensajeError').remove();
+            },10000);
+        }
+    }
+    
+}
+function validarFormulario()
+{
+    /**
+     * Como tenemos dos formularios que tenemos que validar, los cuales contienen los mismos campos
+     * esta función validará: CIF NIF, Telefono, Email
+     * 
+     */
+    var expresionregularNumero = "^([0-9]+){9}$";
+    var expresionMail = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,4}$";
+    var Camposinvalidos = [];
+
+    
+
+    if(!$('.formulario').eq(2).val().match(expresionregularNumero)){
+        mensajeError('No has introducido un numero.', undefined, true);
+    }
+    if($('.formulario').eq(2).val().length > 9){
+        mensajeError('No puedes introducidr más de 9 dígitos.', undefined, true)
+    }
+    if($('.formulario').eq(2).val().match(expresionMail)){
+        mensajeError('Email introducido incorrecto.', undefined, true);
+    }
+
+    for (var index = 0; index < $('.formulario').length; index++) {
+        if($('.formulario').eq(index).val().length<1){
+            Camposinvalidos.push($('.formulario').eq(index).attr('placeholder'));
+        }
+    }
+    if(Camposinvalidos.length > 0)
+    {
+        mensajeError(undefined, Camposinvalidos, false);
+        
+    }
+    
+}

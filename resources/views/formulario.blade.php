@@ -6,62 +6,31 @@
     </div>
 </div>
 @section('content')
-
+<div class="col-12">
+	<form id='formulario' action='/' method='POST'>
+		{{ csrf_field() }}
+	<input type="text" id="Nombre" name='Nombre' class="formulario" placeholder='Nombre'>
+	<input type="text" id="Email" name="Email" class="formulario" placeholder='Email'>
+	<input type="tel" id="Telefono" name="Telefono" class="formulario" placeholder='Telefono'>
+	<input type="text" id="Direccion" name="Direccion" class="formulario" placeholder='Direccion'>
+	<input type="text" id="NIFCIF" name="NIFCIF" class="formulario" placeholder='NIFCIF'>
+	<input type="text" id="Provincia" name="Provincia" class="formulario" placeholder='Provincia'>
+	<input type="text" id="Localidad" name="Localidad" class="formulario" placeholder='Localidad'>
+	<input type="number" id="TelCPefono" name="CP" placeholder='CP'>
+	<button id='btNuevoCliente' onclick='validarFormulario()' class='btn btn-primary' name='enviar'>Añadir</button>
+	</form>
 	<?php
-	echo "<div class='form-group'>";
-	echo "<form id='formulario' action='/' method='POST'>";
-		?>
-			{{ csrf_field() }}
-		<?php
-
-		echo"<div class='input-group'>";
-      	echo "<span class='input-group-addon'><i class='glyphicon glyphicon-user'></i></span>";
-      	echo "<input id='nom' type='text' class='form-control' name='Nombre' placeholder='Nom'>";
-    	echo "</div>";
-
-    	
-		echo"<div class='input-group'>";
-      	echo "<span class='input-group-addon'><i class='glyphicon glyphicon-envelope'></i></span>";
-      	echo "<input id='email' type='text' class='form-control' name='Email' placeholder='Email'>";
-    	echo "</div>";
-
-    	echo "<div class='input-group'>";
-      		echo "<span class='input-group-addon'><i class='glyphicon glyphicon-earphone'></i></span>";
-      		echo "<input id='telefon' type='number' class='form-control' name='Telefono' placeholder='Telefon'>";
-    	echo "</div>";
-    	echo"<div class='input-group'>";
-      	echo "<span class='input-group-addon'><i class='glyphicon glyphicon-map-marker'></i></span>";
-      	echo "<input id='direccio' type='text' class='form-control' name='Direccion' placeholder='Direccio'>";
-    	echo "</div>";
-
-    	echo"<div class='input-group'>";
-      	echo "<span class='input-group-addon'><i class='glyphicon glyphicon-credit-card'></i></span>";
-      	echo "<input id='nifCif' type='text' class='form-control' name='NIFCIF' placeholder='NIF/CIF'>";
-    	echo "</div>";
-
-    	echo"<div class='input-group'>";
-      	echo "<span class='input-group-addon'><i class='glyphicon glyphicon-pushpin'></i></span>";
-      	echo "<input id='prov' type='text' class='form-control' name='Provincia' placeholder='Provincia'>";
-    	echo "</div>";
-
-
-    	echo"<div class='input-group'>";
-      	echo "<span class='input-group-addon'><i class='glyphicon glyphicon-map-marker'></i></span>";
-      	echo "<input id='localitat' type='text' class='form-control' name='Localidad' placeholder='Localitat'>";
-    	echo "</div>";
-
-    	echo"<div class='input-group'>";
-      	echo "<span class='input-group-addon'>C.P.</span>";
-      	echo "<input id='cp' type='number' class='form-control' name='CP' placeholder='Codi Postal'>";
-    	echo "</div>";
-
-    echo "<br>";
-
-		echo "<input onclick='comprobarCampos()'  class='btn btn-default' type='submit' name='enviar' value='Añadir'>";
-	echo "</form>";
-	echo "</div>";
+		if(isset($_POST["enviar"])){
 	?>
-    
+		<script type="text/javascript">
+			if(!validarFormulario()){
+				$("#btNuevoCliente").submit();
+			}
+		</script>
+	<?php
+		}
+	?>
+</div>
 @stop
 
 

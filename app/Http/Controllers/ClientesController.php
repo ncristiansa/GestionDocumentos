@@ -15,7 +15,7 @@ class ClientesController extends Controller
      */
     public function index()
     {
-        $clientes = registro::select('id', 'Nombre')->get();
+        $clientes = registro::select('id', 'Nombre')->orderBy('id', 'ASC')->get();
         return view('clientes', compact('clientes'));
     }
     
@@ -50,7 +50,7 @@ class ClientesController extends Controller
             $cliente->Localidad = $request->input('Localidad');
             $cliente->CP = $request->input('CP');
             $cliente->save();
-            $clientes = registro::select('id', 'Nombre')->get();
+            $clientes = registro::select('id', 'Nombre')->orderBy('id', 'ASC')->get();
             return view('clientes', ['clientes'=>$clientes]);
         }catch(Exception $e)
         {
