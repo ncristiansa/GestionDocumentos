@@ -31,7 +31,7 @@ class Clientes extends Migration
             $table->increments('id');
             $table->integer('id_cliente')->unsigned();
             $table->string('Comprador');
-            $table->binary('archivo');
+            $table->string('nombreVentas');
             $table->timestamps();
             $table->foreign('id_cliente')->references('id')->on('clientes');
 
@@ -41,7 +41,7 @@ class Clientes extends Migration
         Schema::create('factura', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('id_venta')->unsigned();
-            $table->binary('archivo');
+            $table->string('archivo');
             $table->timestamps();
             $table->foreign('id_venta')->references('id')->on('ventas');
 
@@ -51,7 +51,7 @@ class Clientes extends Migration
         Schema::create('albaran', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('id_venta')->unsigned();
-            $table->binary('archivo');
+            $table->string('archivo');
             $table->timestamps();
             $table->foreign('id_venta')->references('id')->on('ventas');
 
@@ -61,7 +61,7 @@ class Clientes extends Migration
         Schema::create('presupuesto', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('id_venta')->unsigned();
-            $table->binary('archivo');
+            $table->string('archivo');
             $table->timestamps();
             $table->foreign('id_venta')->references('id')->on('ventas');
 
@@ -71,7 +71,7 @@ class Clientes extends Migration
         Schema::create('pedidos', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('id_venta')->unsigned();
-            $table->binary('archivo');
+            $table->string('archivo');
             $table->timestamps();
             $table->foreign('id_venta')->references('id')->on('ventas');
 
