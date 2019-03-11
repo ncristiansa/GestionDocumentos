@@ -38,9 +38,10 @@ class GuardarArchivoController extends Controller
         {
             $factura = new VentaModel;
             $factura->id_venta = $request->input('id_venta');
+            $factura->archivo = $request->input('archivo');
             $factura->save();
-            $clientes = registro::select('id', 'Nombre')->orderBy('id', 'ASC')->get();
-            return view('clientes', ['clientes'=>$clientes]);
+            $facturas = registro::select('id','id_venta', 'archivo')->orderBy('id', 'ASC')->get();
+            return view('detallesVentas', ['factura'=>$facturas]);
         }catch(Exception $e)
         {
             return back()->withErrors(['Error'=>'Error del servidor']);

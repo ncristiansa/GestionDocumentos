@@ -18,7 +18,7 @@
             <div class="form-group">
              
               <div class="col-md-6">
-                <input type="file"  name="file" >
+                <input type="file"  name="archivo" >
                 <input type="hidden" id="custId" name="id_venta" value="'<?php $idVenta[4]?>'">
               </div>
             </div>
@@ -97,7 +97,7 @@
 <?php
     $url = 'http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
     $idVenta = explode("/",$url);
-    $infoVentas = DB::table('ventas')->where('id', $idVenta[4])->get(["id","id_cliente","Comprador","archivo","updated_at"]);
+    $infoVentas = DB::table('ventas')->where('id', $idVenta[4])->get(["id","id_cliente","Comprador","nombreVentas","updated_at"]);
 
 ?>
 

@@ -10,7 +10,7 @@
     $url = 'http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
     $idCliente = explode("/",$url);
     $infoCliente = DB::table('clientes')->where('id', $idCliente[4])->get();
-    $infoVentas = DB::table('ventas')->where('id_cliente', $idCliente[4])->get(['id','archivo','updated_at']);
+    $infoVentas = DB::table('ventas')->where('id_cliente', $idCliente[4])->get(['id','nombreVentas','updated_at']);
 
 ?>
 <div class="row">

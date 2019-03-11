@@ -143,7 +143,7 @@ function detalles(Consulta,elementoAnteriorId){
 		var Valores = Object.values(Consulta[datos]);
 		for(var key in Claves){
 			var titulo = Claves[key];
-			if (titulo=="archivo") {
+			if (titulo=="nombreVentas") {
 				var ahred = $('<a>',{text:Valores[key],href:"/detallesVentas/"+Consulta[datos]["id"]}); 
 				var td = $('<td>');
 				td.append(ahred);
