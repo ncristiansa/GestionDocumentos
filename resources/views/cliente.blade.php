@@ -25,31 +25,15 @@
     </div>
 
     <div class="col-12">
-        <h2>Archivos</h2>
+        <h2>Detalles Ventas</h2>
     </div>
     <div class='container'>
         <div  class='p-3 mb-2 bg-light text-dark'>
-        <div class='form-group'>
-        <label id="ventas" for='labelVentas'>Ventas</label>
-        <input class='btn btn-default' type='file' id='ventas'>
-        <p class='help-block'>Tiene que ser extensión PDF</p>
+            <div class='form-group'>
+                <label id="ventas" for='labelVentas'>Ventas</label>
+            </div>
         </div>
-    </div>
-    <div class='p-3 mb-2 bg-light text-dark'>
-        <div class='form-group'>
-        <label id="facturas" for='labelFactura'>Facturas</label>
-        <input class='btn btn-default' type='file' id='factura'>
-        <p class='help-block'>Tiene que ser extensión PDF</p>
-        </div>
-    </div>
 
-    <div class='p-3 mb-2 bg-light text-dark'>
-        <div class='form-group'>
-        <label id="albaran" for='labelAlbaran'>Albaran</label>
-        <input class='btn btn-default' type='file' id='albaran'>
-        <p class='help-block'>Tiene que ser extensión PDF</p>
-        </div>
-    </div>
     </div>
 </div>
 <script type="text/javascript">
