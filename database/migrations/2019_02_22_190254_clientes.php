@@ -38,6 +38,46 @@ class Clientes extends Migration
 
         });
 
+        Schema::create('factura', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('id_venta')->unsigned();
+            $table->binary('archivo');
+            $table->timestamps();
+            $table->foreign('id_venta')->references('id')->on('ventas');
+
+
+        });
+
+        Schema::create('albaran', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('id_venta')->unsigned();
+            $table->binary('archivo');
+            $table->timestamps();
+            $table->foreign('id_venta')->references('id')->on('ventas');
+
+
+        });
+
+        Schema::create('presupuesto', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('id_venta')->unsigned();
+            $table->binary('archivo');
+            $table->timestamps();
+            $table->foreign('id_venta')->references('id')->on('ventas');
+
+
+        });
+
+        Schema::create('pedidos', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('id_venta')->unsigned();
+            $table->binary('archivo');
+            $table->timestamps();
+            $table->foreign('id_venta')->references('id')->on('ventas');
+
+
+        });
+
 
     }
 
