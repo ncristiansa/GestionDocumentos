@@ -222,7 +222,7 @@ function mensajeError(_text, listaErrores, estado)
 			var ul = $('<ul>').attr("style","list-style:none;");
 			ul.attr('id','listaError');
             for (var index = 0; index < listaErrores.length; index++) {
-                ul.append($('<li>', {text:'Campo '+listaErrores[index]+' no rellenado.'}));
+                ul.append($('<li>', {text:'Campo '+listaErrores[index]+' no ha sido rellenado.'}));
             }
             $('#btNuevoCliente').after($('<div>').attr({'id':'mensajeError', 'style':'margin-top:1%;'}).addClass('alert alert-danger').append(ul));
         }
@@ -234,6 +234,55 @@ function mensajeError(_text, listaErrores, estado)
     }
     
 }
+function isValidCif(CIF){
+	par = 0;
+	non = 0;
+	letras = "ABCDEFGHKLMNPQS";
+	let = CIF.charAt(0);
+ 
+	if (CIF.length!=9) {
+		return false;
+	}
+ 
+	if (letras.indexOf(let.toUpperCase())==-1) {
+		return false;
+	}
+ 
+	for (zz=2;zz<8;zz+=2) {
+		par = par+parseInt(CIF.charAt(zz));
+	}
+ 
+	for (zz=1;zz<9;zz+=2) {
+		nn = 2*parseInt(CIF.charAt(zz));
+		if (nn > 9) nn = 1+(nn-10);
+		non = non+nn;
+	}
+ 
+	parcial = par + non;
+	control = (10 - ( parcial % 10));
+	if (control==10) control=0;
+ 
+	if (control!=CIF.charAt(8)) {
+		return false;
+	}
+	return true;
+}
+function isValidNif(NIF){
+	dni=NIF.substring(0,NIF.length-1);
+	let=NIF.charAt(NIF.length-1);
+	if (!isNaN(let)) {
+		return false;
+	}else{
+		cadena = "TRWAGMYFPDXBNJZSQVHLCKET";
+		posicion = dni % 23;
+		letra = cadena.substring(posicion,posicion+1);
+		if (letra!=let.toUpperCase()){
+
+			return false;
+		}
+	}
+	return true;
+}
 function validarFormulario()
 {
     /**
@@ -242,14 +291,8 @@ function validarFormulario()
      * 
      */
     var expresionregularNumero = "^([0-9]+){9}$";
-    var expresionMail = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,4}$";
 	var Camposinvalidos = [];
-    if($('.formulario').eq(2).val().match(expresionMail)){
-        mensajeError('Email introducido incorrecto.', undefined, true);
-    }
-	if($('.formulario').eq(2).val().length > 9){
-		$('#listaError').append($('<li>',{text:'No puedes introducir más de 9 dígitos.'}));
-	}
+	
     for (var index = 0; index < $('.formulario').length; index++) {
         if($('.formulario').eq(index).val().length<1){
             Camposinvalidos.push($('.formulario').eq(index).attr('placeholder'));
@@ -257,7 +300,19 @@ function validarFormulario()
     }
     if(Camposinvalidos.length > 0)
     {
-        mensajeError(undefined, Camposinvalidos, false);
+		mensajeError(undefined, Camposinvalidos, false);
+		if($('.formulario').eq(2).val().length > 9){
+			$('#listaError').append($('<li>',{text:'No puedes introducir más de 9 dígitos.'}));
+		}
+		if(!/^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i.test($('.formulario').eq(1).val())){
+			$('#listaError').append($('<li>',{text:'El email introducido es incorrecto.'}));
+		}
+		if(!isValidCif($('.formulario').eq(4).val())){
+			$('#listaError').append($('<li>',{text:'CIF introducido es incorrecto.'}));
+		}
+		if(!isValidNif($('.formulario').eq(4).val())){
+			$('#listaError').append($('<li>',{text:'NIF introducido es incorrecto.'}));
+		}
         
     }
     
