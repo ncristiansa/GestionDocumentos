@@ -219,16 +219,17 @@ function mensajeError(_text, listaErrores, estado)
     if(listaErrores != undefined){
         if(listaErrores instanceof Array)
         {
-            var ul = $('<ul>').attr("style","list-style:none;");
+			var ul = $('<ul>').attr("style","list-style:none;");
+			ul.attr('id','listaError');
             for (var index = 0; index < listaErrores.length; index++) {
                 ul.append($('<li>', {text:'Campo '+listaErrores[index]+' no rellenado.'}));
             }
             $('#btNuevoCliente').after($('<div>').attr({'id':'mensajeError', 'style':'margin-top:1%;'}).addClass('alert alert-danger').append(ul));
         }
-        if(estado === true){
+        if(estado != true){
             setTimeout(function(){
                 $('#mensajeError').remove();
-            },10000);
+            },8000);
         }
     }
     
@@ -242,20 +243,13 @@ function validarFormulario()
      */
     var expresionregularNumero = "^([0-9]+){9}$";
     var expresionMail = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,4}$";
-    var Camposinvalidos = [];
-
-    
-
-    if(!$('.formulario').eq(2).val().match(expresionregularNumero)){
-        mensajeError('No has introducido un numero.', undefined, true);
-    }
-    if($('.formulario').eq(2).val().length > 9){
-        mensajeError('No puedes introducidr más de 9 dígitos.', undefined, true)
-    }
+	var Camposinvalidos = [];
     if($('.formulario').eq(2).val().match(expresionMail)){
         mensajeError('Email introducido incorrecto.', undefined, true);
     }
-
+	if($('.formulario').eq(2).val().length > 9){
+		$('#listaError').append($('<li>',{text:'No puedes introducir más de 9 dígitos.'}));
+	}
     for (var index = 0; index < $('.formulario').length; index++) {
         if($('.formulario').eq(index).val().length<1){
             Camposinvalidos.push($('.formulario').eq(index).attr('placeholder'));

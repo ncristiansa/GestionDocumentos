@@ -17,19 +17,8 @@
 	<input type="text" id="Provincia" name="Provincia" class="formulario" placeholder='Provincia'>
 	<input type="text" id="Localidad" name="Localidad" class="formulario" placeholder='Localidad'>
 	<input type="number" id="TelCPefono" name="CP" placeholder='CP'>
-	<button id='btNuevoCliente' onclick='validarFormulario()' class='btn btn-primary' name='enviar'>Añadir</button>
+	<button id='btNuevoCliente' onclick='validarFormulario();return false;' class='btn btn-primary' name='enviar'>Añadir</button>
 	</form>
-	<?php
-		if(isset($_POST["enviar"])){
-	?>
-		<script type="text/javascript">
-			if(!validarFormulario()){
-				$("#btNuevoCliente").submit();
-			}
-		</script>
-	<?php
-		}
-	?>
 </div>
 @stop
 
