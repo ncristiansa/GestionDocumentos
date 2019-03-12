@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\VentaModel;
+use DB;
+use Exception;
 
 class GuardarArchivoController extends Controller
 {
@@ -13,7 +16,7 @@ class GuardarArchivoController extends Controller
      */
     public function index()
     {
-        //
+        //$factura = VentaModel::
     }
 
     /**
@@ -40,8 +43,7 @@ class GuardarArchivoController extends Controller
             $factura->id_venta = $request->input('id_venta');
             $factura->archivo = $request->input('archivo');
             $factura->save();
-            $facturas = registro::select('id','id_venta', 'archivo')->orderBy('id', 'ASC')->get();
-            return view('detallesVentas', ['factura'=>$facturas]);
+           
         }catch(Exception $e)
         {
             return back()->withErrors(['Error'=>'Error del servidor']);

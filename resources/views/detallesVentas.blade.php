@@ -7,19 +7,23 @@
 ?>
 <div class="row">
     <div class="col-12">
-        <h1 class="display-3">Detalles Ventas</h1>
+        <h1 class="display-3">Detalle Venta</h1>
     </div >
     <div id="factura" class="col-12">
     	<h3>Factura</h3>
-    	<form method="POST" action="http://diamond-chaos.codio.io:3000/tuto/public/storage/create" accept-charset="UTF-8" enctype="multipart/form-data">
-            
+      <?php
+        echo "<form method='POST' action='/detalleVentas/".$idVenta[4]."' 
+        accept-charset='UTF-8' enctype='multipart/form-data'>";
+      ?>    
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
             
             <div class="form-group">
              
               <div class="col-md-6">
                 <input type="file"  name="archivo" >
-                <input type="hidden" id="custId" name="id_venta" value="'<?php $idVenta[4]?>'">
+                <?php
+                echo"<input type='hidden' name='id_venta' value='".$idVenta[4]."'>";
+                ?>
               </div>
             </div>
  

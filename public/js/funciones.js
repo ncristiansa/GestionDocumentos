@@ -223,7 +223,7 @@ function visualizar(Consulta,elementoAnterior){
 	var tdid = $('<th>',{text: "ID"});
 	var tdidcliente = $('<th>',{text:"ID CLIENTE"});
 	var tdcomprador = $('<th>',{text:"Comprador"});
-	var tdarchivo = $('<th>',{text:"Fichero"});
+	var tdarchivo = $('<th>',{text:"Venta"});
 	var tdfmodi = $('<th>',{text:"Fecha Modificacion"});
 
 	trtitulos.append(tdid);
