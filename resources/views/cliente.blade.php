@@ -19,7 +19,7 @@
         @foreach($Clientes as $cliente)
             
         <form method="POST" action="/cliente/{{$cliente->id}}">
-            {{ csrf_field() }} 
+            {{ csrf_field() }}
         <form>
         @endforeach
     </div>

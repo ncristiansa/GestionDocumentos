@@ -49,6 +49,13 @@ class ClientesSeeder extends Seeder
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
         ]);
+        DB::table('ventas')->insert([
+            'id_cliente' => '1',
+            'Comprador' => 'Nestle',
+            'nombreVentas' => 'Venta1',
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
+        ]);
 
     }
 }

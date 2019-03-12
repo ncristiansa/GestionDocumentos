@@ -16,7 +16,8 @@ class GuardarArchivoController extends Controller
      */
     public function index()
     {
-        //$factura = VentaModel::
+        $factura = VentaModel::select('id', 'id_venta', 'archivo');
+        return view('/detallesVentas/', compact('factura'));
     }
 
     /**
@@ -26,7 +27,7 @@ class GuardarArchivoController extends Controller
      */
     public function create()
     {
-        //
+        return view('detallesVentas');
     }
 
     /**
@@ -43,6 +44,8 @@ class GuardarArchivoController extends Controller
             $factura->id_venta = $request->input('id_venta');
             $factura->archivo = $request->input('archivo');
             $factura->save();
+            $facturas = VentaModel::select('id','id_venta','archivo')->get();
+            return view('detallesVentas/{id}', ['factura'=>$facturas]);
            
         }catch(Exception $e)
         {

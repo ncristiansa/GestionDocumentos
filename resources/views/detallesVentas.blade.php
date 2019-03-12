@@ -3,7 +3,7 @@
 @section('content')
 <?php
 	$url = 'http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
-    $idVenta = explode("/",$url);
+  $idVenta = explode("/",$url);
 ?>
 <div class="row">
     <div class="col-12">
@@ -13,12 +13,11 @@
     	<h3>Factura</h3>
       <?php
         echo "<form method='POST' action='/detalleVentas/".$idVenta[4]."' 
-        accept-charset='UTF-8' enctype='multipart/form-data'>";
+        accept-charset='UTF-8' enctype='multipart/form-data' files='true'>";
       ?>    
-            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+            {{ csrf_field() }} 
             
             <div class="form-group">
-             
               <div class="col-md-6">
                 <input type="file"  name="archivo" >
                 <?php

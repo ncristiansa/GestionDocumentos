@@ -12,7 +12,8 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->truncateTables([
-            'clientes'
+            'clientes',
+            'ventas'
         ]);
 
         $this->call(ClientesSeeder::class);

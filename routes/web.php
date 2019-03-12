@@ -16,9 +16,7 @@ Route::get('/formulario', 'ClientesController@create');
 Route::post('/', 'ClientesController@store');
 Route::get('/cliente/{id}', 'ClientesController@edit');
 Route::post('/cliente/{id}', 'ClientesController@update');
+
+Route::post('/detallesVentas/{id}', 'GuardarArchivoController@index');
+Route::post('/detallesVentas/{id}', 'GuardarArchivoController@create');
 Route::post('/detallesVentas/{id}', 'GuardarArchivoController@store');
-
-
-Route::get('/detallesVentas/{id}', function () {
-    return view('detallesVentas');
-});
