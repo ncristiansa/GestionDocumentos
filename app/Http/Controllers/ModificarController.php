@@ -17,12 +17,16 @@ class ModificarController extends Controller
     public function update(Request $request, $id){
         try
         {
-            
-            $nombrearchivo = $request->file('archivo')->getClientOriginalName();
-            DB::table('documentos')->where('id',$id)->update(['archivo' =>$nombrearchivo]);
-            
-            $Ventas = DB::table('ventas')->where('id', 1)->get();
-            return view('/detallesVentas', ['Ventas' => $Ventas]);
+            $documento = new DocumentoModel;
+
+            $documento->archivo = $request->file('doc')->getClientOriginalName();
+            $this->validate($request, ['id_venta'=>'required', 'tipo_documento'=>'required', 'archivo'=>'required', 'created_at'=>'required', 'updated_at'=>'required']);
+            DB::table('documentos')->where('id',$documento->id =$request->input('id'))->update([
+                'id_venta'=> $request->input('id_venta'),
+                'tipo_documento'=> $request->input('tipo_archivo'),
+                'archivo' => $documento
+            ]);           
+            return "Ok funciona";
         }catch(Exception $e)
         {
             return back()->withErrors(['Error'=>'Error del servidor']);

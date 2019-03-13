@@ -14,11 +14,15 @@
 <div class="row">
     <div class="col-12">
         @foreach($documento as $doc)
-        <form id="form-factura" method='POST' action='/detallesVentas/{{$doc->id}}' accept-charset='UTF-8' enctype='multipart/form-data' files='true'>  
+        <form id="form-factura" method='POST' action='/detallesVentas/{{$doc->id}}' accept-charset='UTF-8' enctype='multipart/form-data' files='true'>
+          <input type="hidden" name="id" value="{{$doc->id}}">
+          <input type="hidden" name="id_venta" value="{{$doc->id_venta}}">
+          <input type="hidden" name="tipo_archivo" value="{{$doc->tipo_documento}}">
+          <input type="hidden" name="doc" value="{{$doc->archivo}}">  
         @endforeach
-            {{ csrf_field() }}
+        {{ csrf_field() }}
           <input type="file" name="archivo">
-          <input type="submit" name="enviar" value="Guardar">
+          <input type="submit" name="enviar" value="Guardar" class="btn btn-success" style="margin-top:10px;">
         </form>
         
         

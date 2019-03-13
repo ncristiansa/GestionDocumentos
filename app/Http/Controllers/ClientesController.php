@@ -102,6 +102,7 @@ class ClientesController extends Controller
         {
             $this->validate($request, ['Nombre'=>'required', 'Email'=>'required', 'Telefono'=>'required', 'Direccion'=>'required', 'NIFCIF'=>'required', 'Provincia'=>'required','Localidad'=>'required', 'CP'=>'required', 'created_at'=>'required', 'updated_at'=>'required']);
             registro::find($id)->update($request->all());
+            
             $clientes = DB::table('clientes')->where('id', $id)->get();
             return view('cliente', ['Clientes'=>$clientes]);
         }catch(Exception $e)
