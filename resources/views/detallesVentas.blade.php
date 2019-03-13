@@ -1,21 +1,25 @@
 @extends('layouts/plantilla')
 @section('pageTitle', 'Detalles Ventas')
 @section('content')
-
+<?php
+	$url = 'http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+  $idVenta = explode("/",$url);
+  $docs = DB::table('documentos')->where('id_venta', $idVenta[4])->get(['id','tipo_documento','archivo']);
+?>
 <div class="row">
     <div class="col-12">
         <h1 class="display-3">Detalle Venta</h1>
     </div >
     <div id="factura" class="col-12">
         @foreach($Ventas as $venta)
-        <form id="form-factura" method='POST' action='/detalleVentas/{{$venta->id}}' accept-charset='UTF-8' enctype='multipart/form-data' files='true'>   
+        <form id="form-factura" method='POST' action='/detallesVentas/{{$venta->id}}' accept-charset='UTF-8' enctype='multipart/form-data' files='true'>   
             {{ csrf_field() }}
         </form>
         @endforeach
 	</div>
 	<div id="albaran" class="col-12">
 		  @foreach($Ventas as $venta)
-        <form method='POST' id="form-albaran" action='/detalleVentas/{{$venta->id}}' accept-charset='UTF-8' enctype='multipart/form-data' files='true'>   
+        <form method='POST' id="form-albaran" action='/detallesVentas/{{$venta->id}}' accept-charset='UTF-8' enctype='multipart/form-data' files='true'>   
             {{ csrf_field() }}
         </form>
       @endforeach
@@ -23,7 +27,7 @@
 
 	<div id="presupuesto" class="col-12">
       @foreach($Ventas as $venta)
-        <form method='POST' id="form-presupuesto" action='/detalleVentas/{{$venta->id}}' accept-charset='UTF-8' enctype='multipart/form-data' files='true'>   
+        <form method='POST' id="form-presupuesto" action='/detallesVentas/{{$venta->id}}' accept-charset='UTF-8' enctype='multipart/form-data' files='true'>   
             {{ csrf_field() }}
         </form>
       @endforeach
@@ -39,16 +43,18 @@
 <script type="text/javascript">
   var infoVentas = '{{$Ventas}}';
   var ConsultaVentas = JSON.parse(infoVentas.replace(/&quot;/g,'"'));
-  visualizar(ConsultaVentas,"h1");
+  var ConsultaDocs = <?php echo json_encode($docs);?>;
+  
   formularioDocumento("factura", "Facturas", "form-factura", ConsultaVentas, "factura");
   formularioDocumento("albaran", "Albaranes", "form-albaran", ConsultaVentas, "albaran");
   formularioDocumento("presupuesto", "Presupuestos", "form-presupuesto", ConsultaVentas, "presupuesto");
+  detallesFichero(ConsultaDocs,"Facturas");
 </script>
 <script>
 $(document).ready(function(){
   $('input[type="file"]').on('change', function(){
     var textoDocumento = $( this ).val().split('.').pop();
-      if(textoDocumento === "pdf"){
+      if(textoDocumento == "pdf"){
         $('#btNuevoArchivo').submit();
       }
       else

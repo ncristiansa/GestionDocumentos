@@ -16,5 +16,8 @@ Route::get('/formulario', 'ClientesController@create');
 Route::post('/', 'ClientesController@store');
 Route::get('/cliente/{id}', 'ClientesController@edit');
 Route::post('/cliente/{id}', 'ClientesController@update');
-Route::get('/detallesVentas/{id}', 'VentaController@show');
-Route::post('/detallesVentas/{id}', 'VentaController@create');
+
+Route::get('/detallesVentas/{id}', 'VentaController@create');
+Route::post('/detallesVentas/{id}', 'VentaController@store');
+
+

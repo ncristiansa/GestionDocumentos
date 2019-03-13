@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 use App\VentaModel;
+use App\DocumentoModel;
 use DB;
 use Exception;
 use Illuminate\Http\Request;
-
+use Input;
 class VentaController extends Controller
 {
     /**
@@ -24,9 +25,11 @@ class VentaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id)
     {
-        //
+        $Ventas = DB::table('ventas')->where('id', $id)->get();
+        return view('/detallesVentas', ['Ventas' => $Ventas]);
+
     }
 
     /**
@@ -35,9 +38,20 @@ class VentaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $id)
     {
-        //
+        try {
+            DocumentoModel::create($request->all());
+            $nombredoc = $request->file('archivo')->getClientOriginalName();
+            $documentos = new DocumentoModel;
+            $documentos->archivo = $request->file('archivo')->storeAs('public', $nombredoc);
+            
+            
+            $Ventas = DB::table('ventas')->where('id', $id)->get();
+            return view('/detallesVentas', ['Ventas' => $Ventas]);
+        } catch (Exception $e) {
+            return back()->withErrors(['Error'=>'Error del servidor']);
+        }
     }
 
     /**

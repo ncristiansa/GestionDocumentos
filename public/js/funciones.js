@@ -167,8 +167,8 @@ function detalles(Consulta,elementoAnteriorId){
 function detallesFichero(Consulta,elementoAnteriorId){
 	if (Consulta.length>=1) {
 		var elementoAnterior = $("#"+elementoAnteriorId);
-	console.log(elementoAnterior);
 	var tabla = $("<table>").addClass("table");
+	tabla.attr({'style':'margin-left:30px;'});
 	var th = $('<thead>');
 	var trtitulos =$('<tr>');
 
@@ -202,7 +202,7 @@ function detallesFichero(Consulta,elementoAnteriorId){
 			}
 			
 		}
-		var botonmodificar = $('<button>',{text:"Modificar"}).addClass("btn btn-success");
+		var botonmodificar = $('<button>',{text:"Modificar"}).addClass("btn btn-primary");
 		var td = $('<td>');
 		td.append(botonmodificar);
 		trdetalles.append(td);
@@ -382,9 +382,16 @@ function validarFormulario()
     }
     
 }
+function validarDocVacio(){
+	if($('input[type="file"]') != ''){
+		mensajeError("No has añadido ningún documento.", undefined, false, "btn.btn-success");
+	}else{
+		console.log("continua");
+	}
+}
 function formularioDocumento(idDiv, tipoArchivoTitulo, idForm, ConsultaVentas, tipoArchivo)
 {
-	$('#'+idDiv).before($('<h3>', {text: tipoArchivoTitulo}).attr('style', 'margin-left:30px;'));
+	$('#'+idDiv).before($('<h3>', {text: tipoArchivoTitulo}).attr({'style':'margin-left:30px;', 'id':tipoArchivoTitulo}));
 	var elementoAnterior = $('#'+idForm);
 	var divGeneralInput = $('<div>').addClass("form-group");
 	var divInput = $('<div>').addClass("col-md-6");
@@ -409,6 +416,7 @@ function formularioDocumento(idDiv, tipoArchivoTitulo, idForm, ConsultaVentas, t
 	}
 	
 	var botonGuardar = $('<button>').attr({'id':'btNuevoArchivo', 'class':'btn btn-success', 'name':'enviar', 'style':'margin-top:10px;'});
+	//botonGuardar.attr("onclick",'validarDocVacio();return false;');
 	botonGuardar.text('Guardar');
 	
 	divInput.append(inputFile);
