@@ -1,34 +1,4 @@
-function comprobarCampos(){
-	var nom=$("#nom").val();
-	var email=$("#email").val();
-	var Telefon=$("#telefon").val();
-	var data=$("#data").val();
-	var data=$("#dataModificacio").val();
-	var direccio=$("#direccio").val();
-	var nifCif=$("#nifCif").val();
-	var prov=$("#prov").val();
-	var localitat=$("#localitat").val();
-	var cp=$("#cp").val();
-	var tx = $(".form-control");
 
-	
-
-	if (nom.length<1 && email.length<1 && Telefon.length<1 && data.length<1 && direccio.length<1 && nifCif.length<1 && prov.length<1 && localitat.length<1 && cp.length<1) {
-    		moduloError("No se pueden dejar los campos vacios")
-    	}
-    
-    else{
-    	for (var i = 0; i <=tx.length ; i++) {
-    	if($(tx[i]).val().length<1) {
-    		moduloError("No se puede dejar vacio el campo"+" "+tx[i].name);
-    		
-        
-    		} 
-    	}
-    	 
-	} 
-
-}
 function moduloError(error) {
 	var contenedor = $('.container-fluid');
 	var divContenido = $('<div>').addClass("alert alert-danger");
@@ -85,9 +55,11 @@ function visualizarInfo(Consulta, elementoAnterior){
 
 			var botonGuardar = $('<input>');
 			botonGuardar.attr('type', 'submit');
+			botonGuardar.attr('id', 'btNuevoCliente');
 			botonGuardar.attr('value', 'Guardar Cambios');
 			botonGuardar.attr('class', 'btn btn-success');
 			botonGuardar.attr('name', 'guardar');
+			botonGuardar.attr('onclick', 'validarFormulario();return false;');
 			
 			for(var datos in Consulta){
 					var Claves = Object.keys(Consulta[datos]);
@@ -339,7 +311,7 @@ function mensajeError(_text, listaErrores, estado, lugar)
 			var ul = $('<ul>').attr("style","list-style:none;");
 			ul.attr('id','listaError');
             for (var index = 0; index < listaErrores.length; index++) {
-                ul.append($('<li>', {text:'Campo '+listaErrores[index]+' no ha sido rellenado.'}));
+                ul.append($('<li>', {text:listaErrores[index]}));
             }
             $('#'+lugar).after($('<div>').attr({'id':'mensajeError', 'style':'margin-top:1%;'}).addClass('alert alert-danger').append(ul));
         }
@@ -375,27 +347,42 @@ function validarFormulario()
      * esta función validará: CIF NIF, Telefono, Email
      * 
      */
-    var expresionregularNumero = "^([0-9]+){9}$";
 	var Camposinvalidos = [];
 	
-    for (var index = 0; index < $('.formulario').length; index++) {
-        if($('.formulario').eq(index).val().length<1){
-            Camposinvalidos.push($('.formulario').eq(index).attr('placeholder'));
-        }
-    }
+	if($('.formulario').eq(0).val() == ''){
+		Camposinvalidos.push('El nombre del cliente está vacio.');
+	}
+	if($('.formulario').eq(1).val() == ''){
+		Camposinvalidos.push('El email está vacio.');
+	}else if(!/^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i.test($('.formulario').eq(1).val())){
+		Camposinvalidos.push('El email introducido es incorrecto.');
+	}
+	if($('.formulario').eq(2).val() == ''){
+		Camposinvalidos.push('El número de telefono está vacio.');
+	}else if($('.formulario').eq(2).val().length > 9){
+		Camposinvalidos.push('No puedes introducir más de 9 dígitos.');
+	}
+	if($('.formulario').eq(3).val() == ''){
+		Camposinvalidos.push('No has introducido una dirección.');
+	}
+	if($('.formulario').eq(4).val() ==''){
+		Camposinvalidos.push('No has introducido el NIF');
+	}else if(!isValidNif($('.formulario').eq(4).val())){
+		Camposinvalidos.push('NIF introducido es incorrecto.');
+	}
+	if($('.formulario').eq(5).val() == ''){
+		Camposinvalidos.push('El campo Provincia está vacio.');
+	}
+	if($('.formulario').eq(6).val() == ''){
+		Camposinvalidos.push('El campo Localidad está vacio.');
+	}
+	if(isNaN($('.formulario').eq(7).val())){
+		Camposinvalidos.push('El código postal no puede contener letras.');
+	}
     if(Camposinvalidos.length > 0)
     {
 		mensajeError(undefined, Camposinvalidos, false, "btNuevoCliente");
-		if($('.formulario').eq(2).val().length > 9){
-			$('#listaError').append($('<li>',{text:'No puedes introducir más de 9 dígitos.'}));
-		}
-		if(!/^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i.test($('.formulario').eq(1).val())){
-			$('#listaError').append($('<li>',{text:'El email introducido es incorrecto.'}));
-		}
-
-		if(!isValidNif($('.formulario').eq(4).val())){
-			$('#listaError').append($('<li>',{text:'NIF introducido es incorrecto.'}));
-		}
+		
         
     }
     

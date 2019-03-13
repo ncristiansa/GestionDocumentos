@@ -4,7 +4,9 @@
 <?php
 	$url = 'http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
   $idVenta = explode("/",$url);
-  $docs = DB::table('documentos')->where('id_venta', $idVenta[4])->get(['id','id_venta','archivo', 'updated_at']);
+  $docsFactura = DB::table('documentos')->where('tipo_documento', 'factura')->get(['id','id_venta','archivo', 'updated_at']);
+  $docsAlbaran = DB::table('documentos')->where('tipo_documento', 'albaran')->get(['id','id_venta','archivo', 'updated_at']);
+  $docsPresupuesto = DB::table('documentos')->where('tipo_documento', 'presupuesto')->get(['id','id_venta','archivo', 'updated_at']);
 ?>
 
 <div class="row">
@@ -45,12 +47,17 @@
 <script type="text/javascript">
   var infoVentas = '{{$Ventas}}';
   var ConsultaVentas = JSON.parse(infoVentas.replace(/&quot;/g,'"'));
-  var ConsultaDocs = <?php echo json_encode($docs);?>;
+  var ConsultaDocsFactura = <?php echo json_encode($docsFactura);?>;
+  var ConsultaDocsAlbaran = <?php echo json_encode($docsAlbaran);?>;
+  var ConsultaDocsPresupuesto = <?php echo json_encode($docsPresupuesto);?>;
   
   formularioDocumento("factura", "Facturas", "form-factura", ConsultaVentas, "factura");
   formularioDocumento("albaran", "Albaranes", "form-albaran", ConsultaVentas, "albaran");
   formularioDocumento("presupuesto", "Presupuestos", "form-presupuesto", ConsultaVentas, "presupuesto");
-  detallesFichero(ConsultaDocs,"Facturas");
+  detallesFichero(ConsultaDocsFactura,"Facturas");
+  detallesFichero(ConsultaDocsAlbaran,"Albaranes");
+  detallesFichero(ConsultaDocsPresupuesto,"Presupuestos");
+  
 </script>
 <script>
 $(document).ready(function(){
