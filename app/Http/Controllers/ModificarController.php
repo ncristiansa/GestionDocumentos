@@ -15,13 +15,18 @@ class ModificarController extends Controller
         return view('Modificar', compact('documento'));
     }
     public function update(Request $request, $id){
-       
+        try
+        {
             
             $nombrearchivo = $request->file('archivo')->getClientOriginalName();
             DB::table('documentos')->where('id',$id)->update(['archivo' =>$nombrearchivo]);
-            $documento = $request->file('archivo')->storeAs('public', $nombrearchivo);
-            $Ventas = DB::table('ventas')->where('id', $id)->get();
-            return view('/detallesVentas', ['Ventas' => $Ventas]);
-        
+            $documento= $request->file('archivo')->storeAs('public', $nombrearchivo);
+            //$Ventas = DB::table('ventas')->where('id', $id)->get();
+            //return view('/detallesVentas', ['Ventas' => $Ventas]);
+            return back();
+        }catch(Exception $e)
+        {
+            return back()->withErrors(['Error'=>'Error del servidor']);
+        }
     }
 }
