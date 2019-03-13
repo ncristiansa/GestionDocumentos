@@ -173,11 +173,13 @@ function detallesFichero(Consulta,elementoAnteriorId){
 	var trtitulos =$('<tr>');
 
 	var tdid = $('<th>',{text: "ID"});
-	var tdnombre = $('<th>',{text:"Nombre"});
+	var tdidventa = $('<th>',{text:"ID Venta"});
+	var tdnomfichero = $('<th>',{text:"Nombre Fichero"});
 	var tdfmodi = $('<th>',{text:"Fecha Modificacion"});
 
 	trtitulos.append(tdid);
-	trtitulos.append(tdnombre);
+	trtitulos.append(tdidventa);
+	trtitulos.append(tdnomfichero);
 	trtitulos.append(tdfmodi);
 	th.append(trtitulos);
 	tabla.append(trtitulos);
@@ -190,7 +192,7 @@ function detallesFichero(Consulta,elementoAnteriorId){
 		var Valores = Object.values(Consulta[datos]);
 		for(var key in Claves){
 			var titulo = Claves[key];
-			if (titulo=="archivo") {
+			if (titulo=="") {
 				var ahred = $('<a>',{text:Valores[key],href:"/detallesVentas/"+Consulta[datos]["id"]}); 
 				var td = $('<td>');
 				td.append(ahred);
@@ -202,9 +204,11 @@ function detallesFichero(Consulta,elementoAnteriorId){
 			}
 			
 		}
-		var botonmodificar = $('<button>',{text:"Modificar"}).addClass("btn btn-primary");
+		var a = $('<a>').attr('href', '/Modificar/'+Consulta[datos]["id"]);
+		a.text("Modificar");
+
 		var td = $('<td>');
-		td.append(botonmodificar);
+		td.append(a);
 		trdetalles.append(td);
 		tabla.append(trdetalles);	
 	}
@@ -299,39 +303,7 @@ function mensajeError(_text, listaErrores, estado, lugar)
     }
     
 }
-function isValidCif(CIF){
-	par = 0;
-	non = 0;
-	letras = "ABCDEFGHKLMNPQS";
-	let = CIF.charAt(0);
- 
-	if (CIF.length!=9) {
-		return false;
-	}
- 
-	if (letras.indexOf(let.toUpperCase())==-1) {
-		return false;
-	}
- 
-	for (zz=2;zz<8;zz+=2) {
-		par = par+parseInt(CIF.charAt(zz));
-	}
- 
-	for (zz=1;zz<9;zz+=2) {
-		nn = 2*parseInt(CIF.charAt(zz));
-		if (nn > 9) nn = 1+(nn-10);
-		non = non+nn;
-	}
- 
-	parcial = par + non;
-	control = (10 - ( parcial % 10));
-	if (control==10) control=0;
- 
-	if (control!=CIF.charAt(8)) {
-		return false;
-	}
-	return true;
-}
+
 function isValidNif(NIF){
 	dni=NIF.substring(0,NIF.length-1);
 	let=NIF.charAt(NIF.length-1);
@@ -372,9 +344,7 @@ function validarFormulario()
 		if(!/^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i.test($('.formulario').eq(1).val())){
 			$('#listaError').append($('<li>',{text:'El email introducido es incorrecto.'}));
 		}
-		if(!isValidCif($('.formulario').eq(4).val())){
-			$('#listaError').append($('<li>',{text:'CIF introducido es incorrecto.'}));
-		}
+
 		if(!isValidNif($('.formulario').eq(4).val())){
 			$('#listaError').append($('<li>',{text:'NIF introducido es incorrecto.'}));
 		}
@@ -426,3 +396,4 @@ function formularioDocumento(idDiv, tipoArchivoTitulo, idForm, ConsultaVentas, t
 	divGeneralInput.append(divInput);
 	elementoAnterior.append(divGeneralInput);
 }
+

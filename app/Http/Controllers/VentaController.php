@@ -41,11 +41,19 @@ class VentaController extends Controller
     public function store(Request $request, $id)
     {
         try {
-            DocumentoModel::create($request->all());
+
+            $documento = new DocumentoModel;
+            $documento->id_venta = $id;
+            $documento->tipo_documento = $request->input('tipo_archivo');
+            $documento->archivo = $request->file('archivo')->getClientOriginalName();
+            $documento->save();
             $nombredoc = $request->file('archivo')->getClientOriginalName();
-            $documentos = new DocumentoModel;
-            $documentos->archivo = $request->file('archivo')->storeAs('public', $nombredoc);
+            $documento->archivo = $request->file('archivo')->storeAs('public', $nombredoc);
+            /*
             
+            $documentos = new DocumentoModel;
+            
+            */
             
             $Ventas = DB::table('ventas')->where('id', $id)->get();
             return view('/detallesVentas', ['Ventas' => $Ventas]);
@@ -86,7 +94,8 @@ class VentaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        
+        DocumentoModel::find($id)->update($request->all());
     }
 
     /**

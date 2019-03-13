@@ -4,8 +4,9 @@
 <?php
 	$url = 'http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
   $idVenta = explode("/",$url);
-  $docs = DB::table('documentos')->where('id_venta', $idVenta[4])->get(['id','tipo_documento','archivo']);
+  $docs = DB::table('documentos')->where('id_venta', $idVenta[4])->get(['id','id_venta','archivo', 'updated_at']);
 ?>
+
 <div class="row">
     <div class="col-12">
         <h1 class="display-3">Detalle Venta</h1>
@@ -31,7 +32,8 @@
             {{ csrf_field() }}
         </form>
       @endforeach
-	</div>
+  </div>
+
 <!-- 
 	<div id="pedido" class="col-12">
 		<h3>Pedido</h3>
@@ -65,6 +67,8 @@ $(document).ready(function(){
   });
 });
 </script>
+
+
 
 
 @stop
