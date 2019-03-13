@@ -14,7 +14,7 @@ class Clientes extends Migration
     public function up()
     {
         Schema::create('clientes', function (Blueprint $table) {
-            $table->increments('id');
+            $table->increments('id')->unique();
             $table->string('Nombre');
             $table->string('Email');
             $table->integer('Telefono');
@@ -28,56 +28,22 @@ class Clientes extends Migration
 
         });
         Schema::create('ventas', function (Blueprint $table) {
-            $table->increments('id');
+            $table->increments('id')->unique();
             $table->integer('id_cliente')->unsigned();
             $table->string('Comprador');
             $table->string('nombreVentas');
             $table->timestamps();
             $table->foreign('id_cliente')->references('id')->on('clientes');
-
-
         });
-
-        Schema::create('factura', function (Blueprint $table) {
-            $table->increments('id');
+        Schema::create('documentos', function(Blueprint $table){
+            $table->increments('id')->unique();
             $table->integer('id_venta')->unsigned();
+            $table->string('tipo_documento');
             $table->string('archivo');
             $table->timestamps();
+
             $table->foreign('id_venta')->references('id')->on('ventas');
-
-
         });
-
-        Schema::create('albaran', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('id_venta')->unsigned();
-            $table->string('archivo');
-            $table->timestamps();
-            $table->foreign('id_venta')->references('id')->on('ventas');
-
-
-        });
-
-        Schema::create('presupuesto', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('id_venta')->unsigned();
-            $table->string('archivo');
-            $table->timestamps();
-            $table->foreign('id_venta')->references('id')->on('ventas');
-
-
-        });
-
-        Schema::create('pedidos', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('id_venta')->unsigned();
-            $table->string('archivo');
-            $table->timestamps();
-            $table->foreign('id_venta')->references('id')->on('ventas');
-
-
-        });
-
 
     }
 

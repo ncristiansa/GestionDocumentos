@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class VentaModel extends Model
 {
-    protected $table = 'factura';
-    protected $fillable =  ['id_venta','archivo', 'created_at', 'updated_at'];
+    protected $table = 'ventas';
+    protected $fillable =  ['id_cliente','Comprador', 'nombreVentas'];
 
 }

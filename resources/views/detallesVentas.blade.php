@@ -1,112 +1,64 @@
 @extends('layouts/plantilla')
 @section('pageTitle', 'Detalles Ventas')
 @section('content')
-<?php
-	$url = 'http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
-  $idVenta = explode("/",$url);
-?>
+
 <div class="row">
     <div class="col-12">
         <h1 class="display-3">Detalle Venta</h1>
     </div >
     <div id="factura" class="col-12">
-    	<h3>Factura</h3>
-      <?php
-        echo "<form method='POST' action='/detalleVentas/".$idVenta[4]."' 
-        accept-charset='UTF-8' enctype='multipart/form-data' files='true'>";
-      ?>    
-            {{ csrf_field() }} 
-            
-            <div class="form-group">
-              <div class="col-md-6">
-                <input type="file"  name="archivo" >
-                <?php
-                echo"<input type='hidden' name='id_venta' value='".$idVenta[4]."'>";
-                ?>
-              </div>
-            </div>
- 
-            <div class="form-group">
-              <div class="col-md-6 ">
-                <button type="submit" class="btn btn-primary">Guardar</button>
-              </div>
-            </div>
-          </form>
+        @foreach($Ventas as $venta)
+        <form id="form-factura" method='POST' action='/detalleVentas/{{$venta->id}}' accept-charset='UTF-8' enctype='multipart/form-data' files='true'>   
+            {{ csrf_field() }}
+        </form>
+        @endforeach
 	</div>
-
 	<div id="albaran" class="col-12">
-		<h3>Albaran</h3>
-		<form method="POST" action="http://diamond-chaos.codio.io:3000/tuto/public/storage/create" accept-charset="UTF-8" enctype="multipart/form-data">
-            
-            <input type="hidden" name="_token" value="{{ csrf_token() }}">
-            
-            <div class="form-group">
-             
-              <div class="col-md-6">
-                <input type="file"  name="file" >
-              </div>
-            </div>
- 
-            <div class="form-group">
-              <div class="col-md-6 ">
-                <button type="submit" class="btn btn-primary">Guardar</button>
-              </div>
-            </div>
-          </form>
+		  @foreach($Ventas as $venta)
+        <form method='POST' id="form-albaran" action='/detalleVentas/{{$venta->id}}' accept-charset='UTF-8' enctype='multipart/form-data' files='true'>   
+            {{ csrf_field() }}
+        </form>
+      @endforeach
 	</div>
 
 	<div id="presupuesto" class="col-12">
-		<h3>Presupuesto</h3>
-		<form method="POST" action="http://diamond-chaos.codio.io:3000/tuto/public/storage/create" accept-charset="UTF-8" enctype="multipart/form-data">
-            
-            <input type="hidden" name="_token" value="{{ csrf_token() }}">
-            
-            <div class="form-group">
-             
-              <div class="col-md-6">
-                <input type="file"  name="file" >
-              </div>
-            </div>
- 
-            <div class="form-group">
-              <div class="col-md-6 ">
-                <button type="submit" class="btn btn-primary">Guardar</button>
-              </div>
-            </div>
-          </form>
+      @foreach($Ventas as $venta)
+        <form method='POST' id="form-presupuesto" action='/detalleVentas/{{$venta->id}}' accept-charset='UTF-8' enctype='multipart/form-data' files='true'>   
+            {{ csrf_field() }}
+        </form>
+      @endforeach
 	</div>
-
+<!-- 
 	<div id="pedido" class="col-12">
 		<h3>Pedido</h3>
 		<form method="POST" action="http://diamond-chaos.codio.io:3000/tuto/public/storage/create" accept-charset="UTF-8" enctype="multipart/form-data">
-            
-            <input type="hidden" name="_token" value="{{ csrf_token() }}">
-            
-            <div class="form-group">
-             
-              <div class="col-md-6">
-                <input type="file"  name="file" >
-              </div>
-            </div>
- 
-            <div class="form-group">
-              <div class="col-md-6 ">
-                <button type="submit" class="btn btn-primary">Guardar</button>
-              </div>
-            </div>
           </form>
 	</div>
+-->
 </div>
-<?php
-    $url = 'http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
-    $idVenta = explode("/",$url);
-    $infoVentas = DB::table('ventas')->where('id', $idVenta[4])->get(["id","id_cliente","Comprador","nombreVentas","updated_at"]);
-
-?>
-
 <script type="text/javascript">
-
-	var ConsultaVentas = <?php echo json_encode($infoVentas);?>;
-    visualizar(ConsultaVentas,"h1");
+  var infoVentas = '{{$Ventas}}';
+  var ConsultaVentas = JSON.parse(infoVentas.replace(/&quot;/g,'"'));
+  visualizar(ConsultaVentas,"h1");
+  formularioDocumento("factura", "Facturas", "form-factura", ConsultaVentas, "factura");
+  formularioDocumento("albaran", "Albaranes", "form-albaran", ConsultaVentas, "albaran");
+  formularioDocumento("presupuesto", "Presupuestos", "form-presupuesto", ConsultaVentas, "presupuesto");
 </script>
+<script>
+$(document).ready(function(){
+  $('input[type="file"]').on('change', function(){
+    var textoDocumento = $( this ).val().split('.').pop();
+      if(textoDocumento === "pdf"){
+        $('#btNuevoArchivo').submit();
+      }
+      else
+      {
+        mensajeError("La extension de tu documento no es PDF.", undefined, false, "btn.btn-success");
+      }
+
+  });
+});
+</script>
+
+
 @stop

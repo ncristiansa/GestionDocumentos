@@ -1,13 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use Illuminate\Http\Request;
 use App\VentaModel;
 use DB;
 use Exception;
+use Illuminate\Http\Request;
 
-class GuardarArchivoController extends Controller
+class VentaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +15,8 @@ class GuardarArchivoController extends Controller
      */
     public function index()
     {
-        $factura = VentaModel::select('id', 'id_venta', 'archivo');
-        return view('/detallesVentas/', compact('factura'));
+        $Ventas = VentaModel::select('id', 'id_cliente', 'Comprador', 'nombreVentas')->orderBy('id', 'ASC')->get();
+        return view('detallesVentas', compact('Ventas'));
     }
 
     /**
@@ -27,7 +26,7 @@ class GuardarArchivoController extends Controller
      */
     public function create()
     {
-        return view('detallesVentas');
+        //
     }
 
     /**
@@ -38,20 +37,7 @@ class GuardarArchivoController extends Controller
      */
     public function store(Request $request)
     {
-        try
-        {
-            $factura = new VentaModel;
-            $factura->id_venta = $request->input('id_venta');
-            $factura->archivo = $request->input('archivo');
-            $factura->save();
-            $facturas = VentaModel::select('id','id_venta','archivo')->get();
-            return view('detallesVentas/{id}', ['factura'=>$facturas]);
-           
-        }catch(Exception $e)
-        {
-            return back()->withErrors(['Error'=>'Error del servidor']);
-        }
-    
+        //
     }
 
     /**
@@ -62,7 +48,8 @@ class GuardarArchivoController extends Controller
      */
     public function show($id)
     {
-        //
+        $Ventas = DB::table('ventas')->where('id', $id)->get();
+        return view('/detallesVentas', ['Ventas' => $Ventas]);
     }
 
     /**

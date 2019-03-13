@@ -239,8 +239,11 @@ function visualizar(Consulta,elementoAnterior){
 		var Claves = Object.keys(Consulta[datos]);
 		var Valores = Object.values(Consulta[datos]);
 		for(var key in Claves){
-			var td = $('<td>').text(Valores[key]);
-			trdetalles.append(td);
+			if(Claves[key] != "created_at"){
+				var td = $('<td>').text(Valores[key]);
+				trdetalles.append(td);
+			}
+			
 		}
 		
 		tabla.append(trdetalles);	
@@ -259,11 +262,24 @@ function visualizar(Consulta,elementoAnterior){
 * listaErrores = Podemos pasarle un array de errores que deseamos mostrar.
 * estado = El estado que recibe hace refencia si quieres que este duré X segundos, en caso de recibir true.
 */
-function mensajeError(_text, listaErrores, estado)
+function mensajeError(_text, listaErrores, estado, lugar)
 {
 
     if(_text != undefined){
-        $('#btNuevoCliente').after($('<div>').attr('id','mensajeError').addClass('alert alert-danger').append($('<p>', {text:_text})));
+		if(lugar == "btn.btn-success"){
+			$('.'+lugar).eq(2).after($('<div>').attr('id','mensajeError').addClass('alert alert-danger').append($('<p>', {text:_text})));
+			if(estado != true){
+				setTimeout(function(){
+					$('#mensajeError').remove();
+				},6000);
+			}
+		}
+		$('#'+lugar).after($('<div>').attr('id','mensajeError').addClass('alert alert-danger').append($('<p>', {text:_text})));
+		if(estado != true){
+            setTimeout(function(){
+                $('#mensajeError').remove();
+            },6000);
+        }
     }
     if(listaErrores != undefined){
         if(listaErrores instanceof Array)
@@ -273,7 +289,7 @@ function mensajeError(_text, listaErrores, estado)
             for (var index = 0; index < listaErrores.length; index++) {
                 ul.append($('<li>', {text:'Campo '+listaErrores[index]+' no ha sido rellenado.'}));
             }
-            $('#btNuevoCliente').after($('<div>').attr({'id':'mensajeError', 'style':'margin-top:1%;'}).addClass('alert alert-danger').append(ul));
+            $('#'+lugar).after($('<div>').attr({'id':'mensajeError', 'style':'margin-top:1%;'}).addClass('alert alert-danger').append(ul));
         }
         if(estado != true){
             setTimeout(function(){
@@ -349,7 +365,7 @@ function validarFormulario()
     }
     if(Camposinvalidos.length > 0)
     {
-		mensajeError(undefined, Camposinvalidos, false);
+		mensajeError(undefined, Camposinvalidos, false, "btNuevoCliente");
 		if($('.formulario').eq(2).val().length > 9){
 			$('#listaError').append($('<li>',{text:'No puedes introducir más de 9 dígitos.'}));
 		}
@@ -365,4 +381,40 @@ function validarFormulario()
         
     }
     
+}
+function formularioDocumento(idDiv, tipoArchivoTitulo, idForm, ConsultaVentas, tipoArchivo)
+{
+	$('#'+idDiv).before($('<h3>', {text: tipoArchivoTitulo}).attr('style', 'margin-left:30px;'));
+	var elementoAnterior = $('#'+idForm);
+	var divGeneralInput = $('<div>').addClass("form-group");
+	var divInput = $('<div>').addClass("col-md-6");
+
+	var inputFile = $('<input>').attr('name', 'archivo');
+	inputFile.attr('type', 'file');
+	inputFile.attr('accept', 'application/pdf');
+	var inputHidden = $('<input>').attr('name', 'id_venta');
+	inputHidden.attr('type', 'hidden');
+	var tipoDocumento = $('<input>').attr({'name':'tipo_archivo','value':tipoArchivo, 'type':'hidden'});
+	for(datos in ConsultaVentas)
+	{
+		var Claves = Object.keys(ConsultaVentas[datos]);
+		for(key in Claves)
+		{
+			if(Claves[key] == "id")
+			{
+				inputHidden.attr('value', Claves[key]);
+			}
+		}
+		
+	}
+	
+	var botonGuardar = $('<button>').attr({'id':'btNuevoArchivo', 'class':'btn btn-success', 'name':'enviar', 'style':'margin-top:10px;'});
+	botonGuardar.text('Guardar');
+	
+	divInput.append(inputFile);
+	divInput.append(inputHidden);
+	divInput.append(tipoDocumento);
+	divInput.append(botonGuardar);
+	divGeneralInput.append(divInput);
+	elementoAnterior.append(divGeneralInput);
 }
