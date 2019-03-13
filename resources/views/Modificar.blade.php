@@ -14,7 +14,7 @@
 <div class="row">
     <div class="col-12">
         @foreach($documento as $doc)
-        <form id="form-factura" method='POST' action='/detallesVentas/{{$doc->id}}' accept-charset='UTF-8' enctype='multipart/form-data' files='true'>  
+        <form id="form-factura" method='POST' action='/Modificar/{{$doc->id}}' accept-charset='UTF-8' enctype='multipart/form-data' files='true'>  
         @endforeach
             {{ csrf_field() }}
           <input type="file" name="archivo">
