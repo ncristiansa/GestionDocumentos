@@ -1,12 +1,8 @@
-Miguel:
-	Ha faltado conocimiento para poder trabajar de manera conjunta con las 	
-	tecnologias de JQuery y Laravel.
-	Me ha retrasado para poder realizar las tareas del backlog.
-Cristian:
-	Falta de conocimiento de Laravel.
-Khalid:
-	Falta de conocimiento de Laravel.
-Grupal:
-	Creemos que las especificaciones tendrían que ser más descriptivas.
-	Falta de conocimiento sobre el framework (Laravel)
+Miguel: Falta de conocimientos de laravel, nos han aparecido muchos fallos y nos han retraso a la hora de hacer tareas. 
+
+Khalid: Falta conocimientos de laravel.
+
+Cristian: Falta conocimientos de laravel. 
+
+Grupal: No hemos repartido las tareas correctamente entre los componentes del grupo. Creemos que las especificaciones tendrían que ser más descriptivas.
 	
