@@ -6,7 +6,13 @@
         <h2 class="display-3">Datos Cliente</h2>
     </div>
 </div>
+<?php
+    $url = 'http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+    $idCliente = explode("/",$url);
+    $infoCliente = DB::table('clientes')->where('id', $idCliente[4])->get();
+    $infoVentas = DB::table('ventas')->where('id_cliente', $idCliente[4])->get(['id','nombreVentas','updated_at']);
 
+?>
 <div class="row">
     <div class="col-12">
         <h2 class="display-5">Información</h2>
@@ -35,7 +41,8 @@
     var infoCliente = '{{$Clientes}}';
     var Consultas = JSON.parse(infoCliente.replace(/&quot;/g,'"'));
     visualizarInfo(Consultas,"form");
-    
+    var ConsultaVentas = <?php echo json_encode($infoVentas);?>;
+    detalles(ConsultaVentas,"ventas");
     
 </script>
 
