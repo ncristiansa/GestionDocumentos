@@ -19,6 +19,8 @@ class ModificarController extends Controller
         {
             
             $nombrearchivo = $request->file('archivo')->getClientOriginalName();
+            $nombreAnterior = $request->input('DocumentoNombre');
+            \File::delete(public_path('uploads/public/'.$nombreAnterior));
             DB::table('documentos')->where('id',$id)->update(['archivo' =>$nombrearchivo]);
             $documento= $request->file('archivo')->storeAs('public', $nombrearchivo);
             //$Ventas = DB::table('ventas')->where('id', $id)->get();

@@ -216,10 +216,10 @@ function detallesFicheroModificar(Consulta,elementoAnteriorId){
 		var Valores = Object.values(Consulta[datos]);
 		for(var key in Claves){
 			var titulo = Claves[key];
-			if (titulo=="") {
-				var ahred = $('<a>',{text:Valores[key],href:"/detallesVentas/"+Consulta[datos]["id"]}); 
-				var td = $('<td>');
-				td.append(ahred);
+			if (titulo=="archivo") {
+				$nombreDocumento=$('#NombreDocumento').val(Valores[key]); 
+				var td = $('<td>').text(Valores[key]);
+				console.log($nombreDocumento);
 				trdetalles.append(td);
 			}
 			else{
