@@ -22,6 +22,7 @@
         @endforeach
             {{ csrf_field() }}
           <input type="file" name="archivo">
+          <input type="hidden" id="NombreDocumento" name="DocumentoNombre">
           <input type="submit" name="enviar" value="Guardar">
         </form>
         
