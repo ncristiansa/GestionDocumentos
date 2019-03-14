@@ -443,8 +443,4 @@ function crearLabel(Label, nombreLabel, Input, tipoInput, attrNombre)
 	{
 		$(Label, {text:nombreLabel}).append($(Input).attr({"type":tipoInput, "name":attrNombre}));
 	}
-	if()
-	{
-		
-	}
 }
