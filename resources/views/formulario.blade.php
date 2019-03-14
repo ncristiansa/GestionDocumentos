@@ -18,11 +18,18 @@
 		<input type="text" id="NIFCIF" name="NIFCIF" class="formulario" placeholder='NIFCIF'>
 		<input type="text" id="Provincia" name="Provincia" class="formulario" placeholder='Provincia'>
 		<input type="text" id="Localidad" name="Localidad" class="formulario" placeholder='Localidad'>
-		<input type="text" id="CP" name="CP" class="formulario" placeholder='Codigo Postal'>
-		<button id='btNuevoCliente' onclick='validarFormulario();return false;' class='btn btn-primary' name='enviar'>Añadir</button>
+		<input type="number" id="CP" name="CP" class="formulario" placeholder='Codigo Postal'>
+		<button id='btNuevoCliente' onclick='validarForm();return false;' type="submit" class='btn btn-primary' name='enviar'>Añadir</button>
 	</form>
 	</div>	
 </div>
+<script>
+    function validarForm(){
+        if (validarFormulario()==true){
+            $("#formulario").submit();
+        }
+    }
+</script>
 @stop
 
 

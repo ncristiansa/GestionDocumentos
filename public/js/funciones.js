@@ -55,11 +55,10 @@ function visualizarInfo(Consulta, elementoAnterior){
 
 			var botonGuardar = $('<input>');
 			botonGuardar.attr('type', 'submit');
-			botonGuardar.attr('id', 'btNuevoCliente');
 			botonGuardar.attr('value', 'Guardar Cambios');
 			botonGuardar.attr('class', 'btn btn-success');
 			botonGuardar.attr('name', 'guardar');
-			botonGuardar.attr('onclick', 'validarFormulario();return false;');
+			
 			
 			for(var datos in Consulta){
 					var Claves = Object.keys(Consulta[datos]);
@@ -334,9 +333,10 @@ function validarFormulario()
     if(Camposinvalidos.length > 0)
     {
 		mensajeError(undefined, Camposinvalidos, false, "btNuevoCliente");
-		
-        
-    }
+	 
+	}
+	return true;
+	
     
 }
 function validarDocVacio(){
