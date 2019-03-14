@@ -431,4 +431,20 @@ function formularioDocumento(idDiv, tipoArchivoTitulo, idForm, ConsultaVentas, t
 	divGeneralInput.append(divInput);
 	elementoAnterior.append(divGeneralInput);
 }
-
+/**
+ * @param {"Recibe la etiqueta Label."} Label
+ * @param {"Recibe el nombre que obtendrá el nombre del label."} nombreLabel
+ * @param {"Recibe la etiqueta Input."} Input 
+ * @param {"Recibe el tipo de input que desees crear."} tipoInput 
+ */
+function crearLabel(Label, nombreLabel, Input, tipoInput, attrNombre)
+{
+	if(Label != undefined)
+	{
+		$(Label, {text:nombreLabel}).append($(Input).attr({"type":tipoInput, "name":attrNombre}));
+	}
+	if()
+	{
+		
+	}
+}
