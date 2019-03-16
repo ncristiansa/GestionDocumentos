@@ -31,7 +31,14 @@ class VentaController extends Controller
         return view('/detallesVentas', ['Ventas' => $Ventas]);
 
     }
-
+    /**
+     * 
+     */
+    public function addSale()
+    {
+        $Ventas = DB::table('ventas')->get();
+        return view('NuevaVenta', ['Ventas' => $Ventas]);
+    }
     /**
      * Store a newly created resource in storage.
      *

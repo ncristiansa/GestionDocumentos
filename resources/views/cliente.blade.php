@@ -31,7 +31,9 @@
         <div  class='p-3 mb-2 bg-light text-dark'>
             <div class='form-group'>
                 <label id="ventas" for='labelVentas'>Ventas</label>
+                
             </div>
+            <a class="btn btn-primary" onclick="location.href = '{{ url('NuevaVenta')}}'">Agregar nueva venta</a>
         </div>
 
     </div>

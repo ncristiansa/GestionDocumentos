@@ -91,7 +91,6 @@ function visualizarInfo(Consulta, elementoAnterior){
 function detalles(Consulta,elementoAnteriorId){
 	if (Consulta.length>=1) {
 		var elementoAnterior = $("#"+elementoAnteriorId);
-	console.log(elementoAnterior);
 	var tabla = $("<table>").addClass("table");
 	var th = $('<thead>');
 	var trtitulos =$('<tr>').addClass("thead-dark");
@@ -127,11 +126,12 @@ function detalles(Consulta,elementoAnteriorId){
 			
 		}
 		
-		
-		tabla.append(trdetalles);	
+
+		tabla.append(trdetalles);
 	}
 	
 	elementoAnterior.after(tabla);
+
 	}
 }
 
@@ -436,11 +436,42 @@ function formularioDocumento(idDiv, tipoArchivoTitulo, idForm, ConsultaVentas, t
  * @param {"Recibe el nombre que obtendrá el nombre del label."} nombreLabel
  * @param {"Recibe la etiqueta Input."} Input 
  * @param {"Recibe el tipo de input que desees crear."} tipoInput 
+ * @param {"Recibe el valor del atributo name."} attrnombre
+ * @param {"Recibe el valor del atributo class."} _class
+ * Con esta función podrás crear un label o un input.
  */
-function crearLabel(Label, nombreLabel, Input, tipoInput, attrNombre)
+function elementoForm(Label, nombreLabel, Input, tipoInput, attrnombre, _class)
 {
-	if(Label != undefined)
+	if(Label != undefined && nombreLabel && attrnombre !=undefined && _class!=undefined)
 	{
-		$(Label, {text:nombreLabel}).append($(Input).attr({"type":tipoInput, "name":attrNombre}));
+		return $(Label, {text:nombreLabel}).attr({"name":attrnombre, "class":_class});
 	}
+	return $(Input).attr({'type': tipoInput, 'name':attrnombre});
+
+}
+function creaFormulario(agregarAntes, agregarDespues, listaDatos, _class, idFormulario){
+	
+	if(agregarAntes != undefined){
+		return $(agregarAntes).before($('<form>').attr({'id':idFormulario, 'class':_class}));
+	}
+	if(agregarDespues != undefined)
+	{
+		var formulario = $('<form>').attr({'id':idFormulario, 'class':_class});
+		if(listaDatos instanceof Array)
+		{
+			for(datos in listaDatos){
+				var Claves = Object.keys(listaDatos[datos]);
+				var Valores = Object.values(listaDatos[datos]);
+				for(key in Claves)
+				{
+					formulario.append(elementoForm("<label>", Claves[key], undefined, undefined, Claves[key], "formulario"));
+					formulario.append(elementoForm(undefined, undefined, Claves[key], "text", Claves[key], undefined));					
+				}
+
+			}
+		}
+		
+		return $(agregarDespues).after(formulario);
+	}
+
 }
