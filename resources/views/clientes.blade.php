@@ -19,7 +19,7 @@
         <div class="table-responsive">
             <form method="get" class="form-inline" action="clientes">
                 <input type="text" class="form-control" placeholder="Buscar" aria-label="Search" name="filtro">
-                <input class="btn btn-success" type="submit" name="Buscar">
+                <input class="btn btn-success" type="submit" name="Buscar" value="Buscar">
             </form>
             <table class="table table-hover">
                 <thead class="thead-dark">
