@@ -15,15 +15,23 @@
         <br>
         <br>
         <div class="table-responsive">
+            <form method="get" class="form-inline" action="clientes">
+                <input type="text" class="form-control" placeholder="Buscar" aria-label="Search" name="filtro">
+                <input class="btn btn-success" type="submit" name="Buscar">
+            </form>
             <table class="table table-hover">
                 <thead class="thead-dark">
                     <th> ID</th>
                     <th>Nombre</th> 
+                    <th>NIF CIF</th> 
+                    <th>Localidad</th> 
                 </tr>
                 @foreach($clientes as $item)
                     <tr>
                         <td>{{$item->id}}</td>
                         <td><a href="/cliente/{{$item->id}}">{{$item->Nombre}}</a></td>
+                        <td>{{$item->NIFCIF}}</td>
+                        <td>{{$item->Localidad}}</td>
                     </tr>
                 @endforeach
             </table>

@@ -12,6 +12,8 @@
 */
 
 Route::get('/', 'ClientesController@index');
+
+
 Route::get('/formulario', 'ClientesController@create');
 Route::post('/', 'ClientesController@store');
 Route::get('/cliente/{id}', 'ClientesController@edit');
@@ -25,5 +27,11 @@ Route::get('/Modificar/{id}', 'ModificarController@index');
 Route::post('/Modificar/{id}', 'ModificarController@update');
 
 Route::get('/NuevaVenta', 'VentaController@addSale');
+
+
+Route::get('clientes', 'ClientesController@buscar');
+
+
+
 
 

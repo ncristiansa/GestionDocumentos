@@ -35,7 +35,6 @@
         </form>
       @endforeach
   </div>
-
 <!-- 
 	<div id="pedido" class="col-12">
 		<h3>Pedido</h3>
