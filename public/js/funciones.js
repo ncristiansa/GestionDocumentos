@@ -359,6 +359,30 @@ function isValidNif(NIF){
 	}
 	return true;
 }
+function validarFormularioVenta()
+{
+	var valido = true;
+	var Camposinvalidos = [];
+	if($('input').eq(1).val() == '')
+	{
+		Camposinvalidos.push('El nombre del comprador está vacio.');
+		valido = false;
+	}
+	if($('input').eq(2).val() == '')
+	{
+		Camposinvalidos.push('El nombre de la venta está vacio.');
+		valido = false;
+	}
+	if(Camposinvalidos.length > 0)
+    {
+		mensajeError(undefined, Camposinvalidos, false, "btnNuevaVenta");
+	 
+	}
+	if(valido)
+	{
+		$('#formulario-venta').submit();
+	}
+}
 function validarFormulario()
 {
     /**
@@ -366,44 +390,59 @@ function validarFormulario()
      * esta función validará: CIF NIF, Telefono, Email
      * 
      */
+	var valido = true;
 	var Camposinvalidos = [];
 	
 	if($('.formulario').eq(0).val() == ''){
 		Camposinvalidos.push('El nombre del cliente está vacio.');
+		valido = false;
 	}
 	if($('.formulario').eq(1).val() == ''){
 		Camposinvalidos.push('El email está vacio.');
+		valido = false;
 	}else if(!/^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i.test($('.formulario').eq(1).val())){
 		Camposinvalidos.push('El email introducido es incorrecto.');
+		valido = false;
 	}
 	if($('.formulario').eq(2).val() == ''){
 		Camposinvalidos.push('El número de telefono está vacio.');
+		valido = false;
 	}else if($('.formulario').eq(2).val().length > 9){
 		Camposinvalidos.push('No puedes introducir más de 9 dígitos.');
+		valido = false;
 	}
 	if($('.formulario').eq(3).val() == ''){
 		Camposinvalidos.push('No has introducido una dirección.');
+		valido = false;
 	}
 	if($('.formulario').eq(4).val() ==''){
 		Camposinvalidos.push('No has introducido el NIF');
+		valido = false;
 	}else if(!isValidNif($('.formulario').eq(4).val())){
 		Camposinvalidos.push('NIF introducido es incorrecto.');
+		valido = false;
 	}
 	if($('.formulario').eq(5).val() == ''){
 		Camposinvalidos.push('El campo Provincia está vacio.');
+		valido = false;
 	}
 	if($('.formulario').eq(6).val() == ''){
 		Camposinvalidos.push('El campo Localidad está vacio.');
+		valido = false;
 	}
 	if(isNaN($('.formulario').eq(7).val())){
 		Camposinvalidos.push('El código postal no puede contener letras.');
+		valido = false;
 	}
     if(Camposinvalidos.length > 0)
     {
 		mensajeError(undefined, Camposinvalidos, false, "btNuevoCliente");
 	 
 	}
-	return true;
+	if(valido)
+	{
+		$('#formulario').submit();
+	}
 	
     
 }

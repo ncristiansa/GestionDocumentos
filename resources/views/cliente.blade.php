@@ -11,7 +11,6 @@
     $idCliente = explode("/",$url);
     $infoCliente = DB::table('clientes')->where('id', $idCliente[4])->get();
     $infoVentas = DB::table('ventas')->where('id_cliente', $idCliente[4])->get(['id','nombreVentas','updated_at']);
-
 ?>
 <div class="row">
     <div class="col-12">
@@ -33,7 +32,7 @@
                 <label id="ventas" for='labelVentas'>Ventas</label>
                 
             </div>
-            <a class="btn btn-primary" onclick="location.href = '{{ url('NuevaVenta')}}'">Agregar nueva venta</a>
+            <a class="btn btn-primary" href="/NuevaVenta/{{$cliente->id}}">Agregar nueva venta</a>
         </div>
 
     </div>

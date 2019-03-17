@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\VentaModel;
 use App\DocumentoModel;
+use App\registro;
 use DB;
 use Exception;
 use Illuminate\Http\Request;
@@ -35,10 +36,26 @@ class VentaController extends Controller
     /**
      * 
      */
-    public function addSale()
+    public function addSale($id)
     {
-        $Ventas = DB::table('ventas')->get();
-        return view('NuevaVenta', ['Ventas' => $Ventas]);
+        $clientes = DB::table('clientes')->where('id', $id)->get();
+        return view('/NuevaVenta', ['Clientes' => $clientes]);
+    }
+    public function saveSale(Request $request,$id)
+    {
+        try
+        {
+        $venta = new VentaModel;
+        $venta->id_cliente = $id;
+        $venta->Comprador = $request->input('comprador');
+        $venta->nombreVentas = $request->input('nombreventa');
+        $venta->save();
+        $clientes = DB::table('clientes')->where('id', $id)->get();
+        return view('/cliente', ['Clientes' => $clientes]);
+        }catch(Exception $e)
+        {
+            return back()->withErrors(['Error'=>'Error del servidor']);
+        }
     }
     /**
      * Store a newly created resource in storage.
