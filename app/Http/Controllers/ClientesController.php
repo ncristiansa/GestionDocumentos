@@ -55,8 +55,8 @@ class ClientesController extends Controller
             $cliente->Localidad = $request->input('Localidad');
             $cliente->CP = $request->input('CP');
             $cliente->save();
-            $clientes = registro::select('id', 'Nombre')->orderBy('id', 'ASC')->get();
-            return view('clientes', ['clientes'=>$clientes]);
+            $clientes = Paginacion::paginate(15);
+            return view('clientes',array('clientes'=>$clientes));
         }catch(Exception $e)
         {
             return back()->withErrors(['Error'=>'Error del servidor']);
