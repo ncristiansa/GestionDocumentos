@@ -184,12 +184,23 @@ function detallesFichero(Consulta,elementoAnteriorId){
 			}
 			
 		}
-		var a = $('<a>').attr('href', '/Modificar/'+Consulta[datos]["id"]);
+		var a = $('<a>').attr('href', '/Modificar/'+Consulta[datos]["id"]).addClass("btn btn-success");
 		a.text("Modificar");
+		var aVisualizar = $('<a>').attr('href', '/storage/'+Consulta[datos]["archivo"]).addClass("btn btn-success");
+		aVisualizar.text("Visualizar");
+
+		var aDescargar = $('<a>').attr('href', '/download/'+Consulta[datos]["archivo"]).addClass("btn btn-success");
+		aDescargar.text("Descargar");
 
 		var td = $('<td>');
+		var tdVisualizar = $('<td>');
+		var tdDescargar = $('<td>');
 		td.append(a);
+		tdVisualizar.append(aVisualizar);
+		tdDescargar.append(aDescargar);
 		trdetalles.append(td);
+		trdetalles.append(tdVisualizar);
+		trdetalles.append(tdDescargar);
 		tabla.append(trdetalles);	
 	}
 	

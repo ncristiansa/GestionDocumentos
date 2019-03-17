@@ -16,11 +16,17 @@ class ClientesController extends Controller
      */
     public function index()
     {
-        //$clientes = registro::select('id', 'Nombre')->orderBy('id', 'ASC')->get();
-        //return view('clientes', compact('clientes'));
+        $clientes = registro::select('id', 'Nombre','NIFCIF','Localidad')->orderBy('id', 'ASC')->paginate(15);
+        
+        return view('clientes',array('clientes'=>$clientes));
+    }
+
+    public function buscar(Request $request)
+    {   
+        $registroBusqueda = $request->input('filtro');
+        $clientes = registro::select('id', 'Nombre','NIFCIF','Localidad')->where('Nombre','like','%'.$registroBusqueda.'%')->orwhere('Localidad','like','%'.$registroBusqueda.'%')->orwhere('NIFCIF','like','%'.$registroBusqueda.'%')->paginate(15);
 
         
-        $clientes = Paginacion::paginate(15);
         return view('clientes',array('clientes'=>$clientes));
     }
     

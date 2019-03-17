@@ -18,6 +18,7 @@ class VentaController extends Controller
     public function index()
     {
         $Ventas = VentaModel::select('id', 'id_cliente', 'Comprador', 'nombreVentas')->orderBy('id', 'ASC')->get();
+        $Documentos = DB::table('documentos')->get();
         return view('detallesVentas', compact('Ventas'));
     }
 
