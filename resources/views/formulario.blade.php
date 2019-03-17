@@ -3,6 +3,7 @@
 @section('content')
 <div class="row">
     <div class="col-12">
+	@include('breadcrumbs')
         <h1 class="display-3">Añadir Cliente</h1>
     </div>
 </div>

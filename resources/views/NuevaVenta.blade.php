@@ -3,10 +3,12 @@
 @section('content')
 <div class="row">
     <div class="col-12">
+    @include('breadcrumbs')
         <h1 class="display-3">Nueva venta</h1>
     </div>
 </div>
 <div class="row">
+
     <div class="col-12">
         <h2>Formulario</h2>
         @foreach($Clientes as $item)

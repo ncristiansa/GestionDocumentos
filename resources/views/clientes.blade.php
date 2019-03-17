@@ -6,9 +6,11 @@
 
 <div class="row">
     <div class="col-12">
+    @include('breadcrumbs')
         <h1 class="display-3">Clientes</h1>
     </div>
 </div>
+
 <div class="row">
     <div class="col-12">
         <h2>Listado de Clientes</h2>

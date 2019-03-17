@@ -11,8 +11,10 @@
 
 <div class="row">
     <div class="col-12">
+    @include('breadcrumbs')
         <h1 class="display-3">Detalle Venta</h1>
     </div >
+    
     <div id="factura" class="col-12">
         @foreach($Ventas as $venta)
         <form id="form-factura" method='POST' action='/detallesVentas/{{$venta->id}}' accept-charset='UTF-8' enctype='multipart/form-data' files='true'>   

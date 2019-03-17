@@ -3,9 +3,11 @@
 @section('content')
 <div class="row">
     <div class="col-12">
+    @include('breadcrumbs')
         <h2 class="display-3">Datos Cliente</h2>
     </div>
 </div>
+
 <?php
     $url = 'http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
     $idCliente = explode("/",$url);
