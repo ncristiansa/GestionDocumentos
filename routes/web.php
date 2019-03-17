@@ -25,5 +25,6 @@ Route::get('/Modificar/{id}', 'ModificarController@index');
 Route::post('/Modificar/{id}', 'ModificarController@update');
 
 Route::get('/NuevaVenta/{id}', 'VentaController@addSale');
+Route::post('/cliente/{id}', 'VentaController@saveSale');
 
 

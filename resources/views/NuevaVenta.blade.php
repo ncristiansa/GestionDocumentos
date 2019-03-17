@@ -9,13 +9,16 @@
 <div class="row">
     <div class="col-12">
         <h2>Formulario</h2>
-        <form id="formulario-venta" class="formulario">
+        @foreach($Clientes as $item)
+        <form id="formulario-venta" class="formulario" action="/cliente/{{$item->id}}" method="POST">
+        @endforeach
             {{ csrf_field() }}
-            <label>Comprador</label><br>
+            <label>Nombre del cliente (comprador)</label><br>
             <input type="text" name="comprador">
-            <label>Nombre venta</label><br>
-            <input type="text" name="nombreventa"><br>
-            <input id="btnNuevaVenta" onclick="validarFormularioVenta(); return false;" type="submit" name="nuevaventa" class="btn btn-success" value="Añadir venta">
+            <label>Nombre de la venta</label><br>
+            <input type="text" name="nombreventa">
+            <br>
+            <input type="button" id="btnNuevaVenta" name="nuevaventa" class="btn btn-success" value="Añadir venta" onclick="validarFormularioVenta();"/>
         </form>
     </div>
 </div>

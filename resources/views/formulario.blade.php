@@ -19,17 +19,10 @@
 		<input type="text" id="Provincia" name="Provincia" class="formulario" placeholder='Provincia'>
 		<input type="text" id="Localidad" name="Localidad" class="formulario" placeholder='Localidad'>
 		<input type="number" id="CP" name="CP" class="formulario" placeholder='Codigo Postal'>
-		<button  id='btNuevoCliente' onclick='validarForm();return false;' type="submit" class='btn btn-primary' name='enviar'>Añadir</button>
+		<input type="button" id='btNuevoCliente' onclick='validarFormulario();' class='btn btn-primary' name='enviar' value ="Añadir">
 	</form>
 	</div>	
 </div>
-<script>
-    function validarForm(){
-        if (validarFormulario()!=true){
-            $("#formulario").submit();
-        }
-    }
-</script>
 @stop
 
 
