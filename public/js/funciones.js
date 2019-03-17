@@ -49,6 +49,15 @@ function generaTabla(Consulta,elementoAnterior){
 	}
 }
 
+function listadoClientes(Consulta,elementoAnterior){
+	var elementoPadre = $(elementoAnterior);
+
+	for (var i = 0; i < Consulta.length; i++) {
+		
+		console.log(Consulta[i]);
+	}
+}
+
 function visualizarInfo(Consulta, elementoAnterior){
 	var elementoAnterior = $(elementoAnterior);
 			var divContenido = $('<div>').addClass("container-fluid");

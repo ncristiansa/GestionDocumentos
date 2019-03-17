@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\registro;
+use App\Paginacion;
 use DB;
 use Exception;
 use Illuminate\Http\Request;
@@ -15,8 +16,12 @@ class ClientesController extends Controller
      */
     public function index()
     {
-        $clientes = registro::select('id', 'Nombre')->orderBy('id', 'ASC')->get();
-        return view('clientes', compact('clientes'));
+        //$clientes = registro::select('id', 'Nombre')->orderBy('id', 'ASC')->get();
+        //return view('clientes', compact('clientes'));
+
+        
+        $clientes = Paginacion::paginate(15);
+        return view('clientes',array('clientes'=>$clientes));
     }
     
     /**
