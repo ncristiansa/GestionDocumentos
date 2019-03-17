@@ -339,6 +339,24 @@ function isValidNif(NIF){
 	}
 	return true;
 }
+function validarFormularioVenta()
+{
+	var Camposinvalidos = [];
+	if($('#formulario-venta').eq(0).val() == '')
+	{
+		Camposinvalidos.push('El nombre del comprador está vacio.');
+	}
+	if($('#formulario-venta').eq(1).val() == '')
+	{
+		Camposinvalidos.push('El nombre de la venta está vacio.');
+	}
+	if(Camposinvalidos.length > 0)
+    {
+		mensajeError(undefined, Camposinvalidos, false, "btnNuevaVenta");
+	 
+	}
+	return true;
+}
 function validarFormulario()
 {
     /**

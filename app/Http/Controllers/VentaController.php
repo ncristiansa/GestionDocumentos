@@ -34,9 +34,9 @@ class VentaController extends Controller
     /**
      * 
      */
-    public function addSale()
+    public function addSale($id)
     {
-        $Ventas = DB::table('ventas')->get();
+        $Ventas = DB::table('ventas')->where('id', $id)->get();
         return view('NuevaVenta', ['Ventas' => $Ventas]);
     }
     /**
