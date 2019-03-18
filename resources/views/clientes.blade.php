@@ -21,7 +21,7 @@
                 <input type="text" class="form-control" placeholder="Buscar" aria-label="Search" name="filtro">
                 <input class="btn btn-success" type="submit" name="Buscar" value="Buscar">
             </form>
-            <table class="table table-hover">
+            <table id="listaclientes" class="table table-hover">
                 <thead class="thead-dark">
                     <th> ID</th>
                     <th>Nombre</th> 
@@ -50,4 +50,5 @@
         <button type="button" class="btn btn-success" onclick="location.href = '{{ url('formulario')}}'">Agregar Cliente</button>
     </div>
 </div>
+
 @stop
