@@ -69,14 +69,10 @@ $(document).ready(function(){
       }
       else
       {
-        mensajeError("La extension de tu documento no es PDF.", undefined, false, "btn.btn-success");
+        mensajeError("La extension de tu documento no es PDF.", undefined, false, "btn btn-success");
       }
 
   });
 });
 </script>
-
-
-
-
 @stop
