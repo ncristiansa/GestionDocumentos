@@ -309,7 +309,7 @@ function mensajeError(_text, listaErrores, estado, lugar)
 {
 
     if(_text != undefined){
-		if(lugar == "btn.btn-success"){
+		if(lugar == "btn btn-success"){
 			$('.'+lugar).eq(2).after($('<div>').attr('id','mensajeError').addClass('alert alert-danger').append($('<p>', {text:_text})));
 			if(estado != true){
 				setTimeout(function(){
