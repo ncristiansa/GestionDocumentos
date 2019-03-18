@@ -59,7 +59,7 @@ function listadoClientes(Consulta,elementoAnterior){
 }
 
 function visualizarInfo(Consulta, elementoAnterior){
-	var elementoAnterior = $(elementoAnterior);
+	var elementoAnterior = $("#"+elementoAnterior);
 			var divContenido = $('<div>').addClass("container-fluid");
 
 			var botonGuardar = $('<input>');
@@ -191,7 +191,7 @@ function detallesFichero(Consulta,elementoAnteriorId){
 		var aVisualizar = $('<a>').attr('href', '/storage/'+Consulta[datos]["archivo"]).addClass("btn btn-success");
 		aVisualizar.text("Visualizar");
 
-		var aDescargar = $('<a>').attr('href', '/download/'+Consulta[datos]["archivo"]).addClass("btn btn-success");
+		var aDescargar = $('<a>').attr('href', '/documento/'+Consulta[datos]["archivo"]).addClass("btn btn-success");
 		aDescargar.text("Descargar");
 
 		var td = $('<td>');

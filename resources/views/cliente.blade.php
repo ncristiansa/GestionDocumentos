@@ -19,9 +19,9 @@
         <h2 class="display-5">Información</h2>
         @foreach($Clientes as $cliente)
             
-        <form method="POST" action="/cliente/{{$cliente->id}}">
+        <form id="form1" method="POST" action="/cliente/{{$cliente->id}}">
             {{ csrf_field() }}
-        <form>
+        </form>
         @endforeach
     </div>
 
@@ -33,7 +33,10 @@
             <div class='form-group'>
                 <label id="ventas" for='labelVentas'>Ventas</label>
                  <div class="table-responsive" id="Filtro">
-                    <form method="get" class="form-inline" action="clientes">
+                     <?php
+                    echo "<form method='get' class='form-inline' action='/cliente/$idCliente[4]'>";  
+                    ?>
+                    
                         <input type="date" placeholder="Buscar" aria-label="Search" name="filtro">
                         <select id="inputState">
                         <option selected>--Filtro estado--</option>
@@ -53,7 +56,7 @@
 
     var infoCliente = '{{$Clientes}}';
     var Consultas = JSON.parse(infoCliente.replace(/&quot;/g,'"'));
-    visualizarInfo(Consultas,"form");
+    visualizarInfo(Consultas,"form1");
     var ConsultaVentas = <?php echo json_encode($infoVentas);?>;
     detalles(ConsultaVentas,"Filtro");
     

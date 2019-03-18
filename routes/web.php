@@ -33,6 +33,10 @@ Route::post('/cliente/{id}', 'VentaController@saveSale');
 Route::get('clientes', 'ClientesController@buscar');
 
 
+Route::get('/documento/{fichero}','ModificarController@descargarFichero');
+//Route::get('cliente/{id}', 'VentaController@filtroEstadoFecha');
+
+
 
 
 
