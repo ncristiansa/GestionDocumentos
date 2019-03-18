@@ -317,6 +317,7 @@ function mensajeError(_text, listaErrores, estado, lugar)
 				},6000);
 			}
 		}
+
 		$('#'+lugar).after($('<div>').attr('id','mensajeError').addClass('alert alert-danger').append($('<p>', {text:_text})));
 		if(estado != true){
             setTimeout(function(){
@@ -480,7 +481,6 @@ function formularioDocumento(idDiv, tipoArchivoTitulo, idForm, ConsultaVentas, t
 	}
 	
 	var botonGuardar = $('<button>').attr({'id':'btNuevoArchivo', 'class':'btn btn-success', 'name':'enviar', 'style':'margin-top:10px;'});
-	//botonGuardar.attr("onclick",'validarDocVacio();return false;');
 	botonGuardar.text('Guardar');
 	
 	divInput.append(inputFile);

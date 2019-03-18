@@ -21,7 +21,7 @@
             {{ csrf_field() }}
         </form>
         @endforeach
-	</div>
+	  </div>
 	<div id="albaran" class="col-12">
 		  @foreach($Ventas as $venta)
         <form method='POST' id="form-albaran" action='/detallesVentas/{{$venta->id}}' accept-charset='UTF-8' enctype='multipart/form-data' files='true'>   
@@ -69,7 +69,7 @@ $(document).ready(function(){
       }
       else
       {
-        mensajeError("La extension de tu documento no es PDF.", undefined, false, "btn btn-success");
+        mensajeError("La extension de tu documento no es PDF.", undefined, false, "factura");
       }
 
   });
