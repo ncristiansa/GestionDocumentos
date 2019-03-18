@@ -49,6 +49,15 @@ function generaTabla(Consulta,elementoAnterior){
 	}
 }
 
+function listadoClientes(Consulta,elementoAnterior){
+	var elementoPadre = $(elementoAnterior);
+
+	for (var i = 0; i < Consulta.length; i++) {
+		
+		console.log(Consulta[i]);
+	}
+}
+
 function visualizarInfo(Consulta, elementoAnterior){
 	var elementoAnterior = $(elementoAnterior);
 			var divContenido = $('<div>').addClass("container-fluid");
@@ -91,7 +100,6 @@ function visualizarInfo(Consulta, elementoAnterior){
 function detalles(Consulta,elementoAnteriorId){
 	if (Consulta.length>=1) {
 		var elementoAnterior = $("#"+elementoAnteriorId);
-	console.log(elementoAnterior);
 	var tabla = $("<table>").addClass("table");
 	var th = $('<thead>');
 	var trtitulos =$('<tr>').addClass("thead-dark");
@@ -127,11 +135,12 @@ function detalles(Consulta,elementoAnteriorId){
 			
 		}
 		
-		
-		tabla.append(trdetalles);	
+
+		tabla.append(trdetalles);
 	}
 	
 	elementoAnterior.after(tabla);
+
 	}
 }
 
@@ -175,17 +184,31 @@ function detallesFichero(Consulta,elementoAnteriorId){
 			}
 			
 		}
-		var a = $('<a>').attr('href', '/Modificar/'+Consulta[datos]["id"]);
+		var a = $('<a>').attr('href', '/Modificar/'+Consulta[datos]["id"]).addClass("btn btn-success");
 		a.text("Modificar");
+		var aVisualizar = $('<a>').attr('href', '/storage/'+Consulta[datos]["archivo"]).addClass("btn btn-success");
+		aVisualizar.text("Visualizar");
+
+		var aDescargar = $('<a>').attr('href', '/download/'+Consulta[datos]["archivo"]).addClass("btn btn-success");
+		aDescargar.text("Descargar");
 
 		var d = $('<a>').attr('href', '/detallesVentas/'+Consulta[datos]["id"]);
 		
 		d.text("   Descargar");
 
 		var td = $('<td>');
+		var tdVisualizar = $('<td>');
+		var tdDescargar = $('<td>');
 		td.append(a);
+
 		td.append(d);
+
+		tdVisualizar.append(aVisualizar);
+		tdDescargar.append(aDescargar);
+
 		trdetalles.append(td);
+		trdetalles.append(tdVisualizar);
+		trdetalles.append(tdDescargar);
 		tabla.append(trdetalles);	
 	}
 	
@@ -221,10 +244,10 @@ function detallesFicheroModificar(Consulta,elementoAnteriorId){
 		var Valores = Object.values(Consulta[datos]);
 		for(var key in Claves){
 			var titulo = Claves[key];
-			if (titulo=="") {
-				var ahred = $('<a>',{text:Valores[key],href:"/detallesVentas/"+Consulta[datos]["id"]}); 
-				var td = $('<td>');
-				td.append(ahred);
+			if (titulo=="archivo") {
+				$nombreDocumento=$('#NombreDocumento').val(Valores[key]); 
+				var td = $('<td>').text(Valores[key]);
+				console.log($nombreDocumento);
 				trdetalles.append(td);
 			}
 			else{
@@ -294,7 +317,7 @@ function mensajeError(_text, listaErrores, estado, lugar)
 {
 
     if(_text != undefined){
-		if(lugar == "btn.btn-success"){
+		if(lugar == "btn btn-success"){
 			$('.'+lugar).eq(2).after($('<div>').attr('id','mensajeError').addClass('alert alert-danger').append($('<p>', {text:_text})));
 			if(estado != true){
 				setTimeout(function(){
@@ -344,6 +367,30 @@ function isValidNif(NIF){
 	}
 	return true;
 }
+function validarFormularioVenta()
+{
+	var valido = true;
+	var Camposinvalidos = [];
+	if($('input').eq(1).val() == '')
+	{
+		Camposinvalidos.push('El nombre del comprador está vacio.');
+		valido = false;
+	}
+	if($('input').eq(2).val() == '')
+	{
+		Camposinvalidos.push('El nombre de la venta está vacio.');
+		valido = false;
+	}
+	if(Camposinvalidos.length > 0)
+    {
+		mensajeError(undefined, Camposinvalidos, false, "btnNuevaVenta");
+	 
+	}
+	if(valido)
+	{
+		$('#formulario-venta').submit();
+	}
+}
 function validarFormulario()
 {
     /**
@@ -351,44 +398,59 @@ function validarFormulario()
      * esta función validará: CIF NIF, Telefono, Email
      * 
      */
+	var valido = true;
 	var Camposinvalidos = [];
 	
 	if($('.formulario').eq(0).val() == ''){
 		Camposinvalidos.push('El nombre del cliente está vacio.');
+		valido = false;
 	}
 	if($('.formulario').eq(1).val() == ''){
 		Camposinvalidos.push('El email está vacio.');
+		valido = false;
 	}else if(!/^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i.test($('.formulario').eq(1).val())){
 		Camposinvalidos.push('El email introducido es incorrecto.');
+		valido = false;
 	}
 	if($('.formulario').eq(2).val() == ''){
 		Camposinvalidos.push('El número de telefono está vacio.');
+		valido = false;
 	}else if($('.formulario').eq(2).val().length > 9){
 		Camposinvalidos.push('No puedes introducir más de 9 dígitos.');
+		valido = false;
 	}
 	if($('.formulario').eq(3).val() == ''){
 		Camposinvalidos.push('No has introducido una dirección.');
+		valido = false;
 	}
 	if($('.formulario').eq(4).val() ==''){
 		Camposinvalidos.push('No has introducido el NIF');
+		valido = false;
 	}else if(!isValidNif($('.formulario').eq(4).val())){
 		Camposinvalidos.push('NIF introducido es incorrecto.');
+		valido = false;
 	}
 	if($('.formulario').eq(5).val() == ''){
 		Camposinvalidos.push('El campo Provincia está vacio.');
+		valido = false;
 	}
 	if($('.formulario').eq(6).val() == ''){
 		Camposinvalidos.push('El campo Localidad está vacio.');
+		valido = false;
 	}
 	if(isNaN($('.formulario').eq(7).val())){
 		Camposinvalidos.push('El código postal no puede contener letras.');
+		valido = false;
 	}
     if(Camposinvalidos.length > 0)
     {
 		mensajeError(undefined, Camposinvalidos, false, "btNuevoCliente");
 	 
 	}
-	return true;
+	if(valido)
+	{
+		$('#formulario').submit();
+	}
 	
     
 }
@@ -479,4 +541,3 @@ function formularioDocumento(idDiv, tipoArchivoTitulo, idForm, ConsultaVentas, t
 	divGeneralInput.append(divInput);
 	elementoAnterior.append(divGeneralInput);
 }
-

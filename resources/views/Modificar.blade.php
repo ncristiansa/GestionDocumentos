@@ -9,9 +9,11 @@
 ?>
 <div class="row">
     <div class="col-12">
+    @include('breadcrumbs')
         <h1 class="display-3" id="modificar">Modificar</h1>
     </div>
 </div>
+
 <div class="row">
     <div class="col-12">
       <?php
@@ -22,6 +24,7 @@
         @endforeach
             {{ csrf_field() }}
           <input type="file" name="archivo">
+          <input type="hidden" id="NombreDocumento" name="DocumentoNombre">
           <input type="submit" name="enviar" value="Guardar">
         </form>
         

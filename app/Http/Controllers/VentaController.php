@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\VentaModel;
 use App\DocumentoModel;
+use App\registro;
 use DB;
 use Exception;
 use Illuminate\Http\Request;
@@ -18,6 +19,7 @@ class VentaController extends Controller
     public function index()
     {
         $Ventas = VentaModel::select('id', 'id_cliente', 'Comprador', 'nombreVentas')->orderBy('id', 'ASC')->get();
+        $Documentos = DB::table('documentos')->get();
         return view('detallesVentas', compact('Ventas'));
     }
 
@@ -32,7 +34,30 @@ class VentaController extends Controller
         return view('/detallesVentas', ['Ventas' => $Ventas]);
 
     }
-
+    /**
+     * 
+     */
+    public function addSale($id)
+    {
+        $clientes = DB::table('clientes')->where('id', $id)->get();
+        return view('/NuevaVenta', ['Clientes' => $clientes]);
+    }
+    public function saveSale(Request $request,$id)
+    {
+        try
+        {
+        $venta = new VentaModel;
+        $venta->id_cliente = $id;
+        $venta->Comprador = $request->input('comprador');
+        $venta->nombreVentas = $request->input('nombreventa');
+        $venta->save();
+        $clientes = DB::table('clientes')->where('id', $id)->get();
+        return view('/cliente', ['Clientes' => $clientes]);
+        }catch(Exception $e)
+        {
+            return back()->withErrors(['Error'=>'Error del servidor']);
+        }
+    }
     /**
      * Store a newly created resource in storage.
      *
@@ -42,22 +67,30 @@ class VentaController extends Controller
     public function store(Request $request, $id)
     {
         try {
+            $fichero = $request->file('archivo')->getClientOriginalName();
+            $fichero2=explode('.', $fichero);
+            $fichero3=$fichero2[1];
 
-            $documento = new DocumentoModel;
-            $documento->id_venta = $id;
-            $documento->tipo_documento = $request->input('tipo_archivo');
-            $documento->archivo = $request->file('archivo')->getClientOriginalName();
-            $documento->save();
-            $nombredoc = $request->file('archivo')->getClientOriginalName();
-            $documento->archivo = $request->file('archivo')->storeAs('public', $nombredoc);
-            /*
-            
-            $documentos = new DocumentoModel;
-            
-            */
-            
-            $Ventas = DB::table('ventas')->where('id', $id)->get();
-            return view('/detallesVentas', ['Ventas' => $Ventas]);
+            if ($fichero3=='pdf') {
+                $documento = new DocumentoModel;
+                $documento->id_venta = $id;
+                $documento->tipo_documento = $request->input('tipo_archivo');
+                $documento->archivo = $request->file('archivo')->getClientOriginalName();
+                $documento->save();
+                $nombredoc = $request->file('archivo')->getClientOriginalName();
+                $documento->archivo = $request->file('archivo')->storeAs('public', $nombredoc);
+                /*
+                
+                $documentos = new DocumentoModel;
+                
+                */
+                
+                $Ventas = DB::table('ventas')->where('id', $id)->get();
+                return view('/detallesVentas', ['Ventas' => $Ventas]);
+            }
+            else{
+                return view('/detallesVentas', ['Ventas' => $Ventas]);
+            }
         } catch (Exception $e) {
             return back()->withErrors(['Error'=>'Error del servidor']);
         }

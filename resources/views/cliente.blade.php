@@ -3,15 +3,16 @@
 @section('content')
 <div class="row">
     <div class="col-12">
+    @include('breadcrumbs')
         <h2 class="display-3">Datos Cliente</h2>
     </div>
 </div>
+
 <?php
     $url = 'http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
     $idCliente = explode("/",$url);
     $infoCliente = DB::table('clientes')->where('id', $idCliente[4])->get();
     $infoVentas = DB::table('ventas')->where('id_cliente', $idCliente[4])->get(['id','nombreVentas','updated_at']);
-
 ?>
 <div class="row">
     <div class="col-12">
@@ -31,7 +32,9 @@
         <div  class='p-3 mb-2 bg-light text-dark'>
             <div class='form-group'>
                 <label id="ventas" for='labelVentas'>Ventas</label>
+                
             </div>
+            <a class="btn btn-primary" href="/NuevaVenta/{{$cliente->id}}">Agregar nueva venta</a>
         </div>
 
     </div>
