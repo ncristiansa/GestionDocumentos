@@ -458,7 +458,6 @@ function validarDocVacio(){
 }
 function formularioDocumento(idDiv, tipoArchivoTitulo, idForm, ConsultaVentas, tipoArchivo)
 {
-	$('#'+idDiv).before($('<h3>', {text: tipoArchivoTitulo}).attr({'style':'margin-left:30px;', 'id':tipoArchivoTitulo}));
 	var elementoAnterior = $('#'+idForm);
 	var divGeneralInput = $('<div>').addClass("form-group");
 	var divInput = $('<div>').addClass("col-md-6");
