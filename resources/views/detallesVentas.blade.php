@@ -4,9 +4,9 @@
 <?php
 	$url = 'http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
   $idVenta = explode("/",$url);
-  $docsFactura = DB::table('documentos')->where('tipo_documento', 'factura')->get(['id','id_venta','archivo', 'updated_at']);
-  $docsAlbaran = DB::table('documentos')->where('tipo_documento', 'albaran')->get(['id','id_venta','archivo', 'updated_at']);
-  $docsPresupuesto = DB::table('documentos')->where('tipo_documento', 'presupuesto')->get(['id','id_venta','archivo', 'updated_at']);
+  $docsFactura = DB::table('documentos')->where('tipo_documento', 'factura')->where('id_venta',$idVenta[4])->get(['id','id_venta','archivo', 'updated_at']);
+  $docsAlbaran = DB::table('documentos')->where('tipo_documento', 'albaran')->where('id_venta',$idVenta[4])->get(['id','id_venta','archivo', 'updated_at']);
+  $docsPresupuesto = DB::table('documentos')->where('tipo_documento', 'presupuesto')->where('id_venta',$idVenta[4])->get(['id','id_venta','archivo', 'updated_at']);
 ?>
 
 <div class="row">

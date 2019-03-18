@@ -66,22 +66,30 @@ class VentaController extends Controller
     public function store(Request $request, $id)
     {
         try {
+            $fichero = $request->file('archivo')->getClientOriginalName();
+            $fichero2=explode('.', $fichero);
+            $fichero3=$fichero2[1];
 
-            $documento = new DocumentoModel;
-            $documento->id_venta = $id;
-            $documento->tipo_documento = $request->input('tipo_archivo');
-            $documento->archivo = $request->file('archivo')->getClientOriginalName();
-            $documento->save();
-            $nombredoc = $request->file('archivo')->getClientOriginalName();
-            $documento->archivo = $request->file('archivo')->storeAs('public', $nombredoc);
-            /*
-            
-            $documentos = new DocumentoModel;
-            
-            */
-            
-            $Ventas = DB::table('ventas')->where('id', $id)->get();
-            return view('/detallesVentas', ['Ventas' => $Ventas]);
+            if ($fichero3=='pdf') {
+                $documento = new DocumentoModel;
+                $documento->id_venta = $id;
+                $documento->tipo_documento = $request->input('tipo_archivo');
+                $documento->archivo = $request->file('archivo')->getClientOriginalName();
+                $documento->save();
+                $nombredoc = $request->file('archivo')->getClientOriginalName();
+                $documento->archivo = $request->file('archivo')->storeAs('public', $nombredoc);
+                /*
+                
+                $documentos = new DocumentoModel;
+                
+                */
+                
+                $Ventas = DB::table('ventas')->where('id', $id)->get();
+                return view('/detallesVentas', ['Ventas' => $Ventas]);
+            }
+            else{
+                return view('/detallesVentas', ['Ventas' => $Ventas]);
+            }
         } catch (Exception $e) {
             return back()->withErrors(['Error'=>'Error del servidor']);
         }
