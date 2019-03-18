@@ -44,6 +44,19 @@ class Clientes extends Migration
 
             $table->foreign('id_venta')->references('id')->on('ventas');
         });
+        Schema::create('usuarios', function(Blueprint $table){
+            $table->increments('id')->unique();
+            $table->string('Nombre');
+            $table->string('Password');
+            $table->string('Apellido');
+            $table->string('Email');
+            $table->integer('Telefono');
+            $table->string('tipo_usuario');
+            $table->timestamps();
+
+            
+        });
+
 
     }
 

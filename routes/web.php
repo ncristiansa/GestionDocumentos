@@ -25,3 +25,12 @@ Route::get('/Modificar/{id}', 'ModificarController@index');
 Route::post('/Modificar/{id}', 'ModificarController@update');
 
 
+Route::post('/detallesVentas/{id}', 'VentaController@downloadFile');
+
+
+Route::get('/usuarios', 'usuariosController@create');
+
+Route::post('/usuarios', 'usuariosController@store');
+
+
+

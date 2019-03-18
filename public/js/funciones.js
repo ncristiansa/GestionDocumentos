@@ -178,8 +178,13 @@ function detallesFichero(Consulta,elementoAnteriorId){
 		var a = $('<a>').attr('href', '/Modificar/'+Consulta[datos]["id"]);
 		a.text("Modificar");
 
+		var d = $('<a>').attr('href', '/detallesVentas/'+Consulta[datos]["id"]);
+		
+		d.text("   Descargar");
+
 		var td = $('<td>');
 		td.append(a);
+		td.append(d);
 		trdetalles.append(td);
 		tabla.append(trdetalles);	
 	}
@@ -387,6 +392,49 @@ function validarFormulario()
 	
     
 }
+
+function validarFormulario()
+{
+    /**
+     * Como tenemos dos formularios que tenemos que validar, los cuales contienen los mismos campos
+     * esta función validará: CIF NIF, Telefono, Email
+     * 
+     */
+	var Camposinvalidos = [];
+	
+	if($('.formularioUsuarios').eq(0).val() == ''){
+		Camposinvalidos.push('El nombre del usuario está vacio.');
+	}
+	if($('.formularioUsuarios').eq(1).val() == ''){
+		Camposinvalidos.push('La contraseña no puede estar vacia.');
+	}
+	if($('.formularioUsuarios').eq(2).val() == ''){
+		Camposinvalidos.push('El apellido del usuario está vacio.');
+	}
+	if($('.formularioUsuarios').eq(3).val() == ''){
+		Camposinvalidos.push('El campo tipo de usuario está vacio.');
+	}
+	if($('.formularioUsuarios').eq(4).val() == ''){
+		Camposinvalidos.push('El email está vacio.');
+	}else if(!/^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i.test($('.formularioUsuarios').eq(4).val())){
+		Camposinvalidos.push('El email introducido es incorrecto.');
+	}
+	if($('.formularioUsuarios').eq(5).val() == ''){
+		Camposinvalidos.push('El número de telefono está vacio.');
+	}else if($('.formularioUsuarios').eq(5).val().length > 9){
+		Camposinvalidos.push('No puedes introducir más de 9 dígitos.');
+	}
+		
+    if(Camposinvalidos.length > 0)
+    {
+		mensajeError(undefined, Camposinvalidos, false, "btNuevoCliente");
+	 
+	}
+	return true;
+	
+    
+}
+
 function validarDocVacio(){
 	if($('input[type="file"]') != ''){
 		mensajeError("No has añadido ningún documento.", undefined, false, "btn.btn-success");

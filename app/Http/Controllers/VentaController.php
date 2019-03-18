@@ -7,6 +7,7 @@ use DB;
 use Exception;
 use Illuminate\Http\Request;
 use Input;
+use Illuminate\Support\Facades\Storage;
 class VentaController extends Controller
 {
     /**
@@ -80,6 +81,12 @@ class VentaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    public function downloadFile(Request $request, $id){
+        
+        $nombrearchivo = $request->file('archivo')->getClientOriginalName();
+        return response()->download(public_path('public/'.$nombrearchivo));
+    }   
+
     public function edit($id)
     {
         //
