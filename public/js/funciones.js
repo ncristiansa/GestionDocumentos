@@ -106,10 +106,12 @@ function detalles(Consulta,elementoAnteriorId){
 
 	var tdid = $('<th>',{text: "ID"});
 	var tdnombre = $('<th>',{text:"Nombre"});
+	var tdestado = $('<th>',{text:"Estado"});
 	var tdfmodi = $('<th>',{text:"Fecha Modificacion"});
 
 	trtitulos.append(tdid);
 	trtitulos.append(tdnombre);
+	trtitulos.append(tdestado);
 	trtitulos.append(tdfmodi);
 	th.append(trtitulos);
 	tabla.append(trtitulos);

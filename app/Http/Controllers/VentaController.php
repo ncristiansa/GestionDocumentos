@@ -21,7 +21,6 @@ class VentaController extends Controller
         $Documentos = DB::table('documentos')->get();
         return view('detallesVentas', compact('Ventas'));
     }
-
     /**
      * Show the form for creating a new resource.
      *
