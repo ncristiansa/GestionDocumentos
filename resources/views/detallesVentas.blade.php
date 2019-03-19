@@ -16,13 +16,15 @@
     </div >
     
     <div id="factura" class="col-12">
+        <h3 id="Facturas">Factura</h3>
         @foreach($Ventas as $venta)
         <form id="form-factura" method='POST' action='/detallesVentas/{{$venta->id}}' accept-charset='UTF-8' enctype='multipart/form-data' files='true'>   
             {{ csrf_field() }}
         </form>
         @endforeach
-	</div>
+	  </div>
 	<div id="albaran" class="col-12">
+      <h3 id="Albaranes">Albaran</h3>
 		  @foreach($Ventas as $venta)
         <form method='POST' id="form-albaran" action='/detallesVentas/{{$venta->id}}' accept-charset='UTF-8' enctype='multipart/form-data' files='true'>   
             {{ csrf_field() }}
@@ -31,6 +33,7 @@
 	</div>
 
 	<div id="presupuesto" class="col-12">
+      <h3 id="Presupuestos">Presupuesto</h3>
       @foreach($Ventas as $venta)
         <form method='POST' id="form-presupuesto" action='/detallesVentas/{{$venta->id}}' accept-charset='UTF-8' enctype='multipart/form-data' files='true'>   
             {{ csrf_field() }}
@@ -69,7 +72,7 @@ $(document).ready(function(){
       }
       else
       {
-        mensajeError("La extension de tu documento no es PDF.", undefined, false, "btn btn-success");
+        mensajeError("La extension de tu documento no es PDF.", undefined, false, "factura");
       }
 
   });

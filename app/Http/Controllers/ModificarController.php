@@ -14,6 +14,13 @@ class ModificarController extends Controller
         $documento = DocumentoModel::select('id','id_venta', 'tipo_documento', 'archivo', 'created_at', 'updated_at')->orderBy('id', 'ASC')->get();
         return view('Modificar', compact('documento'));
     }
+
+    public function descargarFichero($fichero){
+        $file_path = public_path()."/storage/".$fichero;
+        return response()->download($file_path);
+        
+    }
+
     public function update(Request $request, $id){
         try
         {

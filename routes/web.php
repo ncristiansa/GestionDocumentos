@@ -33,10 +33,9 @@ Route::post('/cliente/{id}', 'VentaController@saveSale');
 Route::get('clientes', 'ClientesController@buscar');
 
 
+Route::get('/documento/{fichero}','ModificarController@descargarFichero');
+//Route::get('cliente/{id}', 'VentaController@filtroEstadoFecha');
 
-
-
-Route::post('/detallesVentas/{archivo}', 'VentaController@downloadFile');
 
 
 Route::get('/usuarios', 'usuariosController@create');

@@ -53,6 +53,7 @@ class ClientesSeeder extends Seeder
             'id_cliente' => '1',
             'Comprador' => 'Nestle',
             'nombreVentas' => 'Venta1',
+            'Estado'=>'Activo',
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
         ]);

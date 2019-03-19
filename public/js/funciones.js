@@ -13,8 +13,8 @@ function generaTabla(Consulta,elementoAnterior){
 		console.log(Consulta);
 		var elementoPadre = $(elementoAnterior);
 		var divTabla = $('<div>').addClass("table-responsive");
-		var tabla = $('<table>').addClass("table table-hover");
-		var thead = $('<thead>').addClass("thead-dark");
+		var tabla = $('<table>').addClass("table");
+		var thead = $('<thead>');//.addClass("thead-dark");
 		var tbody = $('<tbody>');
 		var tr_titulos = $('<tr>');
 		for(var datos in Consulta){
@@ -59,7 +59,7 @@ function listadoClientes(Consulta,elementoAnterior){
 }
 
 function visualizarInfo(Consulta, elementoAnterior){
-	var elementoAnterior = $(elementoAnterior);
+	var elementoAnterior = $("#"+elementoAnterior);
 			var divContenido = $('<div>').addClass("container-fluid");
 
 			var botonGuardar = $('<input>');
@@ -106,10 +106,12 @@ function detalles(Consulta,elementoAnteriorId){
 
 	var tdid = $('<th>',{text: "ID"});
 	var tdnombre = $('<th>',{text:"Nombre"});
+	var tdestado = $('<th>',{text:"Estado"});
 	var tdfmodi = $('<th>',{text:"Fecha Modificacion"});
 
 	trtitulos.append(tdid);
 	trtitulos.append(tdnombre);
+	trtitulos.append(tdestado);
 	trtitulos.append(tdfmodi);
 	th.append(trtitulos);
 	tabla.append(trtitulos);
@@ -189,23 +191,15 @@ function detallesFichero(Consulta,elementoAnteriorId){
 		var aVisualizar = $('<a>').attr('href', '/storage/'+Consulta[datos]["archivo"]).addClass("btn btn-success");
 		aVisualizar.text("Visualizar");
 
-		var aDescargar = $('<a>').attr('href', '/detallesVentas/'+Consulta[datos]["archivo"]).addClass("btn btn-success");
+		var aDescargar = $('<a>').attr('href', '/documento/'+Consulta[datos]["archivo"]).addClass("btn btn-success");
 		aDescargar.text("Descargar");
-
-		var d = $('<a>').attr('href', '/detallesVentas/'+Consulta[datos]["id"]);
-		
-		d.text("   Descargar");
 
 		var td = $('<td>');
 		var tdVisualizar = $('<td>');
 		var tdDescargar = $('<td>');
 		td.append(a);
-
-		td.append(d);
-
 		tdVisualizar.append(aVisualizar);
 		tdDescargar.append(aDescargar);
-
 		trdetalles.append(td);
 		trdetalles.append(tdVisualizar);
 		trdetalles.append(tdDescargar);
@@ -325,6 +319,7 @@ function mensajeError(_text, listaErrores, estado, lugar)
 				},6000);
 			}
 		}
+
 		$('#'+lugar).after($('<div>').attr('id','mensajeError').addClass('alert alert-danger').append($('<p>', {text:_text})));
 		if(estado != true){
             setTimeout(function(){
@@ -454,49 +449,6 @@ function validarFormulario()
 	
     
 }
-
-function validarFormulario()
-{
-    /**
-     * Como tenemos dos formularios que tenemos que validar, los cuales contienen los mismos campos
-     * esta función validará: CIF NIF, Telefono, Email
-     * 
-     */
-	var Camposinvalidos = [];
-	
-	if($('.formularioUsuarios').eq(0).val() == ''){
-		Camposinvalidos.push('El nombre del usuario está vacio.');
-	}
-	if($('.formularioUsuarios').eq(1).val() == ''){
-		Camposinvalidos.push('La contraseña no puede estar vacia.');
-	}
-	if($('.formularioUsuarios').eq(2).val() == ''){
-		Camposinvalidos.push('El apellido del usuario está vacio.');
-	}
-	if($('.formularioUsuarios').eq(3).val() == ''){
-		Camposinvalidos.push('El campo tipo de usuario está vacio.');
-	}
-	if($('.formularioUsuarios').eq(4).val() == ''){
-		Camposinvalidos.push('El email está vacio.');
-	}else if(!/^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i.test($('.formularioUsuarios').eq(4).val())){
-		Camposinvalidos.push('El email introducido es incorrecto.');
-	}
-	if($('.formularioUsuarios').eq(5).val() == ''){
-		Camposinvalidos.push('El número de telefono está vacio.');
-	}else if($('.formularioUsuarios').eq(5).val().length > 9){
-		Camposinvalidos.push('No puedes introducir más de 9 dígitos.');
-	}
-		
-    if(Camposinvalidos.length > 0)
-    {
-		mensajeError(undefined, Camposinvalidos, false, "btNuevoCliente");
-	 
-	}
-	return true;
-	
-    
-}
-
 function validarDocVacio(){
 	if($('input[type="file"]') != ''){
 		mensajeError("No has añadido ningún documento.", undefined, false, "btn.btn-success");
@@ -506,7 +458,6 @@ function validarDocVacio(){
 }
 function formularioDocumento(idDiv, tipoArchivoTitulo, idForm, ConsultaVentas, tipoArchivo)
 {
-	$('#'+idDiv).before($('<h3>', {text: tipoArchivoTitulo}).attr({'style':'margin-left:30px;', 'id':tipoArchivoTitulo}));
 	var elementoAnterior = $('#'+idForm);
 	var divGeneralInput = $('<div>').addClass("form-group");
 	var divInput = $('<div>').addClass("col-md-6");
@@ -531,7 +482,6 @@ function formularioDocumento(idDiv, tipoArchivoTitulo, idForm, ConsultaVentas, t
 	}
 	
 	var botonGuardar = $('<button>').attr({'id':'btNuevoArchivo', 'class':'btn btn-success', 'name':'enviar', 'style':'margin-top:10px;'});
-	//botonGuardar.attr("onclick",'validarDocVacio();return false;');
 	botonGuardar.text('Guardar');
 	
 	divInput.append(inputFile);
@@ -540,4 +490,41 @@ function formularioDocumento(idDiv, tipoArchivoTitulo, idForm, ConsultaVentas, t
 	divInput.append(botonGuardar);
 	divGeneralInput.append(divInput);
 	elementoAnterior.append(divGeneralInput);
+}
+function AscendenteDescendente(){
+    $('th').click(function() {
+    var table = $(this).parents('table').eq(0)
+    var rows = table.find('tr:gt(0)').toArray().sort(comparer($(this).index()))
+    this.asc = !this.asc
+    if (!this.asc) {
+      rows = rows.reverse()
+    }
+    for (var i = 0; i < rows.length; i++) {
+      table.append(rows[i])
+    }
+    setIcon($(this), this.asc);
+  })
+
+  function comparer(index) {
+    return function(a, b) {
+      var valA = getCellValue(a, index),
+        valB = getCellValue(b, index)
+      return $.isNumeric(valA) && $.isNumeric(valB) ? valA - valB : valA.localeCompare(valB)
+    }
+  }
+
+  function getCellValue(row, index) {
+    return $(row).children('td').eq(index).html()
+  }
+
+  function setIcon(element, asc) {
+    $("th").each(function(index) {
+      $(this).removeClass("sorting");
+      $(this).removeClass("asc");
+      $(this).removeClass("desc");
+    });
+    element.addClass("sorting");
+    if (asc) element.addClass("asc");
+    else element.addClass("desc");
+  }
 }

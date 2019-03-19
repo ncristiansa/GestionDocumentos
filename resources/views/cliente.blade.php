@@ -12,16 +12,16 @@
     $url = 'http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
     $idCliente = explode("/",$url);
     $infoCliente = DB::table('clientes')->where('id', $idCliente[4])->get();
-    $infoVentas = DB::table('ventas')->where('id_cliente', $idCliente[4])->get(['id','nombreVentas','updated_at']);
+    $infoVentas = DB::table('ventas')->where('id_cliente', $idCliente[4])->get(['id','nombreVentas','Estado','updated_at']);
 ?>
 <div class="row">
     <div class="col-12">
         <h2 class="display-5">Información</h2>
         @foreach($Clientes as $cliente)
             
-        <form method="POST" action="/cliente/{{$cliente->id}}">
+        <form id="form1" method="POST" action="/cliente/{{$cliente->id}}">
             {{ csrf_field() }}
-        <form>
+        </form>
         @endforeach
     </div>
 
@@ -32,7 +32,20 @@
         <div  class='p-3 mb-2 bg-light text-dark'>
             <div class='form-group'>
                 <label id="ventas" for='labelVentas'>Ventas</label>
-                
+                 <div class="table-responsive" id="Filtro">
+                     <?php
+                    echo "<form method='get' class='form-inline' action='/cliente/$idCliente[4]'>";  
+                    ?>
+                    
+                        <input type="date" placeholder="Buscar" aria-label="Search" name="filtro">
+                        <select id="inputState">
+                        <option selected>--Filtro estado--</option>
+                        <option >Activo</option>
+                        <option>Finalizado</option>
+                        </select>
+                        <input class="btn btn-success" type="submit" name="Buscar" value="Buscar">
+                    </form>
+                </div>
             </div>
             <a class="btn btn-primary" href="/NuevaVenta/{{$cliente->id}}">Agregar nueva venta</a>
         </div>
@@ -43,9 +56,9 @@
 
     var infoCliente = '{{$Clientes}}';
     var Consultas = JSON.parse(infoCliente.replace(/&quot;/g,'"'));
-    visualizarInfo(Consultas,"form");
+    visualizarInfo(Consultas,"form1");
     var ConsultaVentas = <?php echo json_encode($infoVentas);?>;
-    detalles(ConsultaVentas,"ventas");
+    detalles(ConsultaVentas,"Filtro");
     
 </script>
 

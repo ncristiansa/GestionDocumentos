@@ -2,8 +2,6 @@
 @extends('layouts/plantilla')
 @section('pageTitle', 'Clientes')
 @section('content')
-
-
 <div class="row">
     <div class="col-12">
     @include('breadcrumbs')
@@ -21,24 +19,8 @@
                 <input type="text" class="form-control" placeholder="Buscar" aria-label="Search" name="filtro">
                 <input class="btn btn-success" type="submit" name="Buscar" value="Buscar">
             </form>
-            <table id="listaclientes" class="table table-hover">
-                <thead class="thead-dark">
-                    <th> ID</th>
-                    <th>Nombre</th> 
-                    <th>NIF CIF</th> 
-                    <th>Localidad</th> 
-                </tr>
-                @foreach($clientes as $item)
-                    <tr>
-                        <td>{{$item->id}}</td>
-                        <td><a href="/cliente/{{$item->id}}">{{$item->Nombre}}</a></td>
-                        <td>{{$item->NIFCIF}}</td>
-                        <td>{{$item->Localidad}}</td>
-                    </tr>
-                @endforeach
-            </table>
-       
-             {!! $clientes->render()!!}
+            
+            {!! $clientes->links()!!}
             <br>
             {{$clientes->total()}} registros |
             página {{$clientes->currentPage()}}
@@ -52,8 +34,14 @@
 </div>
 
 <script type="text/javascript">
-    
-    
+    Consulta = {!! json_encode($clientes->toArray(), JSON_HEX_TAG) !!}['data'];
+    generaTabla(Consulta,"form");
+</script>
+<script>
+//Esta funcion y sus respectivas instrucciones nos permiten hacer clic sobre un campo de la tabla y ver los datos de forma ascendente y descendente
+document.addEventListener("DOMContentLoaded", function(){
+        AscendenteDescendente();
+    }, false);
 </script>
 
 
