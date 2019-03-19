@@ -449,6 +449,55 @@ function validarFormulario()
 	
     
 }
+
+function validarFormularioUsuarios()
+{
+	var Camposinvalidos = [];
+	var valido = true;
+	
+	if($('.formularioUsuarios').eq(0).val() == ''){
+		Camposinvalidos.push('El nombre del usuario está vacio.');
+		valido = false;
+	}
+	if($('.formularioUsuarios').eq(1).val() == ''){
+		Camposinvalidos.push('La contraseña no puede estar vacia.');
+		valido = false;
+	}
+	if($('.formularioUsuarios').eq(2).val() == ''){
+		Camposinvalidos.push('El apellido del usuario está vacio.');
+		valido = false;
+	}
+	if($('.formularioUsuarios').eq(3).val() == ''){
+		Camposinvalidos.push('El campo tipo de usuario está vacio.');
+		valido = false;
+	}
+	if($('.formularioUsuarios').eq(4).val() == ''){
+		Camposinvalidos.push('El email está vacio.');
+		valido = false;
+	}else if(!/^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i.test($('.formularioUsuarios').eq(4).val())){
+		Camposinvalidos.push('El email introducido es incorrecto.');
+		valido = false;
+	}
+	if($('.formularioUsuarios').eq(5).val() == ''){
+		Camposinvalidos.push('El número de telefono está vacio.');
+		valido = false;
+	}else if($('.formularioUsuarios').eq(5).val().length > 9){
+		Camposinvalidos.push('No puedes introducir más de 9 dígitos.');
+		valido = false;
+	}
+		
+    if(Camposinvalidos.length > 0)
+    {
+		mensajeError(undefined, Camposinvalidos, false, "btNuevoCliente");
+	 
+	}
+	if(valido)
+	{
+		$('#formulario').submit();
+	}
+	
+    
+}
 function validarDocVacio(){
 	if($('input[type="file"]') != ''){
 		mensajeError("No has añadido ningún documento.", undefined, false, "btn.btn-success");

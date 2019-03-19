@@ -30,17 +30,11 @@
 		<input type="number" id="telefono" name="telefono" class="formularioUsuarios" placeholder='Telefono'>
 
 				
-		<button  id='btNuevoCliente' onclick='validarForm();' type="submit" class='btn btn-primary' name='enviar'>Añadir</button>
+		<input id='btNuevoCliente' onclick='validarFormularioUsuarios();'  class='btn btn-primary' name='enviar' value="Agregar">
 	</form>
 	</div>	
 </div>
-<script>
-    function validarForm(){
-        if (validarFormulario()!=true){
-            $("#formulario").submit();
-        }
-    }
-</script>
+
 @stop
 
 
