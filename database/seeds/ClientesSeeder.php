@@ -42,7 +42,9 @@ class ClientesSeeder extends Seeder
             13 => 'CENTRO DE REPARACIONES INFORMATICAS SL',
             14 => 'DIGWIND SOCIEDAD LIMITADA.',
             15 => 'TKT SERVICIOS INFORMATICOS SOCIEDAD LIMITADA.',
-            16 => 'AL-TEC REDES Y SISTEMAS SL'
+            16 => 'AL-TEC REDES Y SISTEMAS SL',
+            17 => 'CONDIS SA',
+            18 => 'DIA SA'
         );
         $cp = array(
             0 => '08231',
@@ -61,7 +63,9 @@ class ClientesSeeder extends Seeder
             13 => '08657',
             14 => '08332',
             15 => '08196',
-            16 => '08694'
+            16 => '08694',
+            17 => '05874',
+            18 => '08578'
 
         );
         $telefonos = array(
@@ -81,7 +85,9 @@ class ClientesSeeder extends Seeder
             13 => '937844544',
             14 => '936658877',
             15 => '936521547',
-            16 => '934121458'
+            16 => '934121458',
+            17 => '936654858',
+            18 => '936622544'
         );
         $nif = array(
             0 => '55429536L',
@@ -100,7 +106,9 @@ class ClientesSeeder extends Seeder
             13 => '37121229B',
             14 => '38172335V',
             15 => '68870171Y',
-            16 => '12353522S'
+            16 => '12353522S',
+            17 => '57287125J',
+            18 => '99163405D',
         );
         $mails = array(
             1 => 'merk@gmail.com',
@@ -118,7 +126,9 @@ class ClientesSeeder extends Seeder
             13 => 'elleffodduw-7908@yahoo.es',
             14 => 'oxekupin-7189@gmail.com',
             15 => 'ginnawosunnu-9176@outlook.com',
-            16 => 'oloxivy-1500@outlook.com'
+            16 => 'oloxivy-1500@outlook.com',
+            17 => 'empresa@outlook.com',
+            18 => 'tcc@outlook.com'
         );
         $calles = array(
             0 => 'Calle de Alcalá',
@@ -137,18 +147,20 @@ class ClientesSeeder extends Seeder
             13 => 'Calle Tintoré',
             14 => 'Calle Francisco 14',
             15 => 'Av. Barceló',
-            16 => 'Calle de los caidos'
+            16 => 'Calle de los caidos',
+            17 => 'Calle Agustí',
+            18 => 'Calle Esteban',
         );
-        for ($i=1; $i<17; $i++){
-            $rand_localidades = rand(0,5);
+        for ($i=1; $i<18; $i++){
+            $rand_localidades = rand(0,6);
             $localidad_escogida = $localidades[$rand_localidades];
-            $rand_nombres = rand(0,5);
+            $rand_nombres = rand(0,16);
             $nombre_escogido = $nombres[$rand_nombres];
-            $rand_cp = rand(0,5);
+            $rand_cp = rand(0,16);
             $cp_escogido = $cp[$rand_cp];
-            $rand_telefono = rand(0,5);
+            $rand_telefono = rand(0,16);
             $telefono_escogido = $telefonos[$rand_telefono];
-            $rand_calle = rand(0,5);
+            $rand_calle = rand(0,16);
             $calle_escogida = $calles[$rand_calle];
             registro::create([
                 'Nombre' 		=>	$nombre_escogido,
@@ -163,23 +175,6 @@ class ClientesSeeder extends Seeder
                 'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
             ]);
         }
-        /*
-        for ($i=1; $i<20; $i++){
-            $id_cliente = rand(1,9);
-            $estado = rand(0,1);
-            if ($estado == 0) {
-                    $estado_final = "No Activo";
-                }
-            elseif ($estado == 1) {
-                    $estado_final    = "Activo";
-                }
-            VentaModel::create([
-                'id_cliente'    =>  $id_cliente,
-                'descripcion'   =>  'Ejemplo ' . $i,
-                'estado'    =>      $estado_final
-            ]);
-        }
-        */
         for($i=1; $i<20; $i++){
             $id_cliente = rand(1,16);
             $estadorandom = rand(0,1);
