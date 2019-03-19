@@ -14,7 +14,7 @@ function generaTabla(Consulta,elementoAnterior){
 		var elementoPadre = $(elementoAnterior);
 		var divTabla = $('<div>').addClass("table-responsive");
 		var tabla = $('<table>').addClass("table");
-		var thead = $('<thead>');//.addClass("thead-dark");
+		var thead = $('<thead>');
 		var tbody = $('<tbody>');
 		var tr_titulos = $('<tr>');
 		for(var datos in Consulta){
@@ -35,7 +35,7 @@ function generaTabla(Consulta,elementoAnterior){
 		}
 		for(var key in Claves){
 
-			var thTitulo = $('<th>').attr('scope', 'col');
+			var thTitulo = $('<th>');
 			thTitulo.text(Claves[key]);
 			tr_titulos.append(thTitulo);
 
@@ -541,39 +541,39 @@ function formularioDocumento(idDiv, tipoArchivoTitulo, idForm, ConsultaVentas, t
 	elementoAnterior.append(divGeneralInput);
 }
 function AscendenteDescendente(){
-    $('th').click(function() {
-    var table = $(this).parents('table').eq(0)
-    var rows = table.find('tr:gt(0)').toArray().sort(comparer($(this).index()))
-    this.asc = !this.asc
-    if (!this.asc) {
-      rows = rows.reverse()
-    }
-    for (var i = 0; i < rows.length; i++) {
-      table.append(rows[i])
-    }
-    setIcon($(this), this.asc);
-  })
-
-  function comparer(index) {
-    return function(a, b) {
-      var valA = getCellValue(a, index),
-        valB = getCellValue(b, index)
-      return $.isNumeric(valA) && $.isNumeric(valB) ? valA - valB : valA.localeCompare(valB)
-    }
-  }
-
-  function getCellValue(row, index) {
-    return $(row).children('td').eq(index).html()
-  }
-
-  function setIcon(element, asc) {
-    $("th").each(function(index) {
-      $(this).removeClass("sorting");
-      $(this).removeClass("asc");
-      $(this).removeClass("desc");
-    });
-    element.addClass("sorting");
-    if (asc) element.addClass("asc");
-    else element.addClass("desc");
-  }
+	$('th').click(function() {
+		var table = $(this).parents('table').eq(0)
+		var rows = table.find('tr:gt(0)').toArray().sort(comparer($(this).index()))
+		this.asc = !this.asc
+		if (!this.asc) {
+			 rows = rows.reverse()
+		}
+		for (var i = 0; i < rows.length; i++) {
+			 table.append(rows[i])
+		}
+		setIcon($(this), this.asc);
+ });
+// Para comparar los valores de la tabla entre sí
+function comparer(index) {
+	return function(a, b) {
+		 var valA = getCellValue(a, index),
+		 valB = getCellValue(b, index)
+		 return $.isNumeric(valA) && $.isNumeric(valB) ? valA - valB : valA.localeCompare(valB)
+	}
+}
+// Obtiene los valores de cada celda
+function getCellValue(row, index) {
+	return $(row).children('td').eq(index).html()
+}
+// Muestra gráficamente qué ordenamiento se está aplicando
+function setIcon(element, asc) {
+	$("th").each(function(index) {
+		 $(this).removeClass("sorting");
+		 $(this).removeClass("asc");
+		 $(this).removeClass("desc");
+	});
+	element.addClass("sorting");
+	if (asc) element.addClass("asc");
+	else element.addClass("desc");
+}
 }
