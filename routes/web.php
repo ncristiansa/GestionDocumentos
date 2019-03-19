@@ -36,6 +36,9 @@ Route::get('clientes', 'ClientesController@buscar');
 Route::get('/documento/{fichero}','ModificarController@descargarFichero');
 //Route::get('cliente/{id}', 'VentaController@filtroEstadoFecha');
 
+Route::get('/login', function () {
+    return view('login');
+});
 
 
 Route::get('/usuarios', 'usuariosController@create');
