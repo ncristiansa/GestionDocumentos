@@ -16,7 +16,7 @@ class ClientesController extends Controller
      */
     public function index()
     {
-        $clientes = registro::select('id', 'Nombre','NIFCIF','Localidad')->orderBy('id', 'ASC')->paginate(15);
+        $clientes = registro::select('id', 'Nombre','NIFCIF','Localidad')->paginate(15);
         
         return view('clientes',array('clientes'=>$clientes));
     }
