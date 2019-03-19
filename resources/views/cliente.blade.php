@@ -12,7 +12,7 @@
     $url = 'http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
     $idCliente = explode("/",$url);
     $infoCliente = DB::table('clientes')->where('id', $idCliente[4])->get();
-    $infoVentas = DB::table('ventas')->where('id_cliente', $idCliente[4])->get(['id','nombreVentas','Estado','updated_at']);
+    //$infoVentas = DB::table('ventas')->where('id_cliente', $idCliente[4])->get(['id','nombreVentas','Estado','updated_at']);
 ?>
 <div class="row">
     <div class="col-12">
@@ -38,11 +38,8 @@
                     ?>
                     
                         <input type="date" placeholder="Buscar" aria-label="Search" name="filtro">
-                        <select id="inputState">
-                        <option selected>--Filtro estado--</option>
-                        <option >Activo</option>
-                        <option>Finalizado</option>
-                        </select>
+                        <input type="radio" name="estado" value="Activo">Activo
+                        <input type="radio" name="estado" value="No Activo">No Activo
                         <input class="btn btn-success" type="submit" name="Buscar" value="Buscar">
                     </form>
                 </div>

@@ -22,14 +22,6 @@ class VentaController extends Controller
         $Documentos = DB::table('documentos')->get();
         return view('detallesVentas', compact('Ventas'));
     }
-
-    public function filtroEstadoFecha(Request $request, $id)
-    {
-        $inputFecha=$request->input('fechaVenta');
-        //dd($inputFecha);
-        $cliente = VentaModel::select('id', 'nombreVentas','Estado','updated_at')->where('id_cliente',$id)->where('updated_at','like',$inputFecha.'%')->paginate(15);
-        return view('/cliente',array('infoVentas'=>$cliente));
-    }
     /**
      * Show the form for creating a new resource.
      *

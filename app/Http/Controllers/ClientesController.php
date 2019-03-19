@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\registro;
 use App\Paginacion;
+use App\VentaModel;
 use DB;
 use Exception;
 use Illuminate\Http\Request;
@@ -30,6 +31,38 @@ class ClientesController extends Controller
         return view('clientes',array('clientes'=>$clientes));
     }
     
+
+    public function filtroEstadoFecha(Request $request, $id)
+    {   
+
+        $inputFecha=$request->input('filtro');
+        $inputEstado=$request->input('estado');
+        //dd($inputEstado);
+        
+        if ($inputFecha!="" || $inputEstado=="") {
+            $inputFecha=$request->input('filtro');
+            $inputEstado=$request->input('estado');
+            $clientes = DB::table('clientes')->where('id', $id)->get();
+            $venta = VentaModel::select('id', 'nombreVentas','Estado','updated_at')->where('id_cliente',$id)->where('updated_at','like',$inputFecha.'%')->get();
+            return view('/cliente',array('Clientes'=>$clientes),array('infoVentas'=>$venta));
+        }
+        elseif ($inputFecha!="" || $inputEstado=="") {
+            $inputFecha=$request->input('filtro');
+            $inputEstado=$request->input('estado');
+            $clientes = DB::table('clientes')->where('id', $id)->get();
+            $venta = VentaModel::select('id', 'nombreVentas','Estado','updated_at')->where('id_cliente',$id)->where('Estado',$inputEstado)->get();
+            return view('/cliente',array('Clientes'=>$clientes),array('infoVentas'=>$venta));
+        }
+        elseif ($inputFecha!="" || $inputEstado!="") {
+            $inputFecha=$request->input('filtro');
+            $inputEstado=$request->input('estado');
+            $clientes = DB::table('clientes')->where('id', $id)->get();
+            $venta = VentaModel::select('id', 'nombreVentas','Estado','updated_at')->where('id_cliente',$id)->where('updated_at','like',$inputFecha.'%')->where('Estado',$inputEstado)->get();
+            return view('/cliente',array('Clientes'=>$clientes),array('infoVentas'=>$venta));
+        }
+       
+        
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -79,6 +112,7 @@ class ClientesController extends Controller
     {
         $clientes = DB::table('clientes')->where('id', $id)->get();
         return view('/cliente', ['Clientes' => $clientes]);
+
     }
 
     /**
@@ -92,7 +126,8 @@ class ClientesController extends Controller
         try
         {
             $clientes = DB::table('clientes')->where('id', $id)->get();
-            return view('cliente', ['Clientes'=>$clientes]);
+            $ventas = DB::table('ventas')->where('id_cliente', $id)->get(['id','nombreVentas','Estado','updated_at']);;
+            return view('cliente', ['Clientes'=>$clientes],['infoVentas'=>$ventas]);
         }catch(Exception $e)
         {
             return back()->withErrors(['Error'=>'Error del servidor']);
