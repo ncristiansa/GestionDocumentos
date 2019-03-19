@@ -36,7 +36,7 @@ Route::get('clientes', 'ClientesController@buscar');
 
 
 
-Route::post('/detallesVentas/{id}', 'VentaController@downloadFile');
+Route::post('/detallesVentas/{archivo}', 'VentaController@downloadFile');
 
 
 Route::get('/usuarios', 'usuariosController@create');

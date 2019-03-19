@@ -189,7 +189,7 @@ function detallesFichero(Consulta,elementoAnteriorId){
 		var aVisualizar = $('<a>').attr('href', '/storage/'+Consulta[datos]["archivo"]).addClass("btn btn-success");
 		aVisualizar.text("Visualizar");
 
-		var aDescargar = $('<a>').attr('href', '/download/'+Consulta[datos]["archivo"]).addClass("btn btn-success");
+		var aDescargar = $('<a>').attr('href', '/detallesVentas/'+Consulta[datos]["archivo"]).addClass("btn btn-success");
 		aDescargar.text("Descargar");
 
 		var d = $('<a>').attr('href', '/detallesVentas/'+Consulta[datos]["id"]);
