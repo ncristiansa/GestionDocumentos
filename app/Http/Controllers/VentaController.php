@@ -49,9 +49,11 @@ class VentaController extends Controller
         $venta->id_cliente = $id;
         $venta->Comprador = $request->input('comprador');
         $venta->nombreVentas = $request->input('nombreventa');
+        $venta->Estado = $request->input('estado');
         $venta->save();
         $clientes = DB::table('clientes')->where('id', $id)->get();
-        return view('/cliente', ['Clientes' => $clientes]);
+        $ventas = DB::table('ventas')->where('id_cliente', $id)->get(['id','nombreVentas','Estado','updated_at']);;
+        return view('cliente', ['Clientes'=>$clientes],['infoVentas'=>$ventas]);
         }catch(Exception $e)
         {
             return back()->withErrors(['Error'=>'Error del servidor']);
