@@ -20,6 +20,10 @@
             <label>Nombre de la venta</label><br>
             <input type="text" name="nombreventa">
             <br>
+            <label>Estado</label><br>
+            <input type="radio" name="estado" value="Activo">Activo<br>
+            <input type="radio" name="estado" value="No Activo">No Activo<br>
+            <br>
             <input type="button" id="btnNuevaVenta" name="nuevaventa" class="btn btn-success" value="Añadir venta" onclick="validarFormularioVenta();"/>
         </form>
     </div>
