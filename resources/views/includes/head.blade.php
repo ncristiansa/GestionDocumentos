@@ -8,26 +8,6 @@
     <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
     
-    <style>
-    table tr th {
-    cursor: pointer;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    }
-
-    .sorting {
-        background-color: #D4D4D4;
-    }
-
-    .asc:after {
-        content: ' ↑';
-    }
-
-    .desc:after {
-        content: " ↓";
-    }
-</style>
 

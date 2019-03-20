@@ -94,7 +94,7 @@ class ClientesController extends Controller
             $cliente->Localidad = $request->input('Localidad');
             $cliente->CP = $request->input('CP');
             $cliente->save();
-            $clientes = DB::table('clientes')->orderBy('Nombre', 'desc')->paginate(15);
+            $clientes = DB::table('clientes')->paginate(15);
             //$clientes = Paginacion::paginate(15);
             return view('clientes',array('clientes'=>$clientes));
         }catch(Exception $e)
