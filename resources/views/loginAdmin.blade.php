@@ -6,18 +6,13 @@
 <div class="wrapper fadeInDown">
   <div id="formContent">
 
-    <form method="POST" action="/clientes">
+    <form method="get" action="/usuarios">
       <input type="hidden" name="_token" value="{{ csrf_token() }}">
-      <h1 class="display-3">Login</h1>
-      <input type="text" id="user" name="user" placeholder="login">
+      <h1 class="display-3">Login Admin</h1>
+      <input type="text" id="user" name="user" placeholder="usuario">
       <input type="password" id="password" class="fadeIn third" name="password" placeholder="password">
       <br>
       <input type="submit" class="fadeIn fourth" value="Log In">
     </form>
-    <button type="button" class="btn btn-success" onclick="location.href='{{url('loginAdmin')}}' ">Admin</button>
-
-    
-   
-
   </div>
 </div>
