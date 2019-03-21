@@ -1,8 +1,12 @@
-Miguel: Falta de conocimientos de laravel, nos han aparecido muchos fallos y nos han retraso a la hora de hacer tareas. 
+Miguel: 
+Que hemos hecho mal: Mala planificación a la hora de cómo plantear el proyecto, no hemos tenido en cuenta la implementación de una nueva tarea como el login.
+Solución: Planificar el proyecto teniendo en cuenta todas las posibles variaciones y futuras tareas a implementar en el proyecto.
 
 Khalid: Falta conocimientos de laravel.
 
-Cristian: Falta conocimientos de laravel. 
+Cristian:
+Que hemos hecho mal: La mala planificación ha sido el motivo por el cual no hemos podido terminar las dos últimas tareas de este sprint.
+Solución: Reunirse con el grupo y priorizar las tareas que creamos que puedan tener una dificultad. 
 
-Grupal: No hemos repartido las tareas correctamente entre los componentes del grupo. Creemos que las especificaciones tendrían que ser más descriptivas.
+Grupal: No hemos repartido las tareas correctamente entre los componentes del grupo. La tarea que creíamos simple ha resultado ser una tarea principal, es decir, dependia de esta tarea (Login) algunas rutas del proyecto.
 	

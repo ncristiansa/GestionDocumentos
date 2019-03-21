@@ -10,23 +10,7 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/','LoginController@login');
-
-Route::post('/clientes','LoginController@LoginValidarUsuarios');
-
-Route::get('/loginAdmin','LoginController@LoginAdm');
-
-
-Route::get('/usuarios', 'LoginController@LoginAdmin');
-
-Route::get('/usuarios', 'usuariosController@create');
-
-Route::post('/usuarios', 'usuariosController@store');
-
-
-
-
-Route::get('clientes', 'ClientesController@index');
+Route::get('/', 'ClientesController@index');
 
 
 Route::get('/formulario', 'ClientesController@create');

@@ -175,26 +175,6 @@ class ClientesSeeder extends Seeder
                 'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
             ]);
         }
-        for($i=1; $i<20; $i++){
-            $id_cliente = rand(1,16);
-            $estadorandom = rand(0,1);
-            $estado = '';
-            if($estadorandom == 0){
-                $estado = "No Activo";
-            }
-            else if($estadorandom == 1){
-                $estado = "Activo";
-            }
-            VentaModel::create([
-                'id_cliente' => $id_cliente,
-                'Comprador' => 'venta'.$i,
-                'nombreVentas' => 'Ejemplo Nombre venta'.$i,
-                'Estado' => $estado,
-                'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
-                'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
-            ]);
-        }
-        /*
         DB::table('ventas')->insert([
             'id_cliente' => '1',
             'Comprador' => 'Nestle',
@@ -203,8 +183,39 @@ class ClientesSeeder extends Seeder
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
         ]);
-        */
-        // Tabla clientes seedeS
+        DB::table('ventas')->insert([
+            'id_cliente' => '1',
+            'Comprador' => 'Caprabo',
+            'nombreVentas' => 'Venta2',
+            'Estado'=>'No Activo',
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
+        ]);
+        DB::table('ventas')->insert([
+            'id_cliente' => '1',
+            'Comprador' => 'Condis',
+            'nombreVentas' => 'Venta3',
+            'Estado'=>'No Activo',
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
+        ]);
+        DB::table('ventas')->insert([
+            'id_cliente' => '1',
+            'Comprador' => 'Conforama',
+            'nombreVentas' => 'Venta4',
+            'Estado'=>'Activo',
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
+        ]);
+        DB::table('ventas')->insert([
+            'id_cliente' => '2',
+            'Comprador' => 'IKEA',
+            'nombreVentas' => 'Venta1',
+            'Estado'=>'Activo',
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
+        ]);
+
     }
         
 }
