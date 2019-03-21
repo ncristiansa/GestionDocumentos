@@ -40,13 +40,24 @@
         </form>
       @endforeach
   </div>
-<!-- 
-	<div id="pedido" class="col-12">
-		<h3>Pedido</h3>
-		<form method="POST" action="http://diamond-chaos.codio.io:3000/tuto/public/storage/create" accept-charset="UTF-8" enctype="multipart/form-data">
-          </form>
-	</div>
--->
+	<div id="documentoX" class="col-12">
+      <h3 id="DocumentoX">Documento X</h3>
+
+        <form method='POST' id="form-presupuesto" action='/detallesVentas/{{$venta->id}}' accept-charset='UTF-8' enctype='multipart/form-data' files='true'>   
+            {{ csrf_field() }}
+            <input type="file">
+            <button style="margin-top:10px;" type="button" name="enviar" class="btn btn-success">Guardar</button>
+        </form>
+  </div>
+  <div id="documentoY" class="col-12">
+      <h3 id="DocumentoY">Documento Y</h3>
+
+        <form method='POST' id="form-presupuesto" action='/detallesVentas/{{$venta->id}}' accept-charset='UTF-8' enctype='multipart/form-data' files='true'>   
+            {{ csrf_field() }}
+            <input type="file">
+            <button style="margin-top:10px;" type="button" name="enviar" class="btn btn-success">Guardar</button>
+        </form>
+  </div>
 </div>
 <script type="text/javascript">
   var infoVentas = '{{$Ventas}}';
@@ -61,6 +72,7 @@
   detallesFichero(ConsultaDocsFactura,"Facturas");
   detallesFichero(ConsultaDocsAlbaran,"Albaranes");
   detallesFichero(ConsultaDocsPresupuesto,"Presupuestos");
+  
   
 </script>
 <script>
