@@ -18,7 +18,7 @@ A continuación abrimos una terminal y ejecutamos la siguiente comanda:
 #### php artisan migrate
 
 Nuevas comandas a realizar:
-- Para generar el seeder: sudo php artisan migrate:refres --seeder (recomendable borrar las tablas de la DB en phpmyadmin y deshabilitar la revisión de las claves foráneas).
+- Para generar el seeder: sudo php artisan migrate:refresh --seeder (recomendable borrar las tablas de la DB en phpmyadmin y deshabilitar la revisión de las claves foráneas).
 - Para poder visualizar y descargar los PDF: sudo php artisan storage:link
 
 Integrantes:
