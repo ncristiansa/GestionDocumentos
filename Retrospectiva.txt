@@ -3,6 +3,8 @@ Que hemos hecho mal: Mala planificación a la hora de cómo plantear el proyecto
 Solución: Planificar el proyecto teniendo en cuenta todas las posibles variaciones y futuras tareas a implementar en el proyecto.
 
 Khalid: Falta conocimientos de laravel.
+Que hemos hecho mal:Falta de organización y hablar mas con los compañeros.
+Solución:Hablar y dialogar mas con los compañeros.
 
 Cristian:
 Que hemos hecho mal: La mala planificación ha sido el motivo por el cual no hemos podido terminar las dos últimas tareas de este sprint.
