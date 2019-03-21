@@ -39,21 +39,21 @@ class ClientesController extends Controller
         $inputEstado=$request->input('estado');
         //dd($inputEstado);
         
-        if ($inputFecha!="" && $inputEstado=="") {
+        if ($inputFecha!=null && $inputEstado==null) {
             $inputFecha=$request->input('filtro');
             $inputEstado=$request->input('estado');
             $clientes = DB::table('clientes')->where('id', $id)->get();
             $venta = VentaModel::select('id', 'nombreVentas','Estado','updated_at')->where('id_cliente',$id)->where('updated_at','like',$inputFecha.'%')->get();
             return view('/cliente',array('Clientes'=>$clientes),array('infoVentas'=>$venta));
         }
-        elseif ($inputFecha!="" && $inputEstado=="") {
+        elseif ($inputFecha==null && $inputEstado!=null) {
             $inputFecha=$request->input('filtro');
             $inputEstado=$request->input('estado');
             $clientes = DB::table('clientes')->where('id', $id)->get();
             $venta = VentaModel::select('id', 'nombreVentas','Estado','updated_at')->where('id_cliente',$id)->where('Estado',$inputEstado)->get();
             return view('/cliente',array('Clientes'=>$clientes),array('infoVentas'=>$venta));
         }
-        elseif ($inputFecha!="" && $inputEstado!="") {
+        elseif ($inputFecha!=null && $inputEstado!=null) {
             $inputFecha=$request->input('filtro');
             $inputEstado=$request->input('estado');
             $clientes = DB::table('clientes')->where('id', $id)->get();
