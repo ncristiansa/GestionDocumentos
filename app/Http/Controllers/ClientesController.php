@@ -7,6 +7,7 @@ use App\VentaModel;
 use DB;
 use Exception;
 use Illuminate\Http\Request;
+use Response;
 
 class ClientesController extends Controller
 {
@@ -19,14 +20,15 @@ class ClientesController extends Controller
     {
         $clientes = registro::select('id', 'Nombre','NIFCIF','Localidad')->paginate(15);
         
-        return view('clientes',array('clientes'=>$clientes));
+        //return view('clientes',array('clientes'=>$clientes));
+        //Prueba con AJAX
+        return Response::json(['clientes'=>$clientes]);
     }
 
     public function buscar(Request $request)
     {   
         $registroBusqueda = $request->input('filtro');
         $clientes = registro::select('id', 'Nombre','NIFCIF','Localidad')->where('Nombre','like','%'.$registroBusqueda.'%')->orwhere('Localidad','like','%'.$registroBusqueda.'%')->orwhere('NIFCIF','like','%'.$registroBusqueda.'%')->paginate(15);
-
         
         return view('clientes',array('clientes'=>$clientes));
     }
